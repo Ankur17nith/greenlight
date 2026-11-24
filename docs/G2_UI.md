@@ -36,16 +36,16 @@ Undo is client-side: nothing is sent until the 3 seconds end, so closing the app
 
 ## Verified gestures
 
-_Fill this in on Day 0 from the SDK logs (task D0-3). Until it is filled, treat the table above as unconfirmed._
+_Event names below come from the `@evenrealities/even_hub_sdk` 0.0.16 typings (`OsEventTypeList`). **They have not yet been observed on the simulator or glasses**, so D0-3 stays open. The "Works" columns are filled in only after a real run._
 
 | Input | SDK event name | Works on glasses | Works in simulator | Notes |
 |---|---|---|---|---|
-| Tap | _TBD_ | _TBD_ | _TBD_ | |
-| Swipe forward | _TBD_ | _TBD_ | _TBD_ | |
-| Swipe back | _TBD_ | _TBD_ | _TBD_ | |
-| Hold | _TBD_ | _TBD_ | _TBD_ | |
-| Double tap | _TBD_ | _TBD_ | _TBD_ | |
-| R1 ring | _TBD_ | _TBD_ | _TBD_ | |
+| Tap | `CLICK_EVENT` (0) | _untested_ | _untested_ | May arrive with `eventType` undefined (protobuf zero); handled as a click |
+| Swipe forward | `SCROLL_BOTTOM_EVENT` (2) | _untested_ | _untested_ | Direction assumed; confirm |
+| Swipe back | `SCROLL_TOP_EVENT` (1) | _untested_ | _untested_ | Direction assumed; confirm |
+| Hold | `LONG_PRESS_EVENT` (9) | _untested_ | _untested_ | Release is a separate event (10), ignored |
+| Double tap | `DOUBLE_CLICK_EVENT` (3) | _untested_ | _untested_ | |
+| R1 ring | same events; `sysEvent.eventSource` is `TOUCH_EVENT_FROM_RING` (2) | _untested_ | _untested_ | Ring and temples share the event types |
 
 Fallback if hold or double tap are missing: tap = approve, swipe = next, ring press = decline, and a snooze step reached by swiping to `SNOOZE` on the action footer.
 
