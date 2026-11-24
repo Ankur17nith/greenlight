@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
-import { ScrollProgress } from '@/components/motion/scroll-progress';
 import { ThemeProvider } from '@/components/theme-provider';
 import { GeistPixelLine } from './fonts';
 import './globals.css';
@@ -28,7 +27,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body className="min-h-dvh antialiased">
-        <ScrollProgress />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
