@@ -32,5 +32,5 @@ const app = await buildApp({
     throw new Error(`write-back for ${card.source} not implemented`);
   },
 });
-await app.listen({ port: Number(env.PORT ?? 3000), host: "0.0.0.0" });
-console.log(`greenlight api on :${env.PORT ?? 3000}`);
+await app.listen({ port: Number(env.PORT ?? 3001), host: "0.0.0.0" });
+console.log(`greenlight api on :${env.PORT ?? 3001}`);
