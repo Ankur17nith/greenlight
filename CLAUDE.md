@@ -15,6 +15,12 @@ Submit by **Nov 28 evening**. Hard deadline: Nov 29, 23:59 Dubai time (UTC+4).
 8. Follow the cut order in `plan.md` when time runs short; never cut Telegram, Gmail, the audit log or the undo.
 9. Keep the README run commands correct whenever a command changes.
 
+## Where to look
+- Tasks and Done-when lines: `docs/TASKS.md`. Setup: `docs/SETUP.md`. API: `docs/API.md`.
+- Policy Guard: `docs/POLICY_GUARD.md`. Glasses UI: `docs/G2_UI.md`. Design: `.design/`.
+- Demo and video: `docs/DEMO_RUNBOOK.md`, `video/`.
+- Frontends: `apps/g2` (glasses) and `apps/dashboard` (browser).
+
 ## How to work
 - One micro-task at a time, run the tests or the live script, show real output, then commit.
 - Branches: `feat/<task>`; merge when CI passes.
