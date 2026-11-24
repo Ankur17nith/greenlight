@@ -1,0 +1,20 @@
+# Local secrets written by `elevenlabs onboard`
+/.env.local
+.env
+.env.*
+!.env.example
+
+node_modules/
+dist/
+.vite/
+*.log
+*.sqlite
+*.sqlite-journal
+data/
+
+# Generated media (keep scripts and JSON, not renders)
+video/narration/*.mp3
+video/out/
+video/work/
+brag-output*/
+*.ehpk
