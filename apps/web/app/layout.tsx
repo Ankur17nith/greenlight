@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
+import { ScrollProgress } from '@/components/motion/scroll-progress';
 import { ThemeProvider } from '@/components/theme-provider';
 import { GeistPixelLine } from './fonts';
 import './globals.css';
@@ -22,7 +23,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable} ${GeistPixelLine.variable}`}>
+      <head>
+        {/* Marks that JS is running, so scroll-reveal content can start hidden. Static string, no user input. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className="min-h-dvh antialiased">
+        <ScrollProgress />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
