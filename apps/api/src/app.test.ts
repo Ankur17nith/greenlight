@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { buildApp, type Deps } from "./app.ts";
 import * as q from "./db.ts";
+import * as g from "./google.ts";
 
 const verdict = { category: "REFUND", headline: "$320 AWS Refund · @rohan", policy_status: "WITHIN_POLICY", policy_reason: "Under $500", recommendation: "Approve", suggested_reply: "SECRET REPLY" } as const;
 const SECRET = "whsec";
@@ -149,4 +150,39 @@ describe("policies and pairing", () => {
     expect((await app.inject({ method: "POST", url: "/api/pair/exchange", payload: { code: "abc" } })).statusCode).toBe(400);
   });
   it("/health is open", async () => expect((await app.inject({ url: "/health" })).json()).toEqual({ ok: true }));
+});
+
+describe("google connect routes", () => {
+  const gcfg = { clientId: "cid", clientSecret: "cs", redirectUri: "http://x/cb", tokenSecret: "ts" };
+  const withGoogle = async (fetchImpl?: typeof fetch) => buildApp({
+    db, telegramSecret: SECRET, now: () => clock, google: gcfg, dashboardUrl: "http://dash", fetch: fetchImpl,
+    evaluate: async () => ({ verdict, eval_mode: "AI" }), writeBack: async () => "x",
+  });
+  it("needs a dashboard session and Google config", async () => {
+    expect((await app.inject({ url: "/auth/google", headers: auth(g2) })).statusCode).toBe(401);
+    expect((await app.inject({ url: "/auth/google", headers: auth(dash) })).statusCode).toBe(501);
+  });
+  it("returns a Google URL with a state, and the callback connects and redirects", async () => {
+    const a = await withGoogle((async () => new Response(JSON.stringify({ access_token: "A", refresh_token: "R", expires_in: 3600 }), { status: 200 })) as typeof fetch);
+    const url = new URL((await a.inject({ url: "/auth/google", headers: auth(dash) })).json().url);
+    expect(url.host).toBe("accounts.google.com");
+    const state = url.searchParams.get("state")!;
+    const cb = await a.inject({ url: `/auth/google/callback?code=abc&state=${state}` });
+    expect(cb.statusCode).toBe(302);
+    expect(cb.headers.location).toContain("http://dash/app/connect");
+    expect((await a.inject({ url: "/api/connections", headers: auth(dash) })).json().google).toBe(true);
+    // state cannot be replayed
+    expect((await a.inject({ url: `/auth/google/callback?code=abc&state=${state}` })).statusCode).toBe(400);
+  });
+  it("rejects a callback with a bad or missing state", async () => {
+    const a = await withGoogle();
+    expect((await a.inject({ url: "/auth/google/callback?code=abc&state=forged" })).statusCode).toBe(400);
+    expect((await a.inject({ url: "/auth/google/callback" })).statusCode).toBe(400);
+  });
+  it("a failed token exchange returns 502 and stays disconnected", async () => {
+    const a = await withGoogle((async () => new Response("{}", { status: 400 })) as typeof fetch);
+    const state = new URL((await a.inject({ url: "/auth/google", headers: auth(dash) })).json().url).searchParams.get("state")!;
+    expect((await a.inject({ url: `/auth/google/callback?code=abc&state=${state}` })).statusCode).toBe(502);
+    expect(g.isConnected(db)).toBe(false);
+  });
 });

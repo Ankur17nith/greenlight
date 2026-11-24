@@ -53,6 +53,10 @@ export function insertCard(
   return r.changes === 0 ? null : getCard(db, id)!;
 }
 
+export function cardExists(db: Db, source: string, externalId: string): boolean {
+  return !!db.prepare("SELECT 1 FROM decisions WHERE source = ? AND external_id = ?").get(source, externalId);
+}
+
 export function getCard(db: Db, id: string): Row | undefined {
   return db.prepare("SELECT * FROM decisions WHERE id = ?").get(id) as unknown as Row | undefined;
 }

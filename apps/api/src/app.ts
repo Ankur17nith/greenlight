@@ -4,6 +4,7 @@ import { Decision, type RawRequest, type Verdict } from "@greenlight/shared";
 import { z } from "zod";
 import * as q from "./db.ts";
 import { updateToRequest, type TgUpdate } from "./telegram.ts";
+import * as google from "./google.ts";
 
 export interface Deps {
   db: q.Db;
@@ -14,6 +15,11 @@ export interface Deps {
   telegramSecret: string;
   corsOrigin?: string | boolean;
   now?: () => Date;
+  /** Google OAuth settings; routes are disabled when omitted. */
+  google?: google.GoogleConfig;
+  /** Where the OAuth callback sends the browser afterwards. */
+  dashboardUrl?: string;
+  fetch?: typeof fetch;
 }
 
 export const DEFAULT_RULES = ["Flag any refund or expense over $500.", "Never double-book investor calls.", "Flag requests from people not in our contact list."];
@@ -21,6 +27,15 @@ export const SNOOZE_MS = 60 * 60 * 1000;
 
 const err = (code: string, message: string) => ({ error: { code, message } });
 const Rules = z.array(z.string().trim().min(1).max(200)).min(2).max(4);
+
+/** Evaluates a request against the current rules and stores it as a card. Duplicates are skipped before any AI call. */
+export async function ingest(deps: Deps, r: RawRequest): Promise<{ duplicate: boolean }> {
+  if (q.cardExists(deps.db, r.source, r.external_id)) return { duplicate: true };
+  const rules = q.getPolicies(deps.db);
+  const { verdict, eval_mode } = await deps.evaluate(r, rules.length ? rules : DEFAULT_RULES);
+  const row = q.insertCard(deps.db, { source: r.source, external_id: r.external_id, requester: r.requester, verdict, eval_mode, now: deps.now?.() ?? new Date() });
+  return { duplicate: row === null };
+}
 
 export async function buildApp(deps: Deps) {
   const app = Fastify({ logger: false });
@@ -43,10 +58,7 @@ export async function buildApp(deps: Deps) {
     }
     const r = updateToRequest(req.body as TgUpdate);
     if (!r) return { ok: true, ignored: true };
-    const rules = q.getPolicies(db);
-    const { verdict, eval_mode } = await deps.evaluate(r, rules.length ? rules : DEFAULT_RULES);
-    const row = q.insertCard(db, { source: r.source, external_id: r.external_id, requester: r.requester, verdict, eval_mode, now: now() });
-    return { ok: true, duplicate: row === null };
+    return { ok: true, ...(await ingest(deps, r)) };
   });
 
   // suggested_reply stays server side.
@@ -112,6 +124,26 @@ export async function buildApp(deps: Deps) {
     }
     return { token: q.createSession(db, "G2") };
   });
+
+  // Google connect. The browser cannot send a Bearer header on a redirect, so the dashboard
+  // fetches the URL with its token and then navigates; the callback is protected by a single-use state.
+  google.initGoogleTables(db);
+  app.get("/auth/google", { preHandler: auth("DASHBOARD") }, async (_req, reply) => {
+    if (!deps.google) return reply.code(501).send(err("NOT_CONFIGURED", "Google is not configured"));
+    return { url: google.authUrl(deps.google, google.newState(db, now())) };
+  });
+  app.get<{ Querystring: { code?: string; state?: string; error?: string } }>("/auth/google/callback", async (req, reply) => {
+    const { code, state } = req.query;
+    if (!deps.google || !code || !state || !google.consumeState(db, state, now())) {
+      return reply.code(400).send(err("BAD_STATE", "Invalid or expired sign-in attempt"));
+    }
+    try { await google.connect(db, deps.google, code, deps.fetch, now()); }
+    catch { return reply.code(502).send(err("GOOGLE_FAILED", "Could not connect Google")); }
+    return deps.dashboardUrl ? reply.redirect(`${deps.dashboardUrl}/app/connect?google=connected`) : { ok: true };
+  });
+  app.get("/api/connections", { preHandler: auth("DASHBOARD") }, async () => ({
+    google: google.isConnected(db), telegram: !!deps.telegramSecret,
+  }));
 
   return app;
 }
