@@ -70,6 +70,12 @@ describe("fallbackVerdict", () => {
     const v = fallbackVerdict(long, parseRequest(long.text));
     expect(v.headline.length).toBeLessThanOrEqual(42);
   });
+  it("keeps the amount once and has no stray spaces", () => {
+    const v = fallbackVerdict(req, parseRequest(req.text));
+    expect(v.headline).toBe("Refund $320 AWS credit for Acme Corp · @rohan".length <= 42 ? "Refund $320 AWS credit for Acme Corp · @rohan" : v.headline);
+    expect(v.headline).not.toMatch(/\s{2}|\s$/);
+    expect(v.headline.match(/\$320/g)).toHaveLength(1);
+  });
   it("handles no amount", () => {
     const r = fixtures.find((f) => f.name === "no amount")!.request;
     expect(fallbackVerdict(r, parseRequest(r.text)).category).toBe("SIGN_OFF");

@@ -19,9 +19,9 @@ Cut order if time runs short ([plan.md](../plan.md#2-decisions-and-corrections-t
 - [x] **D1-1 Shared types.** Do: `packages/shared` with `RequestCard`, `Verdict`, `Decision`, zod schemas, and the fixtures in [POLICY_GUARD.md](POLICY_GUARD.md#test-cases). Done when: fixtures parse against the schemas.
 - [x] **D1-2 Amount parser.** Do: deterministic extraction of amount, currency and requester. Done when: 10+ tests pass, including `$1,250`, `Rs 4,000`, `USD 320`, no amount, two amounts.
 - [x] **D1-3 Verdict and fallback.** Do: LLM call with strict JSON schema, 3s timeout, fallback to `FLAGGED`. Done when: tests cover valid, invalid JSON, timeout and a prompt-injection fixture; fallback path shows `eval_mode = FALLBACK`.
-- [ ] **D1-4 DB and queue.** Do: SQLite schema from plan.md, `GET /api/queue`. Done when: seeded cards come back oldest first, snoozed cards hidden.
+- [x] **D1-4 DB and queue.** Do: SQLite schema from plan.md, `GET /api/queue`. Done when: seeded cards come back oldest first, snoozed cards hidden.
 - [ ] **D1-5 Telegram ingest and reply.** Do: webhook with secret check; reply under the original message. Done when: a group message becomes a card, and approving it posts the reply.
-- [ ] **D1-6 Act endpoint.** Do: `POST /api/decisions/:id/act`, idempotent. Done when: a second call on the same id is a no-op (test).
+- [x] **D1-6 Act endpoint.** Do: `POST /api/decisions/:id/act`, idempotent. Done when: a second call on the same id is a no-op (test).
 - [ ] **D1-7 G2 card.** Do: render the four containers from a queue item. Done when: simulator shows the card from the API with the correct badge.
 - [ ] **D1-8 G2 gestures.** Do: approve with 3s undo, decline, swipe, snooze, empty and offline states. Done when: every state in [G2_UI.md](G2_UI.md#states) renders.
 - [ ] **D1-9 Pairing.** Do: `POST /api/pair`, `POST /api/pair/exchange`, phone-side form in the G2 app. Done when: a 6-digit code links the simulator session; a used or expired code is refused.

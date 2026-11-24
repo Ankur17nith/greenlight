@@ -28,10 +28,12 @@ export function buildPrompt(req: RawRequest, rules: string[], parsed: Parsed): s
 }
 
 export function fallbackVerdict(req: RawRequest, parsed: Parsed, reason = "AI unavailable"): Verdict {
-  const who = req.requester;
-  const money = parsed.amount !== null ? `${parsed.currency === "USD" || !parsed.currency ? "$" : parsed.currency + " "}${parsed.amount}` : "";
-  const base = [money, req.text.replace(/\s+/g, " ").trim()].filter(Boolean).join(" ");
-  const headline = `${base} · ${who}`.slice(0, 42);
+  // The request text already contains the amount; keep it as the headline, trimmed to fit with the requester.
+  const suffix = ` · ${req.requester}`.slice(0, 20);
+  const text = req.text.replace(/\s+/g, " ").trim();
+  const room = 42 - suffix.length;
+  const body = text.length > room ? text.slice(0, room - 1).trimEnd() + "…" : text;
+  const headline = body + suffix;
   return {
     category: req.source === "CALENDAR" ? "CALENDAR" : parsed.amount !== null ? "EXPENSE" : "SIGN_OFF",
     headline,
