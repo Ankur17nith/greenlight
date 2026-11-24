@@ -1,3 +1,4 @@
+import { timingSafeEqual } from "node:crypto";
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import { Decision, type RawRequest, type Verdict } from "@greenlight/shared";
@@ -32,13 +33,23 @@ export function parseCors(v: string | undefined): boolean | string[] {
   return v.split(",").map((o) => o.trim()).filter(Boolean);
 }
 
+/** Constant-time string compare so the webhook secret cannot be guessed by timing. */
+export function safeEqual(a: string, b: string): boolean {
+  const x = Buffer.from(a), y = Buffer.from(b);
+  return x.length === y.length && timingSafeEqual(x, y);
+}
+
+/** Longest request text sent to the model; longer input is cut (cost and abuse limit). */
+export const MAX_REQUEST_CHARS = 2000;
+
 export const SNOOZE_MS = 60 * 60 * 1000;
 
 const err = (code: string, message: string) => ({ error: { code, message } });
 const Rules = z.array(z.string().trim().min(1).max(200)).min(2).max(4);
 
 /** Evaluates a request against the current rules and stores it as a card. Duplicates are skipped before any AI call. */
-export async function ingest(deps: Deps, r: RawRequest): Promise<{ duplicate: boolean }> {
+export async function ingest(deps: Deps, req: RawRequest): Promise<{ duplicate: boolean }> {
+  const r = req.text.length > MAX_REQUEST_CHARS ? { ...req, text: req.text.slice(0, MAX_REQUEST_CHARS) } : req;
   if (q.cardExists(deps.db, r.source, r.external_id)) return { duplicate: true };
   const rules = q.getPolicies(deps.db);
   const { verdict, eval_mode } = await deps.evaluate(r, rules.length ? rules : DEFAULT_RULES);
@@ -62,7 +73,7 @@ export async function buildApp(deps: Deps) {
   app.get("/health", async () => ({ ok: true }));
 
   app.post("/telegram/webhook", async (req, reply) => {
-    if (!deps.telegramSecret || req.headers["x-telegram-bot-api-secret-token"] !== deps.telegramSecret) {
+    if (!deps.telegramSecret || !safeEqual(String(req.headers["x-telegram-bot-api-secret-token"] ?? ""), deps.telegramSecret)) {
       return reply.code(401).send(err("BAD_SECRET", "Invalid webhook secret"));
     }
     const r = updateToRequest(req.body as TgUpdate);

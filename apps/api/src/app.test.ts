@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { buildApp, parseCors, type Deps } from "./app.ts";
+import { MAX_REQUEST_CHARS, buildApp, parseCors, safeEqual, type Deps } from "./app.ts";
 import * as q from "./db.ts";
 import * as g from "./google.ts";
 
@@ -236,5 +236,28 @@ describe("demo seed", () => {
     await a.inject({ method: "POST", url: "/api/dev/seed", headers: auth(dash), payload: { gmailThreadId: "T123", calendarEventId: "E456" } });
     expect(q.cardExists(db, "GMAIL", "T123")).toBe(true);
     expect(q.cardExists(db, "CALENDAR", "E456")).toBe(true);
+  });
+});
+
+describe("hardening", () => {
+  it("safeEqual compares correctly, including different lengths", () => {
+    expect(safeEqual("abc", "abc")).toBe(true);
+    expect(safeEqual("abc", "abd")).toBe(false);
+    expect(safeEqual("abc", "abcd")).toBe(false);
+    expect(safeEqual("", "")).toBe(true);
+  });
+  it("a missing secret header is rejected", async () => {
+    expect((await app.inject({ method: "POST", url: "/telegram/webhook", payload: { message: { message_id: 1, text: "x $1", chat: { id: 1, type: "group" } } } })).statusCode).toBe(401);
+  });
+  it("very long request text is cut before it reaches the model", async () => {
+    let seen = 0;
+    const a = await buildApp({ db: q.openDb(), telegramSecret: SECRET, evaluate: async (r) => { seen = r.text.length; return { verdict, eval_mode: "AI" }; }, writeBack: async () => "x" });
+    await a.inject({ method: "POST", url: "/telegram/webhook", headers: { "x-telegram-bot-api-secret-token": SECRET }, payload: { message: { message_id: 1, text: "x".repeat(50_000), chat: { id: 1, type: "group" }, from: { username: "u" } } } });
+    expect(seen).toBe(MAX_REQUEST_CHARS);
+  });
+  it("API errors never echo request text or secrets", async () => {
+    const r = await act("nope", "APPROVE");
+    expect(r.body).not.toContain(SECRET);
+    expect(r.json().error.message).toBe("Unknown card");
   });
 });
