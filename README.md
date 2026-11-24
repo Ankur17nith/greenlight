@@ -159,7 +159,7 @@ The API and glasses app commands are added here as each part lands. Account setu
 
 ## What existed before Nov 23
 
-Nothing. Greenlight was started on Nov 24, during the hackathon. Its documentation structure was inspired by the open-source repos [LifeLine](https://github.com/Prashant-thakur77/LifeLine) and [Beacon](https://github.com/Prashant-thakur77/Beacon), the website's look by [Debrief](https://github.com/Prashant-thakur77/Debrief), and the teaser-video workflow by [brag](https://github.com/latent-spaces/brag). No code was copied from any of them. Open-source libraries (Next.js, React, Tailwind, Radix Slot, lucide, next-themes, Geist fonts under the SIL Open Font License) and the Even Hub SDK are used as dependencies.
+Nothing. Greenlight was started on Nov 24, during the hackathon. Its documentation structure was inspired by the open-source repo [Beacon](https://github.com/Prashant-thakur77/Beacon), and the teaser-video workflow by [brag](https://github.com/latent-spaces/brag). No code was copied from any of them. Open-source libraries (Next.js, React, Tailwind, Radix Slot, lucide, next-themes, Geist fonts under the SIL Open Font License) and the Even Hub SDK are used as dependencies.
 
 ## AI tools used
 
