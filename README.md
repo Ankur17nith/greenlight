@@ -13,7 +13,7 @@
 Built for the **Heads Up** hackathon (Even Realities × TVM Ventures × Daos Hub) on DoraHacks.
 **Primary track:** 04 · AI Assistants & Work · **Second track:** 01 · Messaging & News · **Special prize:** Best Telegram integration.
 
-![Greenlight home page](docs/images/home-night.png)
+![Greenlight home page](docs/images/home-page.png)
 
 > **Honest status:** the website (landing page and dashboard screens) is built and runs today, with sample data. The backend, Policy Guard and the glasses app are being built Nov 25–27. The tables below say exactly what works. See [Status](#status).
 
