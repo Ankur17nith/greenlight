@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Greenlight</title>
+  <style>
+    body { font: 16px system-ui, sans-serif; margin: 0; padding: 24px; background: #0b0f0c; color: #d7f5df; }
+    h1 { font-size: 20px; margin: 0 0 4px; } p { color: #8fb39a; margin: 0 0 20px; }
+    input { font-size: 28px; letter-spacing: 8px; text-align: center; width: 100%; padding: 12px; box-sizing: border-box; background: #121a14; color: inherit; border: 1px solid #2a4a33; border-radius: 8px; }
+    button { margin-top: 12px; width: 100%; padding: 14px; font-size: 16px; border: 0; border-radius: 8px; background: #3ddc84; color: #04170b; font-weight: 600; }
+    #status { margin-top: 16px; min-height: 1.4em; }
+  </style>
+</head>
+<body>
+  <h1>Greenlight</h1>
+  <p>Pair your glasses with your dashboard.</p>
+  <form id="pair">
+    <input id="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" aria-label="6-digit pairing code" required />
+    <button type="submit">Pair</button>
+  </form>
+  <div id="status" role="status"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
