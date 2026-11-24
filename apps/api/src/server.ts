@@ -1,9 +1,10 @@
 import { mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { anthropicComplete, evaluate, fallbackVerdict, parseRequest } from "@greenlight/policy";
-import { buildApp } from "./app.ts";
+import { buildApp, ingest, type Deps } from "./app.ts";
 import { createSession, openDb } from "./db.ts";
-import { sendReply } from "./telegram.ts";
+import { pollGoogle } from "./poll.ts";
+import { makeWriteBack } from "./writeback.ts";
 
 const env = process.env;
 const dbPath = env.SQLITE_PATH ?? "./data/greenlight.sqlite";
@@ -13,9 +14,15 @@ const db = openDb(dbPath);
 if (env.DASHBOARD_TOKEN) createSession(db, "DASHBOARD", env.DASHBOARD_TOKEN);
 
 const complete = env.ANTHROPIC_API_KEY ? anthropicComplete(env.ANTHROPIC_API_KEY, env.POLICY_MODEL ?? "claude-haiku-5-5") : null;
+const google = env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET
+  ? { clientId: env.GOOGLE_CLIENT_ID, clientSecret: env.GOOGLE_CLIENT_SECRET, redirectUri: env.GOOGLE_REDIRECT_URI ?? "", tokenSecret: env.SESSION_SECRET ?? "" }
+  : undefined;
+if (google && !google.tokenSecret) throw new Error("SESSION_SECRET is required to encrypt Google tokens");
 
-const app = await buildApp({
+const deps: Deps = {
   db,
+  google,
+  dashboardUrl: env.DASHBOARD_URL,
   telegramSecret: env.TELEGRAM_WEBHOOK_SECRET ?? "",
   corsOrigin: env.CORS_ORIGIN ?? true,
   evaluate: async (req, rules) => {
@@ -23,14 +30,20 @@ const app = await buildApp({
     const r = await evaluate(req, rules, { complete });
     return { verdict: r.verdict, eval_mode: r.eval_mode };
   },
-  writeBack: async (card, action) => {
-    if (card.source === "TELEGRAM") {
-      const text = action === "APPROVE" ? "✅ Approved by Founder via Greenlight" : "❌ Declined by Founder via Greenlight";
-      await sendReply(env.TELEGRAM_BOT_TOKEN ?? "", card.external_id, text);
-      return "TELEGRAM_REPLY_SENT";
-    }
-    throw new Error(`write-back for ${card.source} not implemented`);
-  },
-});
+  writeBack: makeWriteBack({ db, google, telegramToken: env.TELEGRAM_BOT_TOKEN }),
+};
+
+const app = await buildApp(deps);
 await app.listen({ port: Number(env.PORT ?? 3001), host: "0.0.0.0" });
 console.log(`greenlight api on :${env.PORT ?? 3001}`);
+
+if (google) {
+  const every = Number(env.GOOGLE_POLL_MS ?? 30_000);
+  let running = false;
+  setInterval(async () => {
+    if (running) return; // never overlap passes
+    running = true;
+    try { await pollGoogle({ db, google, ingest: (r) => ingest(deps, r), onError: (s, e) => console.error(`poll ${s}: ${e.message}`) }); }
+    finally { running = false; }
+  }, every);
+}
