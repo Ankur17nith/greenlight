@@ -137,6 +137,7 @@ pnpm install
 pnpm dev:web                          # website on http://localhost:3000
 pnpm dev:api                          # backend on http://localhost:3001 (see .env.example)
 pnpm dev:g2                           # glasses app on http://localhost:5173
+pnpm seed                             # reset and replay the demo cards (API needs DEMO_MODE=1, DASHBOARD_TOKEN set)
 pnpm test                             # unit tests for every package
 pnpm typecheck                        # type checks every package
 pnpm --filter @greenlight/web build   # production build of the website
