@@ -35,7 +35,7 @@ Cut order if time runs short ([plan.md](../plan.md#2-decisions-and-corrections-t
 - [ ] **D2-3 Calendar.** Do: poll for conflicting invites, accept or decline the attendee response. Done when: declining a card changes the event response.
 - [ ] **D2-4 Rules UI.** Do: dashboard editor for 2–4 plain-English rules. Done when: editing a rule changes the verdict of the next request.
 - [ ] **D2-5 Audit log.** Do: dashboard table with requester, action, verdict, decision, time, `AI`/`FALLBACK`. Done when: a tap on the glasses appears within 5 seconds.
-- [ ] **D2-6 Safety pass.** Do: delimiter-wrapped prompts, schema validation, scope check, secrets scan. Done when: the checklist in [SECURITY.md](../SECURITY.md) is satisfied.
+- [x] **D2-6 Safety pass.** Do: delimiter-wrapped prompts, schema validation, scope check, secrets scan. Done when: the checklist in [SECURITY.md](../SECURITY.md) is satisfied.
 - [x] **D2-7 Seed script.** Do: `scripts/seed-demo` creates exactly the scenes in [video/SCRIPT.md](../video/SCRIPT.md). Done when: one command resets and replays the demo data.
 - [ ] **D2-8 Narration audio.** Do: generate `video/narration/NN.mp3` from `narration.json` with the chosen voice. Done when: 8 files exist and total under 2:55.
 - [ ] **D2-9 Feature freeze.** Done when: no new features; only fixes and polish from here.
