@@ -64,6 +64,18 @@ describe("queue", () => {
   });
 });
 
+describe("dashboard pending list", () => {
+  it("is read-only, dashboard-only and hides suggested_reply", async () => {
+    await hook("Refund $320");
+    expect((await app.inject({ url: "/api/pending", headers: auth(g2) })).statusCode).toBe(401);
+    const r = await app.inject({ url: "/api/pending", headers: auth(dash) });
+    expect(r.json().cards).toHaveLength(1);
+    expect(r.body).not.toContain("SECRET REPLY");
+    // a dashboard session cannot act on cards
+    expect((await act(r.json().cards[0].id, "APPROVE", dash)).statusCode).toBe(401);
+  });
+});
+
 describe("act", () => {
   it("approve writes back once and logs an audit row", async () => {
     await hook("Refund $320"); const id = await firstId();

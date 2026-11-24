@@ -64,6 +64,9 @@ export async function buildApp(deps: Deps) {
   // suggested_reply stays server side.
   app.get("/api/queue", { preHandler: auth("G2") }, async () => ({ cards: q.queue(db, now()).map(q.toCard) }));
 
+  // Read-only copy of the queue for the dashboard. Acting on cards stays a glasses-only gesture.
+  app.get("/api/pending", { preHandler: auth("DASHBOARD") }, async () => ({ cards: q.queue(db, now()).map(q.toCard) }));
+
   app.post<{ Params: { id: string } }>("/api/decisions/:id/act", { preHandler: auth("G2") }, async (req, reply) => {
     const parsed = Decision.safeParse(req.body);
     if (!parsed.success) return reply.code(400).send(err("BAD_ACTION", "action must be APPROVE, DECLINE or SNOOZE"));
