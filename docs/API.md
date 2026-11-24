@@ -32,14 +32,17 @@ interface Card {
 |---|---|---|
 | `GET /health` | none | Liveness |
 | `POST /telegram/webhook` | secret header | Telegram updates; header `X-Telegram-Bot-Api-Secret-Token` must equal `TELEGRAM_WEBHOOK_SECRET` |
-| `GET /auth/google` · `GET /auth/google/callback` | dashboard session | Connect Gmail and Calendar |
+| `GET /auth/google` | dashboard session | Returns `{ url }`. The dashboard fetches it with its token, then navigates the browser to the Google sign-in page |
+| `GET /auth/google/callback` | none (single-use `state`) | Google redirects here; stores encrypted tokens, then redirects to `DASHBOARD_URL/app/connect` |
+| `GET /api/connections` | dashboard session | `{ google, telegram }` connection state |
+| `GET /api/pending` | dashboard session | Read-only copy of the queue; acting on cards is glasses-only |
 | `GET /api/policies` · `PUT /api/policies` | dashboard session | Read and replace the rules (2–4, max 200 characters each) |
 | `POST /api/pair` | dashboard session | Create a 6-digit code, valid 10 minutes, single use |
 | `POST /api/pair/exchange` | none | `{ code }` → `{ token }` for the G2 session |
 | `GET /api/queue` | G2 session | Pending, non-snoozed cards, oldest first |
 | `POST /api/decisions/:id/act` | G2 session | `{ action: "APPROVE" \| "DECLINE" \| "SNOOZE" }` |
 | `GET /api/audit` | dashboard session | Decisions, newest first |
-| `POST /api/dev/seed` | demo mode only | Reset and load the scripted requests |
+| `POST /api/dev/seed` | dashboard session, `DEMO_MODE=1` only | Reset cards and load the scripted requests. Optional body `{ gmailThreadId, calendarEventId }` for real sandbox ids. Run with `pnpm seed` |
 
 ## `POST /api/decisions/:id/act`
 
