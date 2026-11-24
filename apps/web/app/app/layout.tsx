@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Logo } from '@/components/brand';
 import { AppNav } from '@/components/shell/app-nav';
 import { ThemeToggle } from '@/components/shell/theme-toggle';
+import { SignOut, TokenGate } from '@/components/token-gate';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,7 +16,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
         <AppNav />
       </aside>
-      <main className="min-w-0 py-6 md:py-10">{children}</main>
+      <main className="min-w-0 py-6 md:py-10">
+        <TokenGate>{children}</TokenGate>
+        <div className="mt-10"><SignOut /></div>
+      </main>
     </div>
   );
 }

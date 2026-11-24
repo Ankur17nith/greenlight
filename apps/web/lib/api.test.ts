@@ -27,7 +27,7 @@ describe('makeClient', () => {
   });
   it('reports an unreachable server as status 0', async () => {
     const c = makeClient('http://api', 't', (async () => { throw new TypeError('fail'); }) as typeof fetch);
-    const e = await c.get('/x').catch((x) => x);
+    const e = (await c.get('/x').catch((x) => x)) as ApiError;
     expect(e).toBeInstanceOf(ApiError);
     expect(e.status).toBe(0);
   });
