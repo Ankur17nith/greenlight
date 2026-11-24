@@ -12,8 +12,8 @@ export function SiteHeader() {
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex" aria-label="Main">
           <a href="#how" className="hover:text-foreground">How it works</a>
-          <a href="#rules" className="hover:text-foreground">Policy Guard</a>
-          <a href="#audit" className="hover:text-foreground">Audit trail</a>
+          <a href="#rules" className="hover:text-foreground">Rules</a>
+          <a href="#audit" className="hover:text-foreground">Audit log</a>
           <a href="#safety" className="hover:text-foreground">Safety</a>
         </nav>
         <div className="flex items-center gap-2">

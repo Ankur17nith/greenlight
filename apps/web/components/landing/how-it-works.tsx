@@ -57,8 +57,8 @@ export function HowItWorks() {
   return (
     <section id="how" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
-        <h2 className="font-pixel text-3xl tracking-tight sm:text-4xl">Read. Decide. Done.</h2>
-        <p className="mt-3 max-w-2xl text-muted-foreground">No chat threads, no inbox scrolling. Every card is one operational decision.</p>
+        <h2 className="font-pixel text-3xl tracking-tight sm:text-4xl">How it works</h2>
+        <p className="mt-3 max-w-2xl text-muted-foreground">Each request becomes one card on the glasses.</p>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
           <ol className="relative">
@@ -72,8 +72,7 @@ export function HowItWorks() {
                 className="flex min-h-[28vh] items-center py-6 lg:min-h-[62vh]"
               >
                 <div className={cn('transition-opacity duration-500', i === active ? 'opacity-100' : 'lg:opacity-35')}>
-                  <span className="font-mono text-xs text-primary">STEP 0{i + 1}</span>
-                  <h3 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl">{s.title}</h3>
+                  <h3 className="text-xl font-semibold tracking-tight sm:text-2xl">{i + 1}. {s.title}</h3>
                   <p className="mt-2 max-w-md text-muted-foreground">{s.body}</p>
                   <div className="mt-5 lg:hidden">
                     <LensCard {...s.lens} />
