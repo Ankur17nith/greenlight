@@ -1,33 +1,44 @@
 'use client';
 
 import { Copy, RefreshCw } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
-const TTL = 10 * 60;
-
-function makeCode() {
-  const n = Math.floor(100000 + Math.random() * 900000).toString();
-  return `${n.slice(0, 3)}-${n.slice(3)}`;
-}
+import { ApiError, client, groupCode, secondsLeft } from '@/lib/api';
+import { describe } from '@/lib/use-api';
 
 export function PairCode() {
-  // The code is generated in the browser for this preview. The real one comes from POST /api/pair.
-  const [code, setCode] = useState<string | null>(null);
-  const [left, setLeft] = useState(TTL);
+  const [code, setCode] = useState<{ code: string; expires_at: string } | null>(null);
+  const [left, setLeft] = useState(0);
+  const [error, setError] = useState('');
+  const [busy, setBusy] = useState(false);
 
-  useEffect(() => {
-    setCode(makeCode());
+  const make = useCallback(async () => {
+    setBusy(true);
+    setError('');
+    try {
+      const c = await client().send<{ code: string; expires_at: string }>('POST', '/api/pair');
+      setCode(c);
+      setLeft(secondsLeft(c.expires_at));
+    } catch (e) {
+      setError(describe(e instanceof ApiError ? e : new ApiError(0, '')));
+    } finally {
+      setBusy(false);
+    }
   }, []);
 
   useEffect(() => {
-    const t = setInterval(() => setLeft((s) => (s > 0 ? s - 1 : 0)), 1000);
+    void make();
+  }, [make]);
+
+  useEffect(() => {
+    if (!code) return;
+    const t = setInterval(() => setLeft(secondsLeft(code.expires_at)), 1000);
     return () => clearInterval(t);
-  }, []);
+  }, [code]);
 
-  const expired = left === 0;
-  const mm = String(Math.floor(left / 60)).padStart(1, '0');
+  const expired = !!code && left === 0;
+  const mm = Math.floor(left / 60);
   const ss = String(left % 60).padStart(2, '0');
 
   return (
@@ -38,30 +49,19 @@ export function PairCode() {
       </CardHeader>
       <CardContent>
         <p
-          aria-label={code ? `Pairing code ${code.replace('-', ' ')}` : 'Generating code'}
-          className="font-mono text-5xl font-semibold tracking-[0.2em] text-primary sm:text-6xl"
+          aria-label={code ? `Pairing code ${code.code.split('').join(' ')}` : 'Generating code'}
+          className={`font-mono text-5xl font-semibold tracking-[0.2em] sm:text-6xl ${expired ? 'text-muted-foreground line-through' : 'text-primary'}`}
         >
-          {code ?? '--- ---'}
+          {code ? groupCode(code.code) : '--- ---'}
         </p>
         <p role="status" className="mt-3 text-sm text-muted-foreground">
-          {expired ? 'Code expired. Make a new one.' : `Expires in ${mm}:${ss}`}
+          {error ? <span className="text-stop">{error}</span> : expired ? 'Code expired. Make a new one.' : code ? `Expires in ${mm}:${ss}. Works once.` : ''}
         </p>
         <div className="mt-5 flex gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={!code || expired}
-            onClick={() => code && navigator.clipboard?.writeText(code.replace('-', ''))}
-          >
+          <Button variant="outline" size="sm" disabled={!code || expired} onClick={() => code && navigator.clipboard?.writeText(code.code)}>
             <Copy /> Copy
           </Button>
-          <Button
-            size="sm"
-            onClick={() => {
-              setCode(makeCode());
-              setLeft(TTL);
-            }}
-          >
+          <Button size="sm" disabled={busy} onClick={make}>
             <RefreshCw /> New code
           </Button>
         </div>
