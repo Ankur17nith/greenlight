@@ -18,7 +18,7 @@ Cut order if time runs short ([plan.md](../plan.md#2-decisions-and-corrections-t
 
 - [x] **D1-1 Shared types.** Do: `packages/shared` with `RequestCard`, `Verdict`, `Decision`, zod schemas, and the fixtures in [POLICY_GUARD.md](POLICY_GUARD.md#test-cases). Done when: fixtures parse against the schemas.
 - [x] **D1-2 Amount parser.** Do: deterministic extraction of amount, currency and requester. Done when: 10+ tests pass, including `$1,250`, `Rs 4,000`, `USD 320`, no amount, two amounts.
-- [ ] **D1-3 Verdict and fallback.** Do: LLM call with strict JSON schema, 3s timeout, fallback to `FLAGGED`. Done when: tests cover valid, invalid JSON, timeout and a prompt-injection fixture; fallback path shows `eval_mode = FALLBACK`.
+- [x] **D1-3 Verdict and fallback.** Do: LLM call with strict JSON schema, 3s timeout, fallback to `FLAGGED`. Done when: tests cover valid, invalid JSON, timeout and a prompt-injection fixture; fallback path shows `eval_mode = FALLBACK`.
 - [ ] **D1-4 DB and queue.** Do: SQLite schema from plan.md, `GET /api/queue`. Done when: seeded cards come back oldest first, snoozed cards hidden.
 - [ ] **D1-5 Telegram ingest and reply.** Do: webhook with secret check; reply under the original message. Done when: a group message becomes a card, and approving it posts the reply.
 - [ ] **D1-6 Act endpoint.** Do: `POST /api/decisions/:id/act`, idempotent. Done when: a second call on the same id is a no-op (test).
