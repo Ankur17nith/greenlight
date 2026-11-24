@@ -1,0 +1,14 @@
+{
+  "name": "@greenlight/policy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": { "@greenlight/shared": "workspace:*", "zod": "^3.24.0" },
+  "devDependencies": { "@types/node": "^22.0.0", "typescript": "^5.7.0", "vitest": "^3.0.0" }
+}

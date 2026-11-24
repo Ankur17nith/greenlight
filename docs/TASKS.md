@@ -12,12 +12,12 @@ Cut order if time runs short ([plan.md](../plan.md#2-decisions-and-corrections-t
 - [ ] **D0-4 Telegram bot.** Do: create the bot with @BotFather, add it to a test group, disable privacy mode, set the webhook secret. Done when: a message in the group reaches a local echo handler.
 - [ ] **D0-5 Google Cloud.** Do: project, enable Gmail and Calendar APIs, OAuth consent screen in Testing mode, add the sandbox account as a test user. Done when: a token is obtained with the scopes in [SETUP.md](SETUP.md#google).
 - [ ] **D0-6 Hosting.** Do: pick a host with a stable public HTTPS URL. Done when: `GET /health` answers from that URL.
-- [ ] **D0-7 Scaffold.** Do: pnpm workspace, TypeScript, vitest, CI. Done when: `pnpm install && pnpm typecheck && pnpm test` passes on an empty test.
+- [x] **D0-7 Scaffold.** Do: pnpm workspace, TypeScript, vitest, CI. Done when: `pnpm install && pnpm typecheck && pnpm test` passes on an empty test.
 
 ## Day 1 · Nov 25: Telegram end to end and Policy Guard
 
-- [ ] **D1-1 Shared types.** Do: `packages/shared` with `RequestCard`, `Verdict`, `Decision`, zod schemas, and the fixtures in [POLICY_GUARD.md](POLICY_GUARD.md#test-cases). Done when: fixtures parse against the schemas.
-- [ ] **D1-2 Amount parser.** Do: deterministic extraction of amount, currency and requester. Done when: 10+ tests pass, including `$1,250`, `Rs 4,000`, `USD 320`, no amount, two amounts.
+- [x] **D1-1 Shared types.** Do: `packages/shared` with `RequestCard`, `Verdict`, `Decision`, zod schemas, and the fixtures in [POLICY_GUARD.md](POLICY_GUARD.md#test-cases). Done when: fixtures parse against the schemas.
+- [x] **D1-2 Amount parser.** Do: deterministic extraction of amount, currency and requester. Done when: 10+ tests pass, including `$1,250`, `Rs 4,000`, `USD 320`, no amount, two amounts.
 - [ ] **D1-3 Verdict and fallback.** Do: LLM call with strict JSON schema, 3s timeout, fallback to `FLAGGED`. Done when: tests cover valid, invalid JSON, timeout and a prompt-injection fixture; fallback path shows `eval_mode = FALLBACK`.
 - [ ] **D1-4 DB and queue.** Do: SQLite schema from plan.md, `GET /api/queue`. Done when: seeded cards come back oldest first, snoozed cards hidden.
 - [ ] **D1-5 Telegram ingest and reply.** Do: webhook with secret check; reply under the original message. Done when: a group message becomes a card, and approving it posts the reply.
