@@ -23,6 +23,7 @@ const deps: Deps = {
   db,
   google,
   dashboardUrl: env.DASHBOARD_URL,
+  demoMode: env.DEMO_MODE === "1",
   telegramSecret: env.TELEGRAM_WEBHOOK_SECRET ?? "",
   corsOrigin: parseCors(env.CORS_ORIGIN),
   evaluate: async (req, rules) => {

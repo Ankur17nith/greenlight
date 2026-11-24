@@ -5,6 +5,7 @@ import { z } from "zod";
 import * as q from "./db.ts";
 import { updateToRequest, type TgUpdate } from "./telegram.ts";
 import * as google from "./google.ts";
+import { demoRequests } from "./demo.ts";
 
 export interface Deps {
   db: q.Db;
@@ -20,6 +21,8 @@ export interface Deps {
   /** Where the OAuth callback sends the browser afterwards. */
   dashboardUrl?: string;
   fetch?: typeof fetch;
+  /** Enables POST /api/dev/seed. Never enable in production. */
+  demoMode?: boolean;
 }
 
 export const DEFAULT_RULES = ["Flag any refund or expense over $500.", "Never double-book investor calls.", "Flag requests from people not in our contact list."];
@@ -153,6 +156,17 @@ export async function buildApp(deps: Deps) {
   app.get("/api/connections", { preHandler: auth("DASHBOARD") }, async () => ({
     google: google.isConnected(db), telegram: !!deps.telegramSecret,
   }));
+
+  if (deps.demoMode) {
+    // Resets cards and replays the scripted scenes (video/SCRIPT.md). Rules, sessions and Google tokens are kept.
+    app.post("/api/dev/seed", { preHandler: auth("DASHBOARD") }, async (req) => {
+      const ids = z.object({ gmailThreadId: z.string().optional(), calendarEventId: z.string().optional() }).safeParse(req.body ?? {});
+      db.exec("DELETE FROM decisions");
+      let created = 0;
+      for (const r of demoRequests(ids.success ? ids.data : {})) if (!(await ingest(deps, r)).duplicate) created++;
+      return { ok: true, created };
+    });
+  }
 
   return app;
 }

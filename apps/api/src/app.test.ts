@@ -211,3 +211,30 @@ describe("parseCors", () => {
     expect(r.headers["access-control-allow-origin"]).not.toBe("true");
   });
 });
+
+describe("demo seed", () => {
+  const seeded = async (demoMode: boolean) => buildApp({ db, telegramSecret: SECRET, now: () => clock, demoMode, evaluate: async () => ({ verdict, eval_mode: "AI" }), writeBack: async () => "x" });
+  it("does not exist unless demo mode is on", async () => {
+    expect((await app.inject({ method: "POST", url: "/api/dev/seed", headers: auth(dash) })).statusCode).toBe(404);
+  });
+  it("needs the dashboard token", async () => {
+    const a = await seeded(true);
+    expect((await a.inject({ method: "POST", url: "/api/dev/seed", headers: auth(g2) })).statusCode).toBe(401);
+  });
+  it("resets and replays the three scenes, and is repeatable", async () => {
+    const a = await seeded(true);
+    await hook("old request $1", 99);
+    const r1 = await a.inject({ method: "POST", url: "/api/dev/seed", headers: auth(dash) });
+    expect(r1.json().created).toBe(3);
+    const cards = (await a.inject({ url: "/api/pending", headers: auth(dash) })).json().cards;
+    expect(cards.map((c: { source: string }) => c.source).sort()).toEqual(["CALENDAR", "GMAIL", "TELEGRAM"]);
+    expect((await a.inject({ method: "POST", url: "/api/dev/seed", headers: auth(dash) })).json().created).toBe(3);
+    expect((await a.inject({ url: "/api/pending", headers: auth(dash) })).json().cards).toHaveLength(3);
+  });
+  it("accepts real sandbox ids for Gmail and Calendar", async () => {
+    const a = await seeded(true);
+    await a.inject({ method: "POST", url: "/api/dev/seed", headers: auth(dash), payload: { gmailThreadId: "T123", calendarEventId: "E456" } });
+    expect(q.cardExists(db, "GMAIL", "T123")).toBe(true);
+    expect(q.cardExists(db, "CALENDAR", "E456")).toBe(true);
+  });
+});
