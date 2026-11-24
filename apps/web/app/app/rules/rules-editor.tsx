@@ -1,21 +1,50 @@
 'use client';
 
 import { Plus, Trash2 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/input';
+import { ApiError, client } from '@/lib/api';
+import { describe, useApi } from '@/lib/use-api';
 
 const MAX_RULES = 4;
 const MAX_LEN = 200;
 const examples = ['Flag any refund or expense over $500.', 'Never double-book investor calls.', 'Flag requests from people not in our contact list.'];
 
-export function RulesEditor({ initial }: { initial: string[] }) {
-  const [rules, setRules] = useState<string[]>(initial);
+export function RulesEditor() {
+  const { data, error } = useApi<{ rules: string[] }>('/api/policies');
+  const [rules, setRules] = useState<string[]>([]);
   const [saved, setSaved] = useState(false);
+  const [msg, setMsg] = useState('');
+  const [busy, setBusy] = useState(false);
+
+  // Until rules are saved the server uses the three demo rules, so start the editor from them.
+  useEffect(() => {
+    if (data) setRules(data.rules.length >= 2 ? data.rules : examples);
+  }, [data]);
+
+  const save = async () => {
+    setBusy(true);
+    setMsg('');
+    try {
+      const r = await client().send<{ rules: string[] }>('PUT', '/api/policies', { rules: rules.map((x) => x.trim()) });
+      setRules(r.rules);
+      setSaved(true);
+      setMsg('Saved. The next request is checked against these rules.');
+    } catch (e) {
+      setMsg(describe(e instanceof ApiError ? e : new ApiError(0, '')));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  if (error) return <p role="alert" className="text-sm text-stop">{describe(error)}</p>;
+  if (!data) return <p className="text-sm text-muted-foreground">Loading rules…</p>;
 
   const update = (i: number, v: string) => {
     setSaved(false);
+    setMsg('');
     setRules((r) => r.map((x, j) => (j === i ? v.slice(0, MAX_LEN) : x)));
   };
 
@@ -67,11 +96,11 @@ export function RulesEditor({ initial }: { initial: string[] }) {
           >
             <Plus /> Add a rule
           </Button>
-          <Button size="sm" onClick={() => setSaved(true)}>
-            Save rules
+          <Button size="sm" onClick={save} disabled={busy || rules.some((r) => !r.trim())}>
+            {busy ? 'Saving…' : 'Save rules'}
           </Button>
           <span role="status" className="text-sm text-muted-foreground">
-            {saved ? 'Saved in this preview (not sent to a server yet).' : ''}
+            {msg}
           </span>
         </div>
       </CardContent>
