@@ -1,4 +1,10 @@
-<p align="center"><img src="docs/images/logo.svg" alt="Greenlight" height="56"></p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/logo-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="docs/images/logo.svg">
+    <img src="docs/images/logo.svg" alt="Greenlight" height="56">
+  </picture>
+</p>
 
 # Greenlight
 
