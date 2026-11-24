@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Greenlight">
+  <circle cx="19" cy="32" r="12" fill="none" stroke="#f1f3ee" stroke-width="4.5"/>
+  <circle cx="45" cy="32" r="14.25" fill="#2ee57a"/>
+  <path d="M37.5 32.5 l5.2 5.2 l9.3 -10.4" fill="none" stroke="#06150c" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
