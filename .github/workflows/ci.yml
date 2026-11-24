@@ -18,7 +18,7 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: pnpm
-      # Switch to --frozen-lockfile once pnpm-lock.yaml is committed (task D0-7).
-      - run: pnpm install
+      # The lockfile is committed; fail if it is out of date.
+      - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
       - run: pnpm test
