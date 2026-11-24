@@ -48,9 +48,9 @@ pnpm test
 pnpm typecheck
 pnpm dev:api        # backend on :3000
 pnpm dev:g2         # glasses app in the simulator
-pnpm dev:dashboard  # dashboard
+pnpm dev:web        # landing page and dashboard
 pnpm seed           # reset and load the demo data
 ```
 
 ## Hosting
-Any host with a stable public HTTPS URL works, because Telegram's webhook, Google's OAuth redirect and the G2 `app.json` whitelist all need one. During development a tunnel is fine. Serve the dashboard from the API so there is one domain to whitelist.
+Any host with a stable public HTTPS URL works, because Telegram's webhook, Google's OAuth redirect and the G2 `app.json` whitelist all need one. During development a tunnel is fine. The web app (`apps/web`) is deployed on its own and calls the API, so the API must allow its origin in CORS; only the API domain goes in the G2 `app.json` whitelist.

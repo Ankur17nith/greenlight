@@ -15,7 +15,7 @@
 |---|---|---|
 | `apps/g2` | The glasses app: 4 text containers, gestures, ring support | WebView inside the Even Realities App |
 | `apps/api` | Fastify backend: Telegram webhook, Gmail and Calendar clients, Policy Guard calls, queue, write-backs, audit log, pairing | Public HTTPS server |
-| `apps/dashboard` | Browser app: connect accounts, write 2–4 plain-English rules, pairing code, live audit log | Served by `apps/api` (one domain) |
+| `apps/web` | Next.js 16 app: landing page, connect accounts, write 2–4 plain-English rules, pairing code, live audit log | Its own deploy; calls `apps/api` (CORS allowed) |
 | `packages/shared` | Types, zod schemas, test fixtures shared by all three | n/a |
 | `packages/policy` | Policy Guard: deterministic extraction + LLM verdict + safe fallback | Imported by the API |
 | `video/` | Demo script, narration JSON, shot list, ElevenLabs and render tooling | Local |
@@ -83,7 +83,7 @@ Calendar poll ──┘        ^                                   │
                          │                                   v
               write-back (TG reply / Gmail reply / Calendar response)    apps/g2 (glasses)
                          │
-                         └──> audit row ──> apps/dashboard (live log)
+                         └──> audit row ──> apps/web (live log)
 ```
 
 ### API surface
@@ -149,7 +149,7 @@ greenlight/
 ├── apps/
 │   ├── g2/                 Vite + TS + Even Hub SDK, app.json
 │   ├── api/                Fastify + better-sqlite3, bot, Google clients
-│   └── dashboard/          React + Tailwind, built into api/public
+│   └── web/                Next.js + Tailwind landing page and dashboard
 ├── packages/
 │   ├── shared/             types, zod schemas, fixtures (requests + verdicts)
 │   └── policy/             parse + LLM verdict + fallback, with tests

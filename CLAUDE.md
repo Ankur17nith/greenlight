@@ -19,7 +19,7 @@ Submit by **Nov 28 evening**. Hard deadline: Nov 29, 23:59 Dubai time (UTC+4).
 - Tasks and Done-when lines: `docs/TASKS.md`. Setup: `docs/SETUP.md`. API: `docs/API.md`.
 - Policy Guard: `docs/POLICY_GUARD.md`. Glasses UI: `docs/G2_UI.md`. Design: `.design/`.
 - Demo and video: `docs/DEMO_RUNBOOK.md`, `video/`.
-- Frontends: `apps/g2` (glasses) and `apps/dashboard` (browser).
+- Frontends: `apps/g2` (glasses) and `apps/web` (browser: landing page and dashboard).
 
 ## How to work
 - One micro-task at a time, run the tests or the live script, show real output, then commit.

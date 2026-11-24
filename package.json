@@ -11,7 +11,7 @@
     "typecheck": "pnpm -r --if-present typecheck",
     "dev:api": "pnpm --filter @greenlight/api --if-present dev",
     "dev:g2": "pnpm --filter @greenlight/g2 --if-present dev",
-    "dev:dashboard": "pnpm --filter @greenlight/dashboard --if-present dev",
+    "dev:web": "pnpm --filter @greenlight/web --if-present dev",
     "seed": "pnpm --filter @greenlight/scripts --if-present seed"
   }
 }

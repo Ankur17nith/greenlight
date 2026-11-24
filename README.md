@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/images/logo.svg" alt="Greenlight" height="56"></p>
+
 # Greenlight
 
 An executive approval terminal for Even Realities G2. Review team requests from Telegram, Gmail and Google Calendar against your own company rules, and sign off in one tap.
@@ -9,12 +11,12 @@ Tracks: 04 · AI Assistants & Work (primary), 01 · Messaging & News. Special pr
 
 ## Status
 
-Planning and documentation are done; the build starts on Nov 25. See [plan.md](plan.md) for the schedule and [docs/TASKS.md](docs/TASKS.md) for the task list.
+Planning and documentation are done, and the web app (landing page and dashboard, sample data) is built. The API, Policy Guard and glasses app start on Nov 25. See [plan.md](plan.md) for the schedule and [docs/TASKS.md](docs/TASKS.md) for the task list.
 
 | Part | State |
 |---|---|
 | `apps/g2` glasses app (frontend) | not started |
-| `apps/dashboard` (frontend) | not started |
+| `apps/web` landing page and dashboard (frontend) | landing, queue, connect, rules, pair and audit screens built with sample data; no API yet |
 | `apps/api` backend | not started |
 | `packages/policy` | not started |
 | Demo video | script and narration drafted in [video/](video/) |
@@ -36,7 +38,7 @@ Founders, small-business owners and ops leads are the bottleneck for dozens of s
 | App | Stack | Where it runs |
 |---|---|---|
 | `apps/g2` | TypeScript + Vite + Even Hub SDK | WebView inside the Even Realities App; four text containers on the 576×288 display |
-| `apps/dashboard` | React + Tailwind | Browser; connect accounts, rules, pairing code, audit log |
+| `apps/web` | Next.js 16 + React + Tailwind 4 | Browser; landing page, connect accounts, rules, pairing code, audit log |
 
 Google sign-in cannot run in the WebView, so account setup lives on the dashboard and the glasses link with a 6-digit code. Design: [.design/](.design/DESIGN.md) and [docs/G2_UI.md](docs/G2_UI.md).
 

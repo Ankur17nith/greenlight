@@ -15,7 +15,7 @@ pnpm typecheck
 | Folder | What it is |
 | --- | --- |
 | `apps/g2` | The glasses app (frontend, TypeScript + Vite, Even Hub SDK) |
-| `apps/dashboard` | The browser dashboard (frontend, React + Tailwind) |
+| `apps/web` | Landing page and dashboard (frontend, Next.js + Tailwind) |
 | `apps/api` | Backend: Telegram, Gmail, Calendar, queue, write-backs, audit log |
 | `packages/policy` | Policy Guard, a pure function |
 | `packages/shared` | Types, schemas, fixtures |
