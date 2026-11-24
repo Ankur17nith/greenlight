@@ -39,6 +39,25 @@ importers:
         specifier: ^3.0.0
         version: 3.2.7(@types/node@22.20.5)(jiti@2.7.0)(lightningcss@1.33.0)(tsx@4.23.15)
 
+  apps/g2:
+    dependencies:
+      '@evenrealities/even_hub_sdk':
+        specifier: 0.0.16
+        version: 0.0.16
+    devDependencies:
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.20.5
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+      vite:
+        specifier: ^7.0.0
+        version: 7.3.8(@types/node@22.20.5)(jiti@2.7.0)(lightningcss@1.33.0)(tsx@4.23.15)
+      vitest:
+        specifier: ^3.0.0
+        version: 3.2.7(@types/node@22.20.5)(jiti@2.7.0)(lightningcss@1.33.0)(tsx@4.23.15)
+
   apps/web:
     dependencies:
       '@radix-ui/react-slot':
@@ -296,6 +315,10 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@evenrealities/even_hub_sdk@0.0.16':
+    resolution: {integrity: sha512-8/qMR4W3vna6xAM5/dFDmKoTR98D7Vo3TDBrtS0JgdUSvBVyAnUXuhODI3H587fI2TfLbp4T+FNT3EdkB3+Big==}
+    engines: {node: ^20.0.0 || >=22.0.0}
 
   '@fastify/ajv-compiler@4.0.8':
     resolution: {integrity: sha512-xYcAFYoyP/NELMgj6I7LmMAmiqeXMal0wsM2SgueN9OyMr6bVKHomO9OxuStC7bIAEl4Z3JXBbDPwpXRp59NPQ==}
@@ -1498,6 +1521,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.28.2':
     optional: true
+
+  '@evenrealities/even_hub_sdk@0.0.16': {}
 
   '@fastify/ajv-compiler@4.0.8':
     dependencies:
