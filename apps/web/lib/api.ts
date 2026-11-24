@@ -24,7 +24,11 @@ export function makeClient(base: string, token: string | null, f: Fetch = fetch)
     try {
       res = await f(base + path, {
         method,
-        headers: { 'content-type': 'application/json', authorization: `Bearer ${token ?? ''}` },
+        headers: {
+          // Fastify rejects a JSON content-type with an empty body, so only send it when there is one.
+          ...(body === undefined ? {} : { 'content-type': 'application/json' }),
+          authorization: `Bearer ${token ?? ''}`,
+        },
         body: body === undefined ? undefined : JSON.stringify(body),
       });
     } catch {

@@ -17,6 +17,13 @@ describe('makeClient', () => {
     expect(seen!.method).toBe('PUT');
     expect(seen!.body).toBe('{"rules":["a"]}');
   });
+  it('omits content-type when there is no body (POST /api/pair)', async () => {
+    let seen: RequestInit | undefined;
+    const c = makeClient('http://api', 't', (async (_u: string, i?: RequestInit) => ((seen = i), json({}))) as typeof fetch);
+    await c.send('POST', '/api/pair');
+    expect((seen!.headers as Record<string, string>)['content-type']).toBeUndefined();
+    expect(seen!.body).toBeUndefined();
+  });
   it('turns API errors into ApiError with the server message and status', async () => {
     const c = makeClient('http://api', 't', (async () => json({ error: { message: 'Send 2 to 4 rules' } }, 400)) as typeof fetch);
     await expect(c.get('/x')).rejects.toMatchObject({ status: 400, message: 'Send 2 to 4 rules' });
