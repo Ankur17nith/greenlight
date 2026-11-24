@@ -1,0 +1,136 @@
+@import 'tailwindcss';
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * One set of tokens, two themes: night (near black, warm white, one signal-green
+ * accent, faint grid lines) and paper (the same on warm off-white). Status colours
+ * always come with an icon and words, never colour alone.
+ */
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* Display only: page titles and big headlines, never body text. */
+  --font-pixel: var(--font-geist-pixel-line), var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-go: var(--go);
+  --color-go-soft: var(--go-soft);
+  --color-stop: var(--stop);
+  --color-stop-soft: var(--stop-soft);
+  --color-hold: var(--hold);
+  --color-hold-soft: var(--hold-soft);
+  --color-signal: var(--signal);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+:root {
+  --background: #f4f3ee;
+  --foreground: #0d1210;
+  --card: #fbfaf6;
+  --card-foreground: #0d1210;
+  --primary: #0f7a3f;
+  --primary-foreground: #ffffff;
+  --secondary: #e8e7e0;
+  --muted: #e8e7e0;
+  --muted-foreground: #55594f;
+  --accent: #dff3e6;
+  --accent-foreground: #0a4d27;
+  --destructive: #b42318;
+  --border: #d9d8cf;
+  --input: #fbfaf6;
+  --ring: #14a653;
+
+  --go: #0f7a3f;
+  --go-soft: #e2f4e8;
+  --stop: #b42318;
+  --stop-soft: #fdecea;
+  --hold: #8a5a00;
+  --hold-soft: #fbf0dc;
+
+  /* Bright accent for glows and dots; never text on its own. */
+  --signal: #14a653;
+  --grid-line: rgb(13 18 16 / 0.06);
+  --radius: 0.625rem;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #070908;
+  --foreground: #f1f3ee;
+  --card: #0d100e;
+  --card-foreground: #f1f3ee;
+  --primary: #2ee57a;
+  --primary-foreground: #04130a;
+  --secondary: #161a17;
+  --muted: #161a17;
+  --muted-foreground: #9ba39b;
+  --accent: #0c2415;
+  --accent-foreground: #b8f5d1;
+  --destructive: #ff7b6e;
+  --border: #232824;
+  --input: #0d100e;
+  --ring: #5df09b;
+
+  --go: #5df09b;
+  --go-soft: #0a2214;
+  --stop: #ff7b6e;
+  --stop-soft: #2c1210;
+  --hold: #f0b44c;
+  --hold-soft: #2a1f08;
+
+  --signal: #2ee57a;
+  --grid-line: rgb(241 243 238 / 0.07);
+  color-scheme: dark;
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+}
+
+/* Faint grid behind hero sections. */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
+}
+
+/* The lens: monochrome green on black, like the G2 display. */
+.lens {
+  background: #000;
+  color: #38ff7a;
+  font-family: var(--font-mono);
+  text-shadow: 0 0 6px rgb(56 255 122 / 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
