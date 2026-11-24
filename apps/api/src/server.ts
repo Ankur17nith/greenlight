@@ -1,7 +1,7 @@
 import { mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { anthropicComplete, evaluate, fallbackVerdict, parseRequest } from "@greenlight/policy";
-import { buildApp, ingest, type Deps } from "./app.ts";
+import { buildApp, ingest, parseCors, type Deps } from "./app.ts";
 import { createSession, openDb } from "./db.ts";
 import { pollGoogle } from "./poll.ts";
 import { makeWriteBack } from "./writeback.ts";
@@ -24,7 +24,7 @@ const deps: Deps = {
   google,
   dashboardUrl: env.DASHBOARD_URL,
   telegramSecret: env.TELEGRAM_WEBHOOK_SECRET ?? "",
-  corsOrigin: env.CORS_ORIGIN ?? true,
+  corsOrigin: parseCors(env.CORS_ORIGIN),
   evaluate: async (req, rules) => {
     if (!complete) return { verdict: fallbackVerdict(req, parseRequest(req.text), "No AI key"), eval_mode: "FALLBACK" };
     const r = await evaluate(req, rules, { complete });

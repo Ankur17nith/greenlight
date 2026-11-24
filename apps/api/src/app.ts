@@ -13,7 +13,7 @@ export interface Deps {
   /** Performs the external write for a card. Throws on failure. Returns a label for the response. */
   writeBack: (card: q.Row, action: "APPROVE" | "DECLINE") => Promise<string>;
   telegramSecret: string;
-  corsOrigin?: string | boolean;
+  corsOrigin?: string | boolean | string[];
   now?: () => Date;
   /** Google OAuth settings; routes are disabled when omitted. */
   google?: google.GoogleConfig;
@@ -23,6 +23,12 @@ export interface Deps {
 }
 
 export const DEFAULT_RULES = ["Flag any refund or expense over $500.", "Never double-book investor calls.", "Flag requests from people not in our contact list."];
+/** CORS_ORIGIN: unset, "*" or "true" allow any origin (dev); otherwise a comma-separated allow-list. */
+export function parseCors(v: string | undefined): boolean | string[] {
+  if (v === undefined || v.trim() === "" || v.trim() === "*" || v.trim().toLowerCase() === "true") return true;
+  return v.split(",").map((o) => o.trim()).filter(Boolean);
+}
+
 export const SNOOZE_MS = 60 * 60 * 1000;
 
 const err = (code: string, message: string) => ({ error: { code, message } });

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { buildApp, type Deps } from "./app.ts";
+import { buildApp, parseCors, type Deps } from "./app.ts";
 import * as q from "./db.ts";
 import * as g from "./google.ts";
 
@@ -196,5 +196,18 @@ describe("google connect routes", () => {
     const state = new URL((await a.inject({ url: "/auth/google", headers: auth(dash) })).json().url).searchParams.get("state")!;
     expect((await a.inject({ url: `/auth/google/callback?code=abc&state=${state}` })).statusCode).toBe(502);
     expect(g.isConnected(db)).toBe(false);
+  });
+});
+
+describe("parseCors", () => {
+  it("allows any origin when unset, * or true", () => {
+    expect(parseCors(undefined)).toBe(true); expect(parseCors("*")).toBe(true); expect(parseCors("true")).toBe(true); expect(parseCors("")).toBe(true);
+  });
+  it("parses a comma-separated allow-list", () =>
+    expect(parseCors("https://a.test, https://b.test")).toEqual(["https://a.test", "https://b.test"]));
+  it("sends the allowed origin back, not the string 'true'", async () => {
+    const a = await buildApp({ db: q.openDb(), telegramSecret: "s", corsOrigin: parseCors("true"), evaluate: async () => ({ verdict, eval_mode: "AI" }), writeBack: async () => "x" });
+    const r = await a.inject({ method: "OPTIONS", url: "/api/queue", headers: { origin: "http://localhost:3922", "access-control-request-method": "GET" } });
+    expect(r.headers["access-control-allow-origin"]).not.toBe("true");
   });
 });
