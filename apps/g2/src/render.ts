@@ -1,4 +1,7 @@
-/** The four text containers shown on the G2 (docs/G2_UI.md). Pure: no SDK imports. */
+/**
+ * The four text containers shown on the G2 (docs/G2_UI.md). Pure: no SDK imports.
+ * Plain ASCII only: the simulator font has no check mark, warning sign or cross glyphs.
+ */
 export interface Screen { c1: string; c2: string; c3: string; c4: string }
 
 export interface CardView {
@@ -14,7 +17,7 @@ const SRC: Record<CardView["source"], string> = { TELEGRAM: "TG", GMAIL: "GM", C
 const clip = (s: string, n: number) => (s.length > n ? s.slice(0, n - 1) + "…" : s);
 
 export function badge(c: CardView): string {
-  return c.policy_status === "WITHIN_POLICY" ? "✓ WITHIN POLICY" : `⚠ FLAGGED: ${clip(c.policy_reason || "review", 24)}`;
+  return c.policy_status === "WITHIN_POLICY" ? "WITHIN POLICY" : `FLAGGED: ${clip(c.policy_reason || "review", 24)}`;
 }
 
 export function footer(index: number, total: number): string {
@@ -36,7 +39,7 @@ export const confirmingScreen = (c: CardView, secondsLeft: number, action: "APPR
 });
 
 export const doneScreen = (c: CardView, action: "APPROVE" | "DECLINE", writeBack: string): Screen => ({
-  c1: action === "APPROVE" ? "✓ APPROVED" : "✕ DECLINED",
+  c1: action === "APPROVE" ? "APPROVED" : "DECLINED",
   c2: clip(c.headline, 42),
   c3: writeBack === "TELEGRAM_REPLY_SENT" ? "Sent to Telegram" : writeBack === "GMAIL_REPLY_SENT" ? "Replied in Gmail" : writeBack === "CALENDAR_UPDATED" ? "Calendar updated" : "Done",
   c4: "",

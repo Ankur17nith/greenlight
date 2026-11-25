@@ -69,7 +69,7 @@ describe("controller", () => {
     await c.gesture("tap");
     await clk.advance(3000);
     expect(acts).toEqual(["a:APPROVE"]);
-    expect(screens.some((s) => s.c1 === "✓ APPROVED" && s.c3 === "Sent to Telegram")).toBe(true);
+    expect(screens.some((s) => s.c1 === "APPROVED" && s.c3 === "Sent to Telegram")).toBe(true);
     await clk.advance(DONE_MS + 10);
     expect(last().c2).toBe("h-b");
   });
@@ -91,7 +91,7 @@ describe("controller", () => {
     expect(last().c4).toBe("DECLINING IN 3s… [TAP TO UNDO]");
     await clk.advance(3000);
     expect(acts).toEqual(["a:DECLINE"]);
-    expect(screens.some((s) => s.c1 === "✕ DECLINED")).toBe(true);
+    expect(screens.some((s) => s.c1 === "DECLINED")).toBe(true);
   });
   it("double tap snoozes immediately", async () => {
     await c.gesture("double");
