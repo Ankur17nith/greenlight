@@ -1,10 +1,10 @@
 # Win plan: Heads Up hackathon
 
-Deadline: **Sun 29 Nov, 23:59 Dubai time (UTC+4)**. We submit on the evening of **Sat 28 Nov**; the 29th is buffer. Demo Day is Thu 3 Dec in Dubai, remote is allowed for finalists.
+Deadline: **Sun 29 Nov, 23:59 Dubai time (UTC+4)**. We submit on the evening of **Sat 28 Nov**. The 29th is spare time. Demo Day is Thu 3 Dec in Dubai. Finalists may join remotely.
 
 ## The field (from the pasted list, 24 Nov)
 
-54 builds, read from one-line pitches only.
+54 builds. I read only the one-line pitches.
 
 | Track | Builds |
 |---|---|
@@ -13,12 +13,12 @@ Deadline: **Sun 29 Nov, 23:59 Dubai time (UTC+4)**. We submit on the evening of 
 | Exchanges & Stocks | 6 |
 | AI Assistants & Work | 4 |
 
-About 24 are Telegram inboxes with AI drafts. Polymarket and Hyperliquid paper trading are the other common pick. Closest rivals to us:
+About 24 are Telegram inboxes with AI drafts. Polymarket and Hyperliquid paper trading are the other common pick. The closest rivals:
 
-- **FUSE Brief** (AI Assistants): pre-meeting brief from Calendar, Gmail and Notion, with a deterministic fallback.
+- **FUSE Brief** (AI Assistants): a pre-meeting brief from Calendar, Gmail and Notion, with a deterministic fallback.
 - **Nod** (AI Assistants): Gmail triage that ends in a draft.
 
-Neither covers approvals across several sources against the user's own rules, and neither has an audit trail. Check this again before submitting, because the list was still growing.
+Neither handles approvals across several sources against the user's own rules, and neither has an audit trail. Check this again before submitting, because the list was still growing.
 
 ## The rubric and how we answer it
 
@@ -30,12 +30,12 @@ Neither covers approvals across several sources against the user's own rules, an
 | UX for display and voice | 15% | Clear on 576 × 288 monochrome, natural by voice | Four containers, no scrolling, short strings | Designed, not built |
 | Business potential and safety | 10% | Real users, careful with data and money | Small-team user, audit log, no funds touched, sandbox data | Written in [business-case.md](business-case.md) and [safety.md](safety.md) |
 
-Judges also decide finalists from the video first, so the film carries a lot of weight.
+Judges pick finalists from the video first, so the film matters a lot.
 
 ## What must be true to win
 
 1. **One full loop on camera, three times.** Telegram, Gmail and Calendar each show a real write-back.
-2. **The policy and the audit log are visible.** Open the film with the rules and end on the trail. That is what the Telegram inboxes lack.
+2. **The policy and the audit log are visible.** Open the film with the rules and end on the trail. The Telegram inboxes do not have this.
 3. **It works when the AI does not.** Show a card marked as fallback.
 4. **A clean repo.** README, setup that works from a fresh clone, tests, no secrets.
 5. **Prize fit.** Primary track 04, second track 01, and the Best Telegram integration prize. A project wins one cash prize, the highest one.

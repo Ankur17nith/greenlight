@@ -1,6 +1,6 @@
 # Submission day: Sat 28 Nov 2026
 
-Deadline: Sun 29 Nov, 23:59 Dubai time (UTC+4). All times below are Dubai time. The goal is to submit tonight, so Sunday is only a buffer.
+Deadline: Sun 29 Nov, 23:59 Dubai time (UTC+4). All times below are Dubai time. The goal is to submit tonight, so Sunday is only spare time.
 
 **Rule for the day:** no new features. Fix, record, check, submit. If the video is the weak part, spend the hours on the video.
 
@@ -31,7 +31,7 @@ Deadline: Sun 29 Nov, 23:59 Dubai time (UTC+4). All times below are Dubai time. 
 
 ## Nov 29 buffer
 
-Only for emergencies: a broken link, a video that will not play, a missed field. Do not add features. If everything is fine, do nothing.
+Use it only for emergencies: a broken link, a video that will not play, a missed field. Do not add features. If everything is fine, do nothing.
 
 ## If something fails
 

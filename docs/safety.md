@@ -1,6 +1,6 @@
 # Safety and control
 
-Greenlight lets a person approve things from a pair of glasses, so every control matters. This is the design. **As of 24 Nov 2026 no control is implemented or tested**; the "Proven by" column names the test to write, not one that exists. Short version: [`../SECURITY.md`](../SECURITY.md).
+Greenlight lets a person approve things from a pair of glasses, so each control matters. This is the design. **As of 24 Nov 2026 no control is implemented or tested.** The "Proven by" column names the test to write, not one that exists. Short version: [`../SECURITY.md`](../SECURITY.md).
 
 ## Principles
 
@@ -32,9 +32,9 @@ Greenlight lets a person approve things from a pair of glasses, so every control
 ## Not covered
 
 - Compromise of the founder's own Google or Telegram account.
-- A malicious teammate who truthfully asks for a bad approval; the rules and the person's judgement handle that.
+- A malicious teammate who truthfully asks for a bad approval. The rules and the person's judgement handle that.
 - Anything on the Even Realities platform itself.
 
 ## How we will check
 
-When code exists: the tests named above run in CI, `docs/TASKS.md` task D2-6 is the safety pass, and each row's "Proven by" is replaced with the real test name and path.
+Once code exists, the tests named above run in CI. `docs/TASKS.md` task D2-6 is the safety pass. Each row's "Proven by" is then replaced with the real test name and path.

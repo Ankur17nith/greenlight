@@ -10,13 +10,13 @@ Founders, small-business owners and ops leads are the bottleneck for dozens of s
 Founders and ops or support leads at small companies who unblock their team from their phone or on the move.
 
 ## How it works
-Requests come in from Telegram, Gmail and Google Calendar. A Policy Guard checks each against plain-English rules the founder wrote once. Each request becomes one card on the Even G2: what, who, verdict and a one-line recommendation. Tap to approve with a 3-second undo, hold to decline, swipe for the next, double tap to snooze. The decision writes back to the source and is logged with a timestamp on a companion dashboard.
+Requests come in from Telegram, Gmail and Google Calendar. A Policy Guard checks each one against plain-English rules the founder wrote once. Each request becomes one card on the Even G2. The card shows what it is, who sent it, the verdict and a one-line recommendation. Tap to approve, with a 3-second undo. Hold to decline, swipe for the next, double tap to snooze. The decision is written back to the source and logged with a timestamp on a companion dashboard.
 
 ## Why G2
 It is a glance-and-act problem. The card fits 576 × 288 monochrome with no scrolling, and a tap or ring press is faster than unlocking a phone.
 
 ## Safety
-The AI only recommends. A deliberate gesture triggers every write-back, with a 3-second undo. No funds move; demos use sandbox accounts. A deterministic fallback works if the AI fails.
+The AI only recommends. A deliberate gesture triggers every write-back, with a 3-second undo. No funds move, and demos use sandbox accounts. A deterministic fallback works if the AI fails.
 
 ## Feature requests for the APIs (optional, up to 5)
 Fill in from real friction during the build, for example:

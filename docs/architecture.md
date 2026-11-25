@@ -23,7 +23,7 @@ Everything here is the design. As of 24 Nov 2026 none of it is built ([STATUS.md
 | `/app/pair` | Show the six-digit pairing code |
 | `/app/audit` | Live audit log |
 
-The visual style follows [`../.design/DESIGN.md`](../.design/DESIGN.md) and is written fresh, not copied from another project ([LEARNINGS.md](LEARNINGS.md)). The web app talks to the API over HTTPS with a dashboard session; it never holds Telegram, Google or AI keys.
+The visual style follows [`../.design/DESIGN.md`](../.design/DESIGN.md). It is written fresh, not copied from another project ([LEARNINGS.md](LEARNINGS.md)). The web app talks to the API over HTTPS with a dashboard session. It never holds Telegram, Google or AI keys.
 
 ## Data flow
 
@@ -58,7 +58,7 @@ Founder          G2 app            API                Policy Guard      Source
    │<── next card ─│                                                      │
 ```
 
-Steps 5 and 6 run once per card: a second call on the same card returns the first result.
+Steps 5 and 6 run once per card. A second call on the same card returns the first result.
 
 ## Failure modes
 
@@ -75,7 +75,7 @@ Steps 5 and 6 run once per card: a second call on the same card returns the firs
 
 ## Limits that shape the design
 
-- One app on screen at a time; the glasses show nothing when the app is not open.
-- No access to other apps' notifications, so each source is read through its own API.
+- One app is on screen at a time. The glasses show nothing when the app is not open.
+- There is no access to other apps' notifications, so each source is read through its own API.
 - The WebView cannot do Google sign-in, which is why setup lives in `apps/web`.
-- Keys stay on the backend; whitelisted hosts and CORS are set for the API.
+- Keys stay on the backend. Whitelisted hosts and CORS are set for the API.
