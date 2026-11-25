@@ -8,7 +8,7 @@
 
 # Greenlight
 
-**An executive approval terminal for Even Realities G2. Review team requests from Telegram, Gmail and Google Calendar against your own company rules, and sign off in one tap.**
+**An approval terminal for Even Realities G2. Requests from Telegram, Gmail and Google Calendar are checked against your own company rules, and you approve or decline them from the glasses.**
 
 [![CI](https://github.com/Ankur17nith/greenlight/actions/workflows/ci.yml/badge.svg)](https://github.com/Ankur17nith/greenlight/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
@@ -17,11 +17,11 @@
 [![Built for](https://img.shields.io/badge/built%20for-Heads%20Up%20hackathon-2ee57a)](docs/win-plan.md)
 
 Built for the **Heads Up** hackathon (Even Realities × TVM Ventures × Daos Hub) on DoraHacks.
-**Primary track:** 04 · AI Assistants & Work · **Second track:** 01 · Messaging & News · **Special prize:** Best Telegram integration.
+**Primary track:** 04 · AI Assistants & Work. **Second track:** 01 · Messaging & News. **Special prize:** Best Telegram integration.
 
 ![Greenlight home page](docs/images/home-page.png)
 
-> **Honest status:** the website (landing page and dashboard screens) is built and runs today, with sample data. The backend, Policy Guard and the glasses app are being built Nov 25–27. The tables below say exactly what works. See [Status](#status).
+> **Status:** the website, the backend, Policy Guard and the glasses app are all written and unit-tested. None of it has run against real Telegram, Google or the real AI model yet, and the glasses app has not run in the simulator or on glasses. The Status table below says exactly what was checked. See [Status](#status).
 
 **Contents:** [See it in 60 seconds](#see-it-in-60-seconds) · [The problem](#the-problem) · [How it works](#how-it-works) · [On the glasses](#on-the-glasses) · [Policy Guard](#policy-guard) · [Safety model](#safety-model) · [Status](#status) · [Architecture](#architecture) · [Run it](#run-it) · [Docs](#docs) · [What existed before Nov 23](#what-existed-before-nov-23) · [AI tools used](#ai-tools-used) · [Limitations](#limitations) · [Licence](#licence)
 
@@ -33,21 +33,21 @@ pnpm install
 pnpm dev:web          # http://localhost:3000
 ```
 
-1. Open the home page and scroll. The G2 display stays pinned and changes as each step passes: request arrives, Policy Guard checks it, you tap (with a 3-second undo), it lands back in Telegram.
-2. Press **Open dashboard**: Queue, Connect, Rules, Pair glasses and Audit log. Edit the rules, generate a pairing code, toggle the night and paper themes.
-3. Everything on screen is sample data and labelled as such. The live loop (a real Telegram message to a real tap on the glasses) is the Nov 25–27 build; the demo video comes after it.
+1. Open the home page and scroll. The G2 display stays pinned and changes as each step passes: a request arrives, Policy Guard checks it, you tap (with a 3-second undo), and the reply lands back in Telegram.
+2. Press **Open dashboard**. It has Queue, Connect, Rules, Pair glasses and Audit log. You can edit the rules, generate a pairing code and switch between the night and paper themes.
+3. All data on screen is sample data and is labelled as such. The live loop (a real Telegram message to a real tap on the glasses) is the Nov 25–27 build. The demo video comes after it.
 
 ## The problem
 
-Founders, small-business owners and ops or support leads are the bottleneck for dozens of small decisions a day: a refund, an expense, a vendor invoice, a calendar clash. When they are away from a laptop, their team waits, and the decision happens late or without a record.
+Founders, small-business owners and ops or support leads make dozens of small decisions a day: a refund, an expense, a vendor invoice, a calendar clash. When they are away from a laptop, their team waits. The decision then happens late, or with no record.
 
 ## How it works
 
 1. A request arrives from a **Telegram** group, **Gmail** or **Google Calendar**.
 2. **Policy Guard** checks it against plain-English rules you wrote once on the dashboard.
-3. One card appears on your **G2**: what it is, who sent it, the verdict, a one-line recommendation.
-4. **Tap** to approve (with a 3-second undo), **hold** to decline, **swipe** for the next, **double tap** to snooze.
-5. The decision writes back where the request came from (a Telegram reply, a Gmail reply, a calendar response) and is added to the audit log.
+3. One card appears on your **G2**. It shows what the request is, who sent it, the verdict and a one-line recommendation.
+4. **Tap** to approve (with a 3-second undo), **hold** to decline, **swipe** for the next card, **double tap** to snooze.
+5. The decision is written back to where the request came from (a Telegram reply, a Gmail reply or a calendar response) and added to the audit log.
 
 ```
 Telegram ─┐
@@ -58,7 +58,7 @@ Calendar ─┘        ^                                         │
 
 ## On the glasses
 
-The G2 display is 576 × 288, monochrome green. Greenlight uses four fixed text rows, readable in two seconds, with no scrolling.
+The G2 display is 576 × 288, monochrome green. Greenlight uses four fixed text rows that can be read in two seconds. Nothing scrolls.
 
 ```
 ┌──────────────────────────────────────────────┐
@@ -76,7 +76,7 @@ The G2 display is 576 × 288, monochrome green. Greenlight uses four fixed text 
 | Hold | Decline |
 | Double tap | Snooze for one hour |
 
-The gesture map is the target. It is confirmed against the Even Hub SDK on Day 0, with a ring-based fallback if the glasses do not expose hold or double tap ([docs/G2_UI.md](docs/G2_UI.md#verified-gestures)).
+This gesture map is the target. It will be checked against the Even Hub SDK on Day 0. If the glasses do not expose hold or double tap, there is a ring-based fallback ([docs/G2_UI.md](docs/G2_UI.md#verified-gestures)).
 
 ## Policy Guard
 
@@ -86,7 +86,7 @@ You write two to four rules in plain English, for example:
 2. Never double-book investor calls.
 3. Flag requests from people not in our contact list.
 
-Each request is parsed deterministically for amount and requester, then judged by an AI model against your rules. If the AI times out, errors or returns invalid output, the card still appears, marked **flagged**, so nothing slips through as "safe". The AI only recommends; it never decides. Details: [docs/POLICY_GUARD.md](docs/POLICY_GUARD.md).
+Each request is first parsed for amount and requester without a model. An AI model then judges it against your rules. If the AI times out, errors or returns invalid output, the card still appears and is marked **flagged**, so nothing is shown as "safe" by default. The AI only recommends. It never decides. Details: [docs/POLICY_GUARD.md](docs/POLICY_GUARD.md).
 
 ## Safety model
 
@@ -127,7 +127,7 @@ Task-by-task progress: [docs/TASKS.md](docs/TASKS.md) and [docs/STATUS.md](docs/
 | `packages/shared` | Types, schemas, fixtures | TypeScript, zod |
 | `docs/`, `video/`, `.design/` | Docs, demo script and production, design system | Markdown |
 
-Google sign-in cannot run inside the glasses' WebView, so accounts are connected on the website and the glasses link with a 6-digit code. Full design: [docs/architecture.md](docs/architecture.md) and [plan.md](plan.md).
+Google sign-in cannot run inside the glasses' WebView. Accounts are connected on the website, and the glasses link to them with a 6-digit code. Full design: [docs/architecture.md](docs/architecture.md) and [plan.md](plan.md).
 
 ## Run it
 
@@ -138,13 +138,14 @@ pnpm install
 pnpm dev:web                          # website on http://localhost:3000
 pnpm dev:api                          # backend on http://localhost:3001 (see .env.example)
 pnpm dev:g2                           # glasses app on http://localhost:5173
+pnpm narrate                          # generate video/narration/NN.mp3 with ElevenLabs (needs ELEVENLABS_API_KEY)
 pnpm seed                             # reset and replay the demo cards (API needs DEMO_MODE=1, DASHBOARD_TOKEN set)
 pnpm test                             # unit tests for every package
 pnpm typecheck                        # type checks every package
 pnpm --filter @greenlight/web build   # production build of the website
 ```
 
-The API and glasses app commands are added here as each part lands. Account setup (Telegram, Google, Even Hub, ElevenLabs) is in [docs/SETUP.md](docs/SETUP.md). Copy `.env.example` to `.env`; never commit real values.
+The API and glasses app commands are added here as each part lands. Account setup (Telegram, Google, Even Hub, ElevenLabs) is in [docs/SETUP.md](docs/SETUP.md). Copy `.env.example` to `.env`. Never commit real values.
 
 ## Docs
 
@@ -161,19 +162,19 @@ The API and glasses app commands are added here as each part lands. Account setu
 
 ## What existed before Nov 23
 
-Nothing. Greenlight was started on Nov 24, during the hackathon. Its documentation structure was inspired by the open-source repo [Beacon](https://github.com/Prashant-thakur77/Beacon), and the teaser-video workflow by [brag](https://github.com/latent-spaces/brag). No code was copied from any of them. Open-source libraries (Next.js, React, Tailwind, Radix Slot, lucide, next-themes, Geist fonts under the SIL Open Font License) and the Even Hub SDK are used as dependencies.
+Nothing. Greenlight was started on Nov 24, during the hackathon. Its documentation structure was inspired by the open-source repo [Beacon](https://github.com/Prashant-thakur77/Beacon), and the teaser-video workflow by [brag](https://github.com/latent-spaces/brag). No code was copied from any of them. The project depends on open-source libraries (Next.js, React, Tailwind, Radix Slot, lucide, next-themes, and Geist fonts under the SIL Open Font License) and on the Even Hub SDK.
 
 ## AI tools used
 
-- **Claude Code** helped write the code, docs and design, and is credited as co-author on commits.
+- **Claude Code** helped write the code, docs and design. It is credited as co-author on commits.
 - **Claude** (a small model) is planned for Policy Guard's rule checks, behind a deterministic fallback.
-- **ElevenLabs** is planned for the demo video's voice-over only; the app itself never calls it.
+- **ElevenLabs** is used for the demo video's voice-over only (`pnpm narrate`). The app itself never calls it.
 
 ## Limitations
 
-- The glasses app and backend are not built yet; this README describes the plan wherever the status table says so.
+- Telegram, Gmail, Calendar and the AI model have only been tested with mocks. The glasses app has not run in the simulator or on glasses.
 - The gesture map is unconfirmed until the Day 0 spike fills in the table in [docs/G2_UI.md](docs/G2_UI.md#verified-gestures).
-- Google OAuth runs in Testing mode with named test users, which is enough for a demo, not for general release.
+- Google OAuth runs in Testing mode with named test users. That is enough for a demo, not for general release.
 - Greenlight never moves funds. Demos use sandbox accounts and test data only.
 
 ## Licence
