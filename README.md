@@ -138,6 +138,7 @@ pnpm install
 pnpm dev:web                          # website on http://localhost:3000
 pnpm dev:api                          # backend on http://localhost:3001 (see .env.example)
 pnpm dev:g2                           # glasses app on http://localhost:5173
+pnpm --filter @greenlight/g2 ehpk     # build apps/g2/out/greenlight.ehpk (set VITE_API_URL and the app.json whitelist first)
 pnpm narrate                          # generate video/narration/NN.mp3 with ElevenLabs (needs ELEVENLABS_API_KEY)
 pnpm seed                             # reset and replay the demo cards (API needs DEMO_MODE=1, DASHBOARD_TOKEN set)
 pnpm test                             # unit tests for every package
