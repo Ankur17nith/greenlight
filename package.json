@@ -5,13 +5,16 @@
   "type": "module",
   "license": "MIT",
   "description": "An executive approval terminal for Even Realities G2.",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck",
     "dev:api": "pnpm --filter @greenlight/api --if-present dev",
     "dev:g2": "pnpm --filter @greenlight/g2 --if-present dev",
     "dev:web": "pnpm --filter @greenlight/web --if-present dev",
-    "seed": "pnpm --filter @greenlight/scripts --if-present seed"
+    "seed": "pnpm --filter @greenlight/scripts --if-present seed",
+    "narrate": "pnpm --filter @greenlight/scripts --if-present narrate"
   }
 }
