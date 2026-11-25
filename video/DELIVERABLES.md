@@ -14,4 +14,4 @@
 - Credit the music (CC BY 4.0, Sascha Ende) if you use `brag`'s bundled tracks.
 
 ## Social post (draft)
-> Founders block their team every time they're away from the laptop. Greenlight puts the decision on your Even G2: one card, checked against your own rules, one tap to approve, with a 3-second undo. Built for the Heads Up hackathon by Even Realities, TVM Ventures and Daos Hub.
+> Founders hold up their team every time they are away from the laptop. Greenlight puts the decision on your Even G2: one card, checked against your own rules, one tap to approve, with a 3-second undo. Built for the Heads Up hackathon by Even Realities, TVM Ventures and Daos Hub.

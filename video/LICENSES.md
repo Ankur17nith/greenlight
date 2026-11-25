@@ -1,6 +1,6 @@
 # Ledger of what's in the Greenlight films
 
-For the team's own reference. Nothing here is shown in the films.
+For the team's reference only. None of this appears in the films.
 
 | Part | Source | Licence / note |
 | --- | --- | --- |

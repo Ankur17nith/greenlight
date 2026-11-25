@@ -24,11 +24,11 @@ Goal: warm, clear English with a mix of Indian and American accent, about 150 wo
 - Choose the voice: use Voice Design (or browse the Voice Library for Indian-English voices) with a prompt such as *"30s, neutral American cadence with a light Indian English accent, warm, confident, clear consonants"*. Generate three candidates, read scene 1 with each, pick one.
 - Save the chosen `voice_id` in `narration.json`.
 - Render per scene so one line can be redone without redoing the film. Tune speed and stability per scene.
-- The app itself never calls ElevenLabs; it is only used for this film.
+- The app itself never calls ElevenLabs. It is used only for this film.
 
 ## Teaser with `brag`
 
-`brag` is a Claude skill that turns a project into a short launch video with music and share copy. It suits a ~20s teaser, not the 3-minute demo.
+`brag` is a Claude skill that makes a short launch video from a project, with music and share copy. Use it for the ~20s teaser, not the 3-minute demo.
 
 ```sh
 npx skills add https://github.com/latent-spaces/brag --skill brag-slim

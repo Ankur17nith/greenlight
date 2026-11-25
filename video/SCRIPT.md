@@ -19,5 +19,5 @@ All demo data is seeded sandbox data.
 - Show the real write-back in every scene (Telegram reply, sent email, calendar status).
 - Do not show real names, emails or tokens.
 - If Calendar slips, drop scene 6 and extend scene 7; update `narration.json` to match.
-- The gesture names in the script must match what the SDK actually exposes (Day 0 spike). Update both files if they change.
-- Word count of the voice-over is about 330, which fits 2:50 with pauses.
+- The gesture names in the script must match what the SDK exposes (Day 0 spike). If they change, update both files.
+- The voice-over is about 330 words, which fits 2:50 with pauses.

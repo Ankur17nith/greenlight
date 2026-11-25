@@ -1,6 +1,6 @@
 # Demo runbook
 
-How to reset the system and run the demo the same way every time, for recording and for judges.
+How to reset the system and run the demo the same way each time, for recording and for judges.
 
 ## Before you start
 - [ ] API deployed and `GET /health` answers.
@@ -23,7 +23,7 @@ How to reset the system and run the demo the same way every time, for recording 
 ## If something fails on camera
 - Telegram reply not appearing: check the webhook secret and that the bot is in the group.
 - Gmail reply missing: re-run the Google connect flow; check the token refresh.
-- Card shows `FALLBACK`: the AI call timed out. Re-record; do not hide it, it is a feature.
+- Card shows `FALLBACK`: the AI call timed out. Re-record. Do not hide it; the fallback is meant to be visible.
 - Simulator offline: confirm `app.json` whitelists the API domain and CORS is set.
 
 ## After recording

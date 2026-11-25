@@ -30,7 +30,7 @@ pnpm typecheck
 - Pick a task from [docs/TASKS.md](docs/TASKS.md) and meet its Done-when line.
 - Every new function gets a test. Policy Guard changes also update the fixtures in `packages/shared`.
 - Never commit keys. They live in `.env` or `.env.local`; keep `.env.example` current.
-- The AI only recommends; only a user gesture may trigger a write-back. Do not weaken the undo or the idempotency.
-- A number in the README, the script or the video comes from a test, a fixture or a log. Change the source, not the copy.
-- Look up every Even Hub SDK call in the official docs. Never guess names.
+- The AI only recommends. Only a user gesture may trigger a write-back. Do not weaken the undo or the idempotency.
+- Every number in the README, the script or the video comes from a test, a fixture or a log. Change the source, not the copy.
+- Look up every Even Hub SDK call in the official docs. Do not guess names.
 - Report a vulnerability privately, as [SECURITY.md](SECURITY.md) explains.

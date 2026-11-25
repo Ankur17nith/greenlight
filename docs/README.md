@@ -1,6 +1,6 @@
 # Documentation index
 
-Greenlight is an approval terminal for Even Realities G2. Everything here describes a project in planning (see [STATUS.md](STATUS.md) for what is verified and what is not).
+Greenlight is an approval terminal for Even Realities G2. These docs describe a project that is still in planning. [STATUS.md](STATUS.md) lists what is verified and what is not.
 
 ## Start here
 

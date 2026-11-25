@@ -1,6 +1,6 @@
 # Roadmap
 
-What comes after the hackathon, in order. Each step either gets Greenlight to real teams or closes a limitation in the [README](README.md#limitations).
+What comes after the hackathon, in order. Each step either makes Greenlight usable by real teams or closes a limitation listed in the [README](README.md#limitations).
 
 ## 0. Hackathon scope (Nov 24–28)
 - Telegram, Gmail and Google Calendar as request sources, with write-backs.
@@ -31,4 +31,4 @@ What comes after the hackathon, in order. Each step either gets Greenlight to re
 
 ## Not planned
 - Moving money, or any action the founder has not explicitly approved.
-- Reading notifications from other apps; Greenlight talks to each service through its own API.
+- Reading notifications from other apps. Greenlight talks to each service through its own API.

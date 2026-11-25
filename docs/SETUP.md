@@ -1,6 +1,6 @@
 # Setup
 
-Everything you need accounts or keys for, in the order to do it. All values go in `.env` (see [.env.example](../.env.example)); never in git and never in the G2 bundle.
+The accounts and keys you need, in the order to set them up. Put all values in `.env` (see [.env.example](../.env.example)). Never put them in git or in the G2 bundle.
 
 ## Tools
 
@@ -32,8 +32,8 @@ Everything you need accounts or keys for, in the order to do it. All values go i
 5. Use a **sandbox** account with seeded mail and events, not a real inbox.
 
 ## AI (Policy Guard)
-- Set `ANTHROPIC_API_KEY` and `POLICY_MODEL` (default `claude-haiku-5-5`), or an OpenRouter key.
-- Check the current model ID before the demo; it is a setting, not a constant in code.
+- Set `ANTHROPIC_API_KEY` and `POLICY_MODEL` (default `claude-haiku-5-5`), or use an OpenRouter key.
+- Check the current model ID before the demo. It is a setting, not a constant in code.
 
 ## ElevenLabs (video only)
 1. Create a key at https://elevenlabs.io/app/api/api-keys?quickstart=true.
@@ -53,4 +53,4 @@ pnpm seed           # reset and load the demo data
 ```
 
 ## Hosting
-Any host with a stable public HTTPS URL works, because Telegram's webhook, Google's OAuth redirect and the G2 `app.json` whitelist all need one. During development a tunnel is fine. The web app (`apps/web`) is deployed on its own and calls the API, so the API must allow its origin in CORS; only the API domain goes in the G2 `app.json` whitelist.
+Use any host with a stable public HTTPS URL. Telegram's webhook, Google's OAuth redirect and the G2 `app.json` whitelist all need one. A tunnel is fine during development. The web app (`apps/web`) is deployed on its own and calls the API, so the API must allow its origin in CORS. Only the API domain goes in the G2 `app.json` whitelist.

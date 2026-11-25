@@ -1,15 +1,15 @@
 # Human runbook
 
-Everything the human (Ankur) does, in order, with the output to expect. The coding agent cannot click through consoles or sign in for you. Paste any error verbatim into the chat. **Never paste a key or token into the chat.**
+Everything the human (Ankur) does, in order, with the output to expect. The coding agent cannot click through consoles or sign in for you. Paste any error into the chat as it appears. **Never paste a key or token into the chat.**
 
-Commands that are not written yet are marked **(later)**; they appear as the build lands.
+Commands that are not written yet are marked **(later)**. They appear as the build lands.
 
 ## §0 · Account prep (about 60 minutes of clicking)
 
 1. **ElevenLabs key (environment secret).**
    - Create a key at https://elevenlabs.io/app/api/api-keys?quickstart=true.
    - Open the cloud environment menu in the session's title bar, choose Edit, and add `ELEVENLABS_API_KEY` under Network secrets (or as an environment variable if that section is not offered).
-   - Start a **new session** on the repo; a session that was already running will not see it.
+   - Start a **new session** on the repo. A session that was already running will not see it.
    - Check, in the new session: `npx -y @elevenlabs/cli@latest onboard check --env-path .env.local`
    - Expected: the check passes. If it says the key is empty, the secret did not reach the session.
 

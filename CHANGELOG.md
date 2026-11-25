@@ -1,6 +1,6 @@
 # Changelog
 
-Every release, newest first. Dates are UTC.
+All changes, newest first. Dates are UTC.
 
 ## Heads Up hackathon (Nov 2026)
 
