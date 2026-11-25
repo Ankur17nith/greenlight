@@ -21,7 +21,7 @@ Built for the **Heads Up** hackathon (Even Realities × TVM Ventures × Daos Hub
 
 ![Greenlight home page](docs/images/home-page.png)
 
-> **Status:** the website, the backend, Policy Guard and the glasses app are all written and unit-tested. None of it has run against real Telegram, Google or the real AI model yet, and the glasses app has not run in the simulator or on glasses. The Status table below says exactly what was checked. See [Status](#status).
+> **Status:** the website, the backend, Policy Guard and the glasses app are all written and unit-tested. None of it has run against real Telegram, Google or the real AI model yet, and the glasses app has run only in the simulator, not on real glasses. The Status table below says exactly what was checked. See [Status](#status).
 
 **Contents:** [See it in 60 seconds](#see-it-in-60-seconds) · [The problem](#the-problem) · [How it works](#how-it-works) · [On the glasses](#on-the-glasses) · [Policy Guard](#policy-guard) · [Safety model](#safety-model) · [Status](#status) · [Architecture](#architecture) · [Run it](#run-it) · [Docs](#docs) · [What existed before Nov 23](#what-existed-before-nov-23) · [AI tools used](#ai-tools-used) · [Limitations](#limitations) · [Licence](#licence)
 
@@ -111,7 +111,7 @@ More in [SECURITY.md](SECURITY.md) and [docs/safety.md](docs/safety.md).
 | `apps/api` backend: Telegram ingest and reply, queue, idempotent act, pairing, rules, audit | **Built, unit-tested with mocks** | `pnpm test`; local run checked with curl. Not yet tried against real Telegram |
 | `apps/api` Gmail, Calendar and Google sign-in: read, reply, respond, encrypted tokens, polling | **Built, unit-tested with mocked Google** | `pnpm test`. Never run against a real Google account |
 | `packages/policy` Policy Guard: amount parser, verdict, timeout and FLAGGED fallback | **Built, unit-tested with a stubbed model** | `pnpm test`; not yet run against the real model |
-| `apps/g2` glasses app: renderer, gesture controller, 3s undo, pairing form | **Built, unit-tested** | `pnpm test`, `pnpm --filter @greenlight/g2 build`. Not yet run in the Even Hub simulator or on glasses |
+| `apps/g2` glasses app: renderer, gesture controller, 3s undo, pairing form | **Built, unit-tested, run in the simulator** | `pnpm test`; every screen and gesture checked in the Even Hub simulator through its automation API ([docs/G2_UI.md](docs/G2_UI.md#verified-gestures)). Not yet run on real glasses |
 | Demo video | Script and narration drafted | [video/SCRIPT.md](video/SCRIPT.md) |
 
 Task-by-task progress: [docs/TASKS.md](docs/TASKS.md) and [docs/STATUS.md](docs/STATUS.md).
@@ -172,7 +172,7 @@ Nothing. Greenlight was started on Nov 24, during the hackathon. Its documentati
 
 ## Limitations
 
-- Telegram, Gmail, Calendar and the AI model have only been tested with mocks. The glasses app has not run in the simulator or on glasses.
+- Telegram, Gmail, Calendar and the AI model have only been tested with mocks. The glasses app has run in the simulator but not on real glasses.
 - The gesture map is unconfirmed until the Day 0 spike fills in the table in [docs/G2_UI.md](docs/G2_UI.md#verified-gestures).
 - Google OAuth runs in Testing mode with named test users. That is enough for a demo, not for general release.
 - Greenlight never moves funds. Demos use sandbox accounts and test data only.

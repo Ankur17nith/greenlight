@@ -7,8 +7,8 @@ Cut order if time runs short ([plan.md](../plan.md#2-decisions-and-corrections-t
 ## Day 0 · Nov 24: unblock
 
 - [x] **D0-1 ElevenLabs key.** Do: put `ELEVENLABS_API_KEY` in the environment secrets (or `.env.local`). Done when: `npx -y @elevenlabs/cli@latest onboard check --env-path .env.local` passes.
-- [ ] **D0-2 Simulator hello.** Do: install `@evenrealities/evenhub-cli` and `@evenrealities/evenhub-simulator`, start from the official minimal template, change one line. Done when: the simulator shows the new text.
-- [ ] **D0-3 Gesture spike.** Do: log every input event (tap, swipe, hold, double tap, ring). Done when: the "Verified gestures" table in [G2_UI.md](G2_UI.md#verified-gestures) is filled in from real output, and the gesture map in plan.md matches.
+- [x] **D0-2 Simulator hello.** Do: install `@evenrealities/evenhub-cli` and `@evenrealities/evenhub-simulator`, start from the official minimal template, change one line. Done when: the simulator shows the new text.
+- [x] **D0-3 Gesture spike.** Do: log every input event (tap, swipe, hold, double tap, ring). Done when: the "Verified gestures" table in [G2_UI.md](G2_UI.md#verified-gestures) is filled in from real output, and the gesture map in plan.md matches.
 - [ ] **D0-4 Telegram bot.** Do: create the bot with @BotFather, add it to a test group, disable privacy mode, set the webhook secret. Done when: a message in the group reaches a local echo handler.
 - [ ] **D0-5 Google Cloud.** Do: project, enable Gmail and Calendar APIs, OAuth consent screen in Testing mode, add the sandbox account as a test user. Done when: a token is obtained with the scopes in [SETUP.md](SETUP.md#google).
 - [ ] **D0-6 Hosting.** Do: pick a host with a stable public HTTPS URL. Done when: `GET /health` answers from that URL.
@@ -22,8 +22,8 @@ Cut order if time runs short ([plan.md](../plan.md#2-decisions-and-corrections-t
 - [x] **D1-4 DB and queue.** Do: SQLite schema from plan.md, `GET /api/queue`. Done when: seeded cards come back oldest first, snoozed cards hidden.
 - [ ] **D1-5 Telegram ingest and reply.** Do: webhook with secret check; reply under the original message. Done when: a group message becomes a card, and approving it posts the reply.
 - [x] **D1-6 Act endpoint.** Do: `POST /api/decisions/:id/act`, idempotent. Done when: a second call on the same id is a no-op (test).
-- [ ] **D1-7 G2 card.** Do: render the four containers from a queue item. Done when: simulator shows the card from the API with the correct badge.
-- [ ] **D1-8 G2 gestures.** Do: approve with 3s undo, decline, swipe, snooze, empty and offline states. Done when: every state in [G2_UI.md](G2_UI.md#states) renders.
+- [x] **D1-7 G2 card.** Do: render the four containers from a queue item. Done when: simulator shows the card from the API with the correct badge.
+- [x] **D1-8 G2 gestures.** Do: approve with 3s undo, decline, swipe, snooze, empty and offline states. Done when: every state in [G2_UI.md](G2_UI.md#states) renders.
 - [ ] **D1-9 Pairing.** Do: `POST /api/pair`, `POST /api/pair/exchange`, phone-side form in the G2 app. Done when: a 6-digit code links the simulator session; a used or expired code is refused.
 
 **Day 1 done when:** a Telegram request shows on the simulator with a policy badge, a tap approves it, and the reply appears in the group.

@@ -13,6 +13,8 @@ All the code for Days 0 to 2 is written and unit-tested (`pnpm test`, `pnpm type
 | Unit tests for every package | `pnpm test` |
 | API started locally; Telegram-style message becomes a card; pairing code links a session; failed write leaves the card pending | curl against a running server |
 | Dashboard in a real browser against the live local API: queue, saving rules, pairing code | Playwright run |
+| Glasses app in the Even Hub simulator, driven by its automation API: tap, swipe, hold, double tap, undo, retry, offline, empty, not paired | Screenshots in `docs/images/g2-*.png` and [G2_UI.md](G2_UI.md#verified-gestures) |
+| Approve flow end to end with a local stand-in for Telegram: reply posted under the original message, glasses show `Sent to Telegram` | Stand-in server log and simulator screenshot |
 | ElevenLabs key | `onboard check` passed |
 | Narration audio | `pnpm narrate` made 8 files, 90.9 s in total |
 | No keys in git or history | `git grep` and `git log -p` scan |
@@ -24,7 +26,7 @@ All the code for Days 0 to 2 is written and unit-tested (`pnpm test`, `pnpm type
 | Telegram bot, webhook and reply | No bot token or public URL yet (D0-4, D0-6) |
 | Google sign-in, Gmail, Calendar | No Google project or secrets yet (D0-5). Tested with mocked Google only |
 | Policy Guard with the real model | `ANTHROPIC_API_KEY` is not set here. All cards currently show `FALLBACK` |
-| Glasses app in the simulator or on glasses, and the real gesture events | The simulator is a desktop app (D0-2, D0-3) |
+| Glasses app on real glasses, and the R1 ring | Needs the hardware |
 | Hosting, `.ehpk` package, CI run | Not started |
 | Demo video and teaser | Narration exists; screen capture and edit need the working app |
 
@@ -32,7 +34,7 @@ All the code for Days 0 to 2 is written and unit-tested (`pnpm test`, `pnpm type
 
 | Part | Folder | State |
 |---|---|---|
-| Glasses app | `apps/g2` | written, unit-tested, not run on a device |
+| Glasses app | `apps/g2` | written, unit-tested, run in the simulator, not on real glasses |
 | Web app (landing and dashboard) | `apps/web` | built, dashboard wired to the API |
 | Backend | `apps/api` | written, unit-tested, run locally |
 | Policy Guard | `packages/policy` | written, unit-tested with a stubbed model |
@@ -42,7 +44,7 @@ All the code for Days 0 to 2 is written and unit-tested (`pnpm test`, `pnpm type
 
 ## Risks right now
 
-- The gesture map comes from the SDK typings only. It is unconfirmed until D0-3 is run.
+- The gesture map is confirmed in the simulator only. Real glasses and the ring are untested.
 - Telegram, Google and the AI model are the main unknowns. Each is only mocked so far.
 - The narration voice is a placeholder premade voice. No Indian-English voice has been chosen.
 - The cut order in [FEATURES.md](FEATURES.md) is the safety valve.
