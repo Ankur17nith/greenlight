@@ -36,16 +36,22 @@ Undo is client-side. Nothing is sent until the 3 seconds end, so closing the app
 
 ## Verified gestures
 
-_The event names below come from the `@evenrealities/even_hub_sdk` 0.0.16 typings (`OsEventTypeList`). **They have not yet been observed on the simulator or glasses**, so D0-3 stays open. The "Works" columns are filled in only after a real run._
+Checked on 25 Nov 2026 in the Even Hub simulator 0.9.5 (Linux, under Xvfb), driving it through its automation API. Event names come from the `@evenrealities/even_hub_sdk` 0.0.16 typings (`OsEventTypeList`). **Nothing here has been tried on real glasses or the R1 ring yet.**
 
-| Input | SDK event name | Works on glasses | Works in simulator | Notes |
-|---|---|---|---|---|
-| Tap | `CLICK_EVENT` (0) | _untested_ | _untested_ | May arrive with `eventType` undefined (protobuf zero); handled as a click |
-| Swipe forward | `SCROLL_BOTTOM_EVENT` (2) | _untested_ | _untested_ | Direction assumed; confirm |
-| Swipe back | `SCROLL_TOP_EVENT` (1) | _untested_ | _untested_ | Direction assumed; confirm |
-| Hold | `LONG_PRESS_EVENT` (9) | _untested_ | _untested_ | Release is a separate event (10), ignored |
-| Double tap | `DOUBLE_CLICK_EVENT` (3) | _untested_ | _untested_ | |
-| R1 ring | same events; `sysEvent.eventSource` is `TOUCH_EVENT_FROM_RING` (2) | _untested_ | _untested_ | Ring and temples share the event types |
+| Input | Simulator action | SDK event name | Works in simulator | Works on glasses | Notes |
+|---|---|---|---|---|---|
+| Tap | `click` | `CLICK_EVENT` (0) | Yes: starts the 3 s countdown; a second tap undoes it | _untested_ | May arrive with `eventType` undefined (protobuf zero); handled as a click |
+| Swipe forward | `down` | `SCROLL_BOTTOM_EVENT` (2) | Yes: 1/3 to 2/3 | _untested_ | Forward is `down` in the simulator |
+| Swipe back | `up` | `SCROLL_TOP_EVENT` (1) | Yes: 2/3 to 1/3 | _untested_ | |
+| Hold | `long_press` | `LONG_PRESS_EVENT` (9) | Yes: starts the decline countdown | _untested_ | Release (10) is a separate event and is ignored |
+| Double tap | `double_click` | `DOUBLE_CLICK_EVENT` (3) | Yes: card is snoozed and hidden | _untested_ | |
+| R1 ring | not simulated | same events; `sysEvent.eventSource` is `TOUCH_EVENT_FROM_RING` (2) | _untested_ | _untested_ | |
+
+Screens captured in the simulator: normal card, confirming (approve and decline), error with retry, done (`APPROVED`, `Sent to Telegram`), offline, empty (`ALL CLEAR`) and not paired. The one-second `ZZ SNOOZED 1h` screen was not captured; the snooze itself was confirmed because the card left the queue. The done screen was reached using a local stand-in for Telegram, so it shows the glasses flow, not a real Telegram reply.
+
+Screenshots: [normal card](images/g2-card.png), [declining with undo](images/g2-declining-undo.png), [offline](images/g2-offline.png), [all clear](images/g2-all-clear.png), [not paired](images/g2-not-paired.png).
+
+The simulator font has no check mark, warning sign or cross, so the glasses text is plain ASCII.
 
 Fallback if hold or double tap are missing: tap = approve, swipe = next, ring press = decline, and a snooze step reached by swiping to `SNOOZE` on the action footer.
 
