@@ -57,8 +57,8 @@ Response `200`:
 |---|---|
 | `200` | Done, or already done (idempotent; same body as the first call) |
 | `404` | Unknown card |
-| `409` | Card was decided by another action; returns its current status |
-| `502` | The external write failed; the card stays `PENDING` so the glasses can retry |
+| `409` | Another action already decided the card; returns its current status |
+| `502` | The external write failed. The card stays `PENDING` so the glasses can retry |
 
 Write-backs:
 
@@ -86,4 +86,5 @@ Every action writes one audit row before the response is returned.
 ```
 
 ## Errors
-`{ "error": { "code": "STRING", "message": "human readable" } }`. Messages never include tokens, rule text or request bodies.
+
+`{ "error": { "code": "STRING", "message": "human readable" } }`. Messages do not include tokens, rule text or request bodies.

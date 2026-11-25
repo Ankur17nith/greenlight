@@ -1,6 +1,6 @@
 # G2 interface
 
-Display: monochrome green, 576 × 288 per eye. The Even Hub SDK renders positioned containers (text, list, image) over Bluetooth, not HTML/CSS. Design for four fixed text containers and a two-second glance, with no scrolling.
+Display: monochrome green, 576 × 288 per eye. The Even Hub SDK draws positioned containers (text, list, image) over Bluetooth. It does not use HTML or CSS. The design uses four fixed text containers that can be read in two seconds, with no scrolling.
 
 ## Card
 
@@ -32,11 +32,11 @@ Source codes: `TG`, `MAIL`, `CAL`. Badges: `✓ WITHIN POLICY`, `⚠ FLAGGED: <r
 | Double tap | Snooze 1 hour, card goes to the back of the queue |
 | R1 ring | Same as the glasses; ring press is the fallback for any gesture the glasses do not expose |
 
-Undo is client-side: nothing is sent until the 3 seconds end, so closing the app during the window cancels the action (fail-safe). The act request is idempotent, so a repeated tap never double-sends.
+Undo is client-side. Nothing is sent until the 3 seconds end, so closing the app during that time cancels the action. The act request is idempotent, so a repeated tap does not send twice.
 
 ## Verified gestures
 
-_Event names below come from the `@evenrealities/even_hub_sdk` 0.0.16 typings (`OsEventTypeList`). **They have not yet been observed on the simulator or glasses**, so D0-3 stays open. The "Works" columns are filled in only after a real run._
+_The event names below come from the `@evenrealities/even_hub_sdk` 0.0.16 typings (`OsEventTypeList`). **They have not yet been observed on the simulator or glasses**, so D0-3 stays open. The "Works" columns are filled in only after a real run._
 
 | Input | SDK event name | Works on glasses | Works in simulator | Notes |
 |---|---|---|---|---|
@@ -63,10 +63,11 @@ Fallback if hold or double tap are missing: tap = approve, swipe = next, ring pr
 | Error on act | `⚠ NOT SENT` | headline | `Tap to retry` | |
 
 ## Writing rules for the lens
-- One thing per container, a few words each. No sentences that wrap.
+- One item per container, a few words each. No sentences that wrap.
 - Uppercase for labels, sentence case for content.
-- Never show a raw error; show what the user can do.
-- No animation beyond the countdown; the display is monochrome and small.
+- Do not show a raw error. Show what the user can do.
+- No animation except the countdown. The display is monochrome and small.
 
 ## Phone side of the WebView
-A plain settings screen inside the Even Realities App: a 6-digit code field, link status, and an unpair button. Google sign-in never happens here.
+
+A plain settings screen inside the Even Realities App. It has a 6-digit code field, the link status and an unpair button. Google sign-in does not happen here.
