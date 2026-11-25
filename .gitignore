@@ -22,3 +22,6 @@ brag-output*/
 .next/
 next-env.d.ts
 *.tsbuildinfo
+
+out/
+*.ehpk
