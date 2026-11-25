@@ -189,7 +189,7 @@ Tooling: pnpm workspace, TypeScript, vitest. Every new function gets a test (the
 - [ ] `apps/g2`: render the 4-container card from the queue, tap with 3s undo, swipe, decline, snooze, empty and offline states.
 - [ ] Pairing code flow (API plus the phone-side form).
 
-**Done when:** a request typed in the Telegram group shows on the simulator with a policy badge, a tap approves it, and `✅ Approved by Founder via Greenlight` appears under the original message. Commit.
+**Done when:** a request typed in the Telegram group shows on the simulator with a policy badge, a tap approves it, and `Approved by Founder via Greenlight` appears under the original message. Commit.
 
 ### Day 2 · Nov 26: Gmail, Calendar, dashboard, polish
 - [ ] Google OAuth on the dashboard; Gmail poll for the `Approval` / `Invoice` label with reply-in-thread write-back.

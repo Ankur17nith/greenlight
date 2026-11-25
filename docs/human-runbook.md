@@ -63,7 +63,7 @@ Pick a host that gives a stable public HTTPS URL (open question 3 in [QUESTIONS.
 1. Open the web app at `/app/connect`; connect Telegram, Gmail and Calendar.
 2. Add the demo rules at `/app/rules`.
 3. Open `/app/pair`, enter the six-digit code in the Even app.
-4. Post a test request in the group. Expected: a card on the simulator, tap, `✅ Approved by Founder via Greenlight` under the message.
+4. Post a test request in the group. Expected: a card on the simulator, tap, `Approved by Founder via Greenlight` under the message.
 
 ## §4 · Video **(later)**
 

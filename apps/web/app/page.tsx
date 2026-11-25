@@ -39,7 +39,7 @@ export default function Home() {
                   <a href="#how">See how it works</a>
                 </Button>
               </div>
-              <p className="mt-8 text-sm text-muted-foreground">Works with Telegram, Gmail and Google Calendar.</p>
+              <p className="mt-8 text-sm text-muted-foreground">Works with Telegram, Gmail and Google Calendar</p>
             </div>
 
             <div className="space-y-3">
@@ -52,7 +52,7 @@ export default function Home() {
                 position="1/3"
               />
               <p className="text-center text-xs text-muted-foreground">
-                Layout preview of the 576 × 288 display, with sample data.
+                Layout preview of the 576 × 288 display, with sample data
               </p>
             </div>
           </div>
@@ -100,7 +100,7 @@ export default function Home() {
             <Reveal delay={100}>
             <Card className="mt-8 overflow-x-auto">
               <table className="w-full min-w-[640px] text-left text-sm">
-                <thead className="border-b border-border text-xs uppercase tracking-wide text-muted-foreground">
+                <thead className="border-b border-border text-xs text-muted-foreground">
                   <tr>
                     <th className="px-4 py-3 font-medium">Request</th>
                     <th className="px-4 py-3 font-medium">Verdict</th>

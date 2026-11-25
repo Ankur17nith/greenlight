@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-30 border-b border-border/70 bg-background/80 backdrop-blur">
+    <header className="sticky top-0 z-30 border-b border-border/70 bg-background">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" aria-label="Greenlight home">
           <Logo height={26} />
