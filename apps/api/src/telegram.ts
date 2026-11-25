@@ -27,9 +27,12 @@ export function updateToRequest(u: TgUpdate): RawRequest | null {
 export type Fetch = typeof fetch;
 
 /** Posts a reply under the original message. */
-export async function sendReply(token: string, externalId: string, text: string, f: Fetch = fetch): Promise<void> {
+export const TELEGRAM_API = "https://api.telegram.org";
+
+/** `base` is configurable so a local stand-in server can be used in sandboxes and tests. */
+export async function sendReply(token: string, externalId: string, text: string, f: Fetch = fetch, base = TELEGRAM_API): Promise<void> {
   const [chat, msg] = externalId.split(":");
-  const res = await f(`https://api.telegram.org/bot${token}/sendMessage`, {
+  const res = await f(`${base}/bot${token}/sendMessage`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ chat_id: Number(chat), text, reply_to_message_id: Number(msg), allow_sending_without_reply: true }),

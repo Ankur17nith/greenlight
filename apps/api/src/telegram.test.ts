@@ -29,6 +29,11 @@ describe("sendReply", () => {
     expect(url).toBe("https://api.telegram.org/botTOK/sendMessage");
     expect(body).toMatchObject({ chat_id: -100, reply_to_message_id: 7, text: "ok" });
   });
+  it("uses a custom base URL when given", async () => {
+    let url = "";
+    await sendReply("T", "1:2", "x", (async (u: string) => { url = u; return new Response("{}"); }) as typeof fetch, "http://127.0.0.1:9");
+    expect(url).toBe("http://127.0.0.1:9/botT/sendMessage");
+  });
   it("throws on a non-200", async () => {
     await expect(sendReply("T", "1:2", "x", (async () => new Response("", { status: 400 })) as typeof fetch)).rejects.toThrow("400");
   });

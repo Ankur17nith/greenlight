@@ -31,7 +31,7 @@ const deps: Deps = {
     const r = await evaluate(req, rules, { complete });
     return { verdict: r.verdict, eval_mode: r.eval_mode };
   },
-  writeBack: makeWriteBack({ db, google, telegramToken: env.TELEGRAM_BOT_TOKEN }),
+  writeBack: makeWriteBack({ db, google, telegramToken: env.TELEGRAM_BOT_TOKEN, telegramBase: env.TELEGRAM_API_BASE }),
 };
 
 const app = await buildApp(deps);
