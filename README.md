@@ -165,7 +165,7 @@ The API and glasses app commands are added here as each part lands. Account setu
 
 ## Demo video
 
-The finished films are in [`video/final/`](video/final): `greenlight_demo.mp4` (1:42, voice-over and captions) and `greenlight_teaser.mp4` (20 s). The dashboard footage is real. The glasses cards and the Telegram, Gmail and Calendar panels are drawn from the script with sample data, because no live accounts or AI key were connected. The film says so on screen.
+The finished films are in [`video/final/`](video/final): `greenlight_demo.mp4` (2:12, voice-over and captions, a very quiet music bed) and `greenlight_teaser.mp4` (20 s). The setup and audit-log scenes are real screen recordings of the dashboard running locally. The glasses cards and the Telegram, Gmail and Calendar panels are drawn from the script with sample data, because no Google account or model key was connected. The film labels each of these on screen. The scene-by-scene table is in [video/SCRIPT.md](video/SCRIPT.md).
 
 ## What existed before Nov 23
 

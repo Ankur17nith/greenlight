@@ -28,7 +28,7 @@ All the code for Days 0 to 2 is written and unit-tested (`pnpm test`, `pnpm type
 | Policy Guard with the real model | `ANTHROPIC_API_KEY` is not set here. All cards currently show `FALLBACK` |
 | Glasses app on real glasses, and the R1 ring | Needs the hardware |
 | Hosting, `.ehpk` package, CI run | Not started |
-| Live-footage version of the video | The 1:42 demo and 20 s teaser are done (`video/final/`), but the glasses cards and the Telegram, Gmail and Calendar panels are drawn with sample data, not recorded from live accounts |
+| Live-footage version of the video | The 1:42 demo and 20 s teaser are done (`video/final/`, 2:12). The dashboard scenes are real recordings; the glasses cards and the Telegram, Gmail and Calendar panels are drawn with sample data, not recorded from live accounts |
 
 ## Build state by part
 

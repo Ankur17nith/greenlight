@@ -61,7 +61,7 @@ const voiceLabels = scenes.map((s, i) => `[${i + 1}:a]adelay=${Math.round(s.voic
 let filter = voiceLabels.join(";") + ";" + scenes.map((_, i) => `[v${i}]`).join("") + `amix=inputs=${scenes.length}:normalize=0:dropout_transition=0[voice]`;
 if (hasMusic) {
   const mi = scenes.length + 1;
-  filter += `;[${mi}:a]volume=0.10,afade=t=in:d=2,afade=t=out:st=${(total - 3).toFixed(2)}:d=3,atrim=0:${total.toFixed(2)}[mus];[voice][mus]amix=inputs=2:normalize=0:duration=first[mix]`;
+  filter += `;[${mi}:a]volume=0.045,afade=t=in:d=3,afade=t=out:st=${(total - 3).toFixed(2)}:d=3,atrim=0:${total.toFixed(2)}[mus];[voice][mus]amix=inputs=2:normalize=0:duration=first[mix]`;
 } else filter += ";[voice]anull[mix]";
 filter += ";[mix]loudnorm=I=-16:TP=-1.5:LRA=11[aud]";
 

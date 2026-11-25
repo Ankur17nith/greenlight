@@ -5,42 +5,58 @@
   "scenes": [
     {
       "id": "01",
-      "target_seconds": 15,
-      "text": "Every founder knows this moment. It's nine p.m., you're out for dinner, and your phone buzzes. A refund to approve. A vendor waiting. A calendar clash. Small decisions, but your whole team is stuck until you open the laptop."
+      "target_seconds": 10,
+      "text": "It's nine p.m. You're out for dinner. Three decisions are waiting on you: a refund, a vendor invoice, a calendar clash. Your team is stuck until you find a laptop."
     },
     {
       "id": "02",
-      "target_seconds": 15,
-      "text": "This is Greenlight, an approval terminal for Even G2. Requests from Telegram, Gmail and Google Calendar arrive on your glasses as one card, already checked against your own company rules."
+      "target_seconds": 8,
+      "text": "Greenlight is an approval terminal for Even G2. One request at a time, checked against your own rules, answered with one gesture."
     },
     {
       "id": "03",
-      "target_seconds": 25,
-      "text": "Set it up once. Connect your accounts, and write your rules in plain English. Flag expenses above five hundred dollars. Never double-book investor calls. Then pair your glasses with a six-digit code."
+      "target_seconds": 20,
+      "text": "Requests arrive from Telegram, Gmail and Google Calendar. Policy Guard reads the amount first, with plain code, then asks a model to judge it against rules you wrote in English. If the model is down, the card still appears, flagged, with a fallback tag. The AI only recommends. Only your gesture sends anything."
     },
     {
       "id": "04",
-      "target_seconds": 40,
-      "text": "Rohan, from a client team, asks for a three-twenty-dollar AWS refund in Telegram. Greenlight reads it, checks your rules, and shows one card: what, who, and a one-line recommendation. One tap to approve. You get three seconds to undo. Then it's done, and Rohan sees the approval right in the chat."
+      "target_seconds": 14,
+      "text": "Setup takes a minute. Connect your accounts. Write two or three rules, the way you would brief an assistant. Then pair your glasses with a six-digit code that works once and expires in ten minutes.",
+      "extra_seconds": 2.5
     },
     {
       "id": "05",
-      "target_seconds": 30,
-      "text": "Not everything is a green light. A nine-hundred-dollar vendor invoice arrives by email. Greenlight flags it, because it's over your five-hundred limit. Hold to decline, and a polite reply goes back on the same thread."
+      "target_seconds": 18,
+      "text": "Rohan asks for a three-twenty-dollar AWS refund in Telegram. One card: what, who, and a one-line recommendation. Tap to approve. You get three seconds to undo, and then the reply lands right under his message."
     },
     {
       "id": "06",
-      "target_seconds": 20,
-      "text": "A new invite clashes with your investor call. Greenlight flags it against your no-double-booking rule. Decline it, and the calendar updates."
+      "target_seconds": 14,
+      "text": "A nine-hundred-dollar invoice arrives by email. It breaks your five-hundred-dollar rule, so the card is flagged. Hold to decline, and a polite reply goes back on the same thread."
     },
     {
       "id": "07",
-      "target_seconds": 20,
-      "text": "Every tap is logged: who asked, what for, the policy verdict, your decision, and when. Open the dashboard, and the whole trail is there."
+      "target_seconds": 10,
+      "text": "A new invite overlaps your investor call. Flagged against your no-double-booking rule. Decline it, and the calendar updates."
     },
     {
       "id": "08",
-      "target_seconds": 10,
+      "target_seconds": 12,
+      "text": "Every decision is logged: who asked, the verdict, what you chose, and whether the model or the fallback judged it. This is the real dashboard, running locally."
+    },
+    {
+      "id": "09",
+      "target_seconds": 11,
+      "text": "Three promises. Nothing is sent until the countdown ends. A double tap never sends twice. And Greenlight never moves funds. Demo accounts only."
+    },
+    {
+      "id": "10",
+      "target_seconds": 13,
+      "text": "Built during the hackathon: more than eighty commits, a hundred and eighty-eight tests, three channels, one glasses app. The code, the tests and the dashboard are all in the repository."
+    },
+    {
+      "id": "11",
+      "target_seconds": 6,
       "text": "Greenlight. Read the request. Trust your rules. Decide in one tap."
     }
   ],

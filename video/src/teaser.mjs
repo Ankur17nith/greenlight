@@ -14,7 +14,7 @@ const music = i > 0 ? process.argv[i + 1] : join(work, "music-teaser.mp3");
 const tl = JSON.parse(readFileSync(join(work, "timeline.json"), "utf8"));
 const at = (id, local) => tl.scenes.find((s) => s.id === String(id)).start + local;
 // [start, seconds] in film time.
-const cuts = [[at(1, 8.3), 3], [at(2, 6.2), 4], [at(4, 13), 6], [at(5, 7.4), 4], [at(8, 0.4), 3]];
+const cuts = [[at(1, 6.4), 3], [at(3, 14.0), 4], [at(5, 9.0), 6], [at(6, 6.8), 4], [at(11, 0.3), 3]];
 const FPS = 30;
 mkdirSync(join(work, "teaser"), { recursive: true });
 const { chromium } = require("playwright");
@@ -31,7 +31,7 @@ for (const [s, d] of cuts) for (let k = 0; k < d * FPS; k++, f++) {
 await b.close();
 const total = f / FPS;
 const args = ["-y", "-framerate", String(FPS), "-i", join(work, "teaser", "t%05d.jpg")];
-if (existsSync(music)) args.push("-i", music, "-af", `volume=0.5,afade=t=in:d=0.5,afade=t=out:st=${total - 1.5}:d=1.5,loudnorm=I=-16:TP=-1.5`, "-c:a", "aac", "-b:a", "192k");
+if (existsSync(music)) args.push("-i", music, "-af", `volume=0.35,afade=t=in:d=0.5,afade=t=out:st=${total - 1.5}:d=1.5,loudnorm=I=-16:TP=-1.5`, "-c:a", "aac", "-b:a", "192k");
 args.push("-t", String(total), "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", "-movflags", "+faststart", join(out, "greenlight_teaser.mp4"));
 execFileSync("ffmpeg", args, { stdio: "inherit" });
 console.log("Wrote greenlight_teaser.mp4,", total, "s");

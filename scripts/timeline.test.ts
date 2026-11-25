@@ -11,6 +11,10 @@ describe("film timeline", () => {
     expect(s[1].start).toBeCloseTo(5.3);
     expect(total).toBeCloseTo(5.3 + 0.5 + 2 + 1.6);
   });
+  it("adds extra_seconds to a scene slot", () => {
+    const { scenes: s } = buildTimeline([{ id: "01", text: "A.", extra_seconds: 2 }], [3]);
+    expect(s[0].len).toBeCloseTo(0.5 + 3 + 2 + 1.6);
+  });
   it("rejects a film over 3 minutes and mismatched inputs", () => {
     expect(() => buildTimeline(scenes, [100, 100])).toThrow("limit");
     expect(() => buildTimeline(scenes, [1])).toThrow("One duration");

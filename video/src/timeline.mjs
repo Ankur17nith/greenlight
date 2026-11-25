@@ -6,7 +6,7 @@ export function buildTimeline(scenes, seconds) {
   if (scenes.length !== seconds.length) throw new Error("One duration per scene is required");
   let cursor = 0;
   const out = scenes.map((s, i) => {
-    const len = LEAD + seconds[i] + (i === scenes.length - 1 ? END_GAP : GAP);
+    const len = LEAD + seconds[i] + (s.extra_seconds ?? 0) + (i === scenes.length - 1 ? END_GAP : GAP);
     const slot = { id: String(Number(s.id)), start: cursor, len, voiceAt: cursor + LEAD, voiceLen: seconds[i], text: s.text };
     cursor += len;
     return slot;

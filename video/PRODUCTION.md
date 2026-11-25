@@ -36,9 +36,11 @@ pnpm video     # video/out/greenlight_demo.mp4 + captions.srt (about 2 minutes)
 pnpm teaser    # video/out/greenlight_teaser.mp4, 20 s, music only
 ```
 
-Music: put an MP3 at `video/work/music.mp3` (demo) and `video/work/music-teaser.mp3` (teaser). Without them the films render with voice only. The tracks used are CC BY 4.0, see [LICENSES.md](LICENSES.md). Finished copies are kept in `video/final/`.
+Music: put an MP3 at `video/work/music.mp3` (demo, mixed about 25 dB under the voice) and `video/work/music-teaser.mp3` (teaser). Without them the films render with voice only. The tracks used are CC BY 4.0, see [LICENSES.md](LICENSES.md). Finished copies are kept in `video/final/`.
 
-What is real and what is drawn: the dashboard screens in `video/shots/` are real captures. The glasses cards and the Telegram, Gmail and Calendar panels are drawn from [SCRIPT.md](SCRIPT.md) with sample data and are labelled so on screen. To replace them with live footage, record those scenes after D0-4 to D0-6 and swap the shots.
+The two real dashboard clips (`video/src/clips/setup.webm`, `audit.webm`) come from `video/src/record-dashboard.cjs`, which drives the real web app and API with a local Telegram stand-in. Run `pnpm video` after changing them.
+
+What is real and what is drawn: the dashboard clips are real recordings. The glasses cards and the Telegram, Gmail and Calendar panels are drawn from [SCRIPT.md](SCRIPT.md) with sample data and are labelled so on screen. To replace them with live footage, record those scenes after D0-4 to D0-6 and swap the shots.
 
 ## Recording checklist
 - [ ] Seed data loaded and reset between takes

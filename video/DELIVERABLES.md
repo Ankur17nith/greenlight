@@ -2,8 +2,8 @@
 
 | File | Length | Use |
 |---|---|---|
-| `out/greenlight_demo.mp4` | ≤ 3:00 | The DoraHacks submission video (required) |
-| `out/greenlight_teaser.mp4` | ~20s | Social post, made with `pnpm teaser` |
+| `final/greenlight_demo.mp4` | 2:12 (limit 3:00) | The DoraHacks submission video (required) |
+| `final/greenlight_teaser.mp4` | ~20s | Social post, made with `pnpm teaser` |
 | `out/captions.srt` | n/a | Burned in and kept as a separate file |
 
 ## Export checklist

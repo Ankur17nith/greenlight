@@ -8,131 +8,147 @@
 html{background:var(--bg)}
 html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);font-family:G,sans-serif;color:var(--ink)}
 .scene{position:absolute;inset:0;display:none}
+.dark{background:#0a0d0b;color:#eef2ee}
 .abs{position:absolute}
 .mono{font-family:GM,monospace}
-/* glasses */
 .g2{width:864px;height:432px;background:#000;border-radius:28px;padding:44px 52px;color:var(--glow);font-family:GM,monospace;position:absolute;box-shadow:0 30px 80px rgba(0,0,0,.25)}
-.g2 .c1{display:flex;justify-content:space-between;font-size:26px;letter-spacing:.02em}
-.g2 .c2{font-size:36px;font-weight:700;margin-top:46px;line-height:1.25;height:92px}
+.g2 .c1{display:flex;justify-content:space-between;font-size:26px}
+.g2 .c2{font-size:36px;font-weight:600;margin-top:46px;line-height:1.25;height:92px}
 .g2 .c3{font-size:26px;margin-top:20px;height:40px}
 .g2 .c4{position:absolute;left:52px;right:52px;bottom:34px;border-top:1px solid #12331f;padding-top:18px;font-size:24px;display:flex;justify-content:space-between}
 .g2.bad .c1 span:last-child{color:#ffb454}
 .cap{font-size:22px;color:var(--mut);position:absolute}
 .panel{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 40px rgba(13,18,16,.08)}
-.chip{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 26px;font-size:30px;font-weight:600;box-shadow:0 8px 30px rgba(13,18,16,.1)}
-.chip small{display:block;font-weight:400;font-size:22px;color:var(--mut);margin-top:4px}
-.h{font-size:64px;font-weight:600;letter-spacing:-.03em}
-.tag{position:absolute;left:60px;top:44px;font:600 22px GM;color:var(--green);letter-spacing:.08em}
-#caption{position:absolute;left:160px;right:160px;bottom:56px;text-align:center;font-size:34px;line-height:1.35;color:#fff;background:rgba(13,18,16,.82);border-radius:16px;padding:16px 28px;display:none}
-#sample{position:absolute;right:40px;top:30px;font:500 19px GM;color:var(--mut);letter-spacing:.04em}
+.h{font-size:64px;font-weight:500;letter-spacing:-.03em}
+.tag{position:absolute;left:100px;top:40px;font:500 22px GM;color:var(--green);letter-spacing:.06em}
+.note{position:absolute;right:100px;top:42px;font:400 20px GM;color:var(--mut);text-align:right}
+#caption{position:absolute;left:160px;right:160px;bottom:56px;text-align:center;font-size:34px;line-height:1.35;color:#fff;background:rgba(13,18,16,.84);border-radius:16px;padding:16px 28px;display:none}
 .msg{position:absolute;border-radius:20px;padding:20px 26px;font-size:30px;line-height:1.3}
-.shot{position:absolute;border-radius:18px;border:1px solid var(--line);box-shadow:0 20px 60px rgba(13,18,16,.15)}
-table{border-collapse:collapse;width:100%;font-size:26px}
-td,th{padding:20px 22px;text-align:left;border-bottom:1px solid var(--line)}
-th{font:600 20px GM;color:var(--mut);letter-spacing:.06em}
-.pill{font:600 20px GM;padding:6px 14px;border-radius:99px}
-.ok{background:#dcf5e5;color:var(--green)} .flag{background:#fde4e1;color:var(--red)} .fb{background:#fdf0d0;color:var(--amber)}
+.vid{position:absolute;left:210px;top:96px;width:1500px;height:844px;border-radius:16px;border:1px solid var(--line);box-shadow:0 24px 70px rgba(13,18,16,.18);background:#f4f3ee;object-fit:cover}
+.box{position:absolute;border:1px solid var(--line);background:var(--card);border-radius:20px;padding:22px 24px;box-shadow:0 10px 36px rgba(13,18,16,.08)}
+.box b{display:block;font-size:30px;font-weight:600}
+.box span{display:block;font-size:22px;color:var(--mut);margin-top:6px;line-height:1.3}
+.arrow{position:absolute;font:500 40px GM;color:var(--green)}
+.pill{font:500 22px GM;border-radius:12px;padding:12px 16px;display:block;margin-top:12px;line-height:1.25}
+.big{font:500 120px GM;letter-spacing:-.04em}
+.lab{font:400 24px G;color:var(--mut)}
+.hl{color:var(--green)}
 </style></head><body>
-<div id="sample">SAMPLE DATA · SANDBOX</div>
 
-<!-- S1 -->
-<div class="scene" id="s1">
-  <div class="abs mono" style="left:160px;top:130px;font-size:30px;color:var(--mut)">9:04 PM</div>
-  <div class="abs h" style="left:160px;top:180px;width:700px;line-height:1.05">Three decisions.<br>Zero laptops.</div>
-  <div class="abs" id="phone" style="left:240px;top:470px;width:300px;height:360px;background:#101513;border-radius:44px;border:10px solid #2a312e"></div>
-  <div class="chip" id="n1" style="left:1000px;top:200px;width:700px">Refund request · $320<small>@rohan · AWS credit, Acme</small></div>
-  <div class="chip" id="n2" style="left:1000px;top:420px;width:700px">Vendor invoice · $900<small>billing@vendorco.example</small></div>
-  <div class="chip" id="n3" style="left:1000px;top:640px;width:700px">Calendar clash<small>Partner sync overlaps Investor call</small></div>
-  <div class="abs" id="stuck" style="left:1000px;top:870px;font-size:40px;font-weight:600;color:var(--red)">Your team is waiting.</div>
+<!-- 1 cold open (dark) -->
+<div class="scene dark" id="s1">
+  <div class="abs mono" id="t1" style="left:160px;top:150px;font-size:34px;color:#8f9a93">9:04 PM · OUT FOR DINNER</div>
+  <div class="abs mono" id="big1" style="left:160px;top:230px;font-size:200px;font-weight:500;letter-spacing:-.05em;line-height:1">3</div>
+  <div class="abs" id="big1b" style="left:380px;top:300px;font-size:64px;font-weight:400">decisions waiting</div>
+  <div class="abs" id="r1" style="left:160px;top:520px;width:1200px;font-size:44px;font-weight:500;border-top:1px solid #26302b;padding-top:24px">Refund <span class="mono" style="color:#8f9a93;font-size:34px;margin-left:20px">$320 · @rohan</span></div>
+  <div class="abs" id="r2" style="left:160px;top:630px;width:1200px;font-size:44px;font-weight:500;border-top:1px solid #26302b;padding-top:24px">Vendor invoice <span class="mono" style="color:#8f9a93;font-size:34px;margin-left:20px">$900 · billing@vendorco</span></div>
+  <div class="abs" id="r3" style="left:160px;top:740px;width:1200px;font-size:44px;font-weight:500;border-top:1px solid #26302b;padding-top:24px">Calendar clash <span class="mono" style="color:#8f9a93;font-size:34px;margin-left:20px">Partner sync · Investor call</span></div>
+  <div class="abs" id="stuck1" style="left:1380px;top:520px;width:420px;font-size:46px;font-weight:500;color:#ff6b5e;line-height:1.2">Your team is stuck until you find a laptop.</div>
 </div>
 
-<!-- S2 -->
+<!-- 2 title -->
 <div class="scene" id="s2">
-  <img src="logo.svg" class="abs" style="left:160px;top:130px;height:80px" id="s2logo">
-  <div class="abs h" style="left:160px;top:260px;width:760px;line-height:1.05">An approval terminal for Even G2.</div>
-  <div class="chip" id="src1" style="left:160px;top:560px;font-size:28px">Telegram</div>
-  <div class="chip" id="src2" style="left:160px;top:660px;font-size:28px">Gmail</div>
-  <div class="chip" id="src3" style="left:160px;top:760px;font-size:28px">Google Calendar</div>
-  <div class="abs" id="rules2" style="left:480px;top:660px;font-size:28px;color:var(--green);font-weight:600" >→ your rules →</div>
-  <div class="g2" id="s2g2" style="left:1000px;top:300px">
+  <img src="logo.svg" class="abs" id="s2logo" style="left:560px;top:330px;height:128px">
+  <div class="abs h" id="s2t" style="left:0;width:1920px;top:510px;text-align:center;font-size:56px">An approval terminal for Even G2</div>
+  <div class="abs mono" id="s2s" style="left:0;width:1920px;top:620px;text-align:center;font-size:28px;color:var(--mut)">Telegram · Gmail · Google Calendar</div>
+</div>
+
+<!-- 3 architecture -->
+<div class="scene" id="s3">
+  <div class="tag">HOW IT WORKS</div>
+  <div class="abs h" id="a_h" style="left:100px;top:100px;font-size:52px">Three channels in. One decision out.</div>
+  <div class="box" id="a_src" style="left:60px;top:300px;width:270px;height:430px"><b>Requests</b>
+    <div class="pill" style="background:#e8e6de">Telegram<br><span style="margin:0">group message</span></div>
+    <div class="pill" style="background:#e8e6de">Gmail<br><span style="margin:0">labelled thread</span></div>
+    <div class="pill" style="background:#e8e6de">Calendar<br><span style="margin:0">new invite</span></div></div>
+  <div class="arrow" id="a_ar1" style="left:336px;top:480px">→</div>
+  <div class="box" id="a_api" style="left:400px;top:400px;width:250px;height:230px"><b>API</b><span>Fastify and SQLite. One queue of pending cards.</span></div>
+  <div class="arrow" id="a_ar2" style="left:656px;top:480px">→</div>
+  <div class="box" id="a_pg" style="left:720px;top:240px;width:520px;height:560px"><b>Policy Guard</b>
+    <div class="pill" id="a_p1" style="background:#e8e6de">1 · Parser<br><span style="margin:0">amount, currency, requester. Plain code.</span></div>
+    <div class="pill" id="a_p2" style="background:#dcf5e5">2 · Model<br><span style="margin:0">judges it against your rules, in English</span></div>
+    <div class="pill" id="a_p3" style="background:#fdf0d0">3 · Fallback<br><span style="margin:0">model down? Card still appears: FLAGGED, tagged FALLBACK</span></div></div>
+  <div class="arrow" id="a_ar3" style="left:1246px;top:480px">→</div>
+  <div class="box" id="a_g2" style="left:1310px;top:360px;width:260px;height:310px"><b>G2 glasses</b><span>One card at a time. The model only recommends.</span>
+    <div class="pill mono" style="background:#000;color:var(--glow);font-size:20px">TAP · HOLD · SWIPE</div></div>
+  <div class="arrow" id="a_ar4" style="left:1576px;top:480px">→</div>
+  <div class="box" id="a_wb" style="left:1630px;top:340px;width:260px;height:350px"><b>Your gesture</b><span>The only trigger for a write-back, and every one is logged.</span></div>
+</div>
+
+<!-- 4 setup (real) / 8 audit (real) -->
+<div class="scene" id="s4"><div class="tag" id="s4tag"></div><div class="note">REAL DASHBOARD · LOCAL RUN</div><video class="vid" id="v4" muted preload="auto" src="clips/setup.webm"></video></div>
+<div class="scene" id="s8"><div class="tag">AUDIT LOG</div><div class="note">REAL DASHBOARD · LOCAL RUN<br>No model key was set, so the fallback judged both cards</div><video class="vid" id="v8" muted preload="auto" src="clips/audit.webm"></video></div>
+
+<!-- 5 Telegram -->
+<div class="scene" id="s5">
+  <div class="tag">TELEGRAM</div><div class="note">ILLUSTRATION · SAMPLE DATA</div>
+  <div class="panel" style="left:100px;top:130px;width:760px;height:760px"></div>
+  <div class="msg" id="tg1" style="left:140px;top:200px;width:620px;background:#e8e6de"><b class="hl">Rohan</b><br>Refund $320 AWS credit for Acme Corp</div>
+  <div class="msg" id="tg2" style="left:200px;top:440px;width:620px;background:#dcf5e5"><b class="hl">Greenlight</b><br>Approved by Founder via Greenlight</div>
+  <div class="g2" id="s5g2" style="left:960px;top:260px">
     <div class="c1"><span>[REFUND · TG]</span><span>WITHIN POLICY</span></div>
     <div class="c2">$320 AWS refund · @rohan (Acme)</div>
     <div class="c3">AI: Approve. Under $500 limit</div>
-    <div class="c4"><span>TAP: Approve · SWIPE: Next · HOLD: Deny</span><span>1/3</span></div>
+    <div class="c4"><span id="s5e">TAP: Approve · SWIPE: Next · HOLD: Deny</span><span>1/3</span></div>
   </div>
+  <div class="cap" id="s5cap" style="left:960px;top:730px;width:864px;text-align:center"></div>
 </div>
 
-<!-- S3 -->
-<div class="scene" id="s3">
-  <div class="tag" id="s3tag"></div>
-  <img class="shot" id="sh_connect" src="../shots/connect.png" style="left:260px;top:100px;width:1400px">
-  <img class="shot" id="sh_rules" src="../shots/rules.png" style="left:260px;top:100px;width:1400px">
-  <img class="shot" id="sh_pair" src="../shots/pair.png" style="left:260px;top:100px;width:1400px">
-</div>
-
-<!-- S4 -->
-<div class="scene" id="s4">
-  <div class="tag">TELEGRAM · SANDBOX GROUP</div>
-  <div class="panel" style="left:100px;top:130px;width:760px;height:760px"></div>
-  <div class="msg" id="tg1" style="left:140px;top:200px;width:620px;background:#e8e6de"><b style="color:var(--green)">Rohan</b><br>Refund $320 AWS credit for Acme Corp</div>
-  <div class="msg" id="tg2" style="left:200px;top:440px;width:620px;background:#dcf5e5"><b style="color:var(--green)">Greenlight</b><br>Approved by Founder via Greenlight</div>
-  <div class="g2" id="s4g2" style="left:960px;top:260px">
-    <div class="c1"><span id="s4a">[REFUND · TG]</span><span id="s4b">WITHIN POLICY</span></div>
-    <div class="c2" id="s4c">$320 AWS refund · @rohan (Acme)</div>
-    <div class="c3" id="s4d">AI: Approve. Under $500 limit</div>
-    <div class="c4"><span id="s4e">TAP: Approve · SWIPE: Next · HOLD: Deny</span><span>1/3</span></div>
-  </div>
-  <div class="cap" id="s4cap" style="left:960px;top:730px;width:864px;text-align:center"></div>
-</div>
-
-<!-- S5 -->
-<div class="scene" id="s5">
-  <div class="tag">GMAIL · SANDBOX INBOX</div>
+<!-- 6 Gmail -->
+<div class="scene" id="s6">
+  <div class="tag">GMAIL</div><div class="note">ILLUSTRATION · SAMPLE DATA</div>
   <div class="panel" style="left:100px;top:130px;width:760px;height:760px"></div>
   <div class="msg" id="gm1" style="left:140px;top:180px;width:680px;background:#fff;border:1px solid var(--line)"><b>Invoice: Vendor Co, $900</b><br><span style="font-size:24px;color:var(--mut)">billing@vendorco.example</span><br><span style="font-size:26px">Please approve payment for October services.</span></div>
-  <div class="msg" id="gm2" style="left:200px;top:500px;width:620px;background:#dcf5e5;font-size:27px"><b style="color:var(--green)">Reply sent on the same thread</b><br>Thanks, we can't approve this one as it is over our limit. Please resend with a PO.</div>
-  <div class="g2 bad" id="s5g2" style="left:960px;top:260px">
-    <div class="c1"><span>[EXPENSE · GM]</span><span id="s5b">FLAGGED: Over $500</span></div>
-    <div class="c2" id="s5c">Invoice $900 · Vendor Co</div>
-    <div class="c3" id="s5d">AI: Decline. Over $500 limit</div>
-    <div class="c4"><span id="s5e">TAP: Approve · SWIPE: Next · HOLD: Deny</span><span>2/3</span></div>
+  <div class="msg" id="gm2" style="left:200px;top:500px;width:620px;background:#dcf5e5;font-size:27px"><b class="hl">Reply sent on the same thread</b><br>Thank you for sending this over. After review, we are unable to approve it at this time.</div>
+  <div class="g2 bad" id="s6g2" style="left:960px;top:260px">
+    <div class="c1"><span>[EXPENSE · GM]</span><span>FLAGGED: Over $500</span></div>
+    <div class="c2">Invoice $900 · Vendor Co</div>
+    <div class="c3">AI: Decline. Over $500 limit</div>
+    <div class="c4"><span id="s6e">TAP: Approve · SWIPE: Next · HOLD: Deny</span><span>2/3</span></div>
   </div>
 </div>
 
-<!-- S6 -->
-<div class="scene" id="s6">
-  <div class="tag">GOOGLE CALENDAR · SANDBOX</div>
+<!-- 7 Calendar -->
+<div class="scene" id="s7">
+  <div class="tag">GOOGLE CALENDAR</div><div class="note">ILLUSTRATION · SAMPLE DATA</div>
   <div class="panel" style="left:100px;top:130px;width:760px;height:760px"></div>
   <div class="abs mono" style="left:140px;top:170px;font-size:22px;color:var(--mut)">THURSDAY</div>
-  <div class="abs" style="left:140px;top:240px;width:680px;height:220px;background:#d7e8ff;border-left:8px solid #2a62c9;border-radius:12px;padding:20px 24px;font-size:30px;font-weight:600">Investor call<br><span style="font-weight:400;font-size:24px;color:var(--mut)">4:00 – 5:00 PM</span></div>
-  <div class="abs" id="inv" style="left:200px;top:360px;width:620px;height:220px;background:#fde4e1;border-left:8px solid var(--red);border-radius:12px;padding:20px 24px;font-size:30px;font-weight:600">Partner sync<br><span style="font-weight:400;font-size:24px;color:var(--mut)">4:30 – 5:30 PM · maya@partner.example</span><div id="invs" class="mono" style="margin-top:14px;font-size:22px;color:var(--red)"></div></div>
-  <div class="g2 bad" id="s6g2" style="left:960px;top:260px">
+  <div class="abs" style="left:140px;top:240px;width:680px;height:220px;background:#d7e8ff;border-left:8px solid #2a62c9;border-radius:12px;padding:20px 24px;font-size:30px;font-weight:500">Investor call<br><span style="font-weight:400;font-size:24px;color:var(--mut)">4:00 – 5:00 PM</span></div>
+  <div class="abs" id="inv" style="left:200px;top:360px;width:620px;height:220px;background:#fde4e1;border-left:8px solid var(--red);border-radius:12px;padding:20px 24px;font-size:30px;font-weight:500">Partner sync<br><span style="font-weight:400;font-size:24px;color:var(--mut)">4:30 – 5:30 PM · maya@partner.example</span><div id="invs" class="mono" style="margin-top:14px;font-size:22px;color:var(--red)"></div></div>
+  <div class="g2 bad" id="s7g2" style="left:960px;top:260px">
     <div class="c1"><span>[CALENDAR · CAL]</span><span>FLAGGED: Double-book</span></div>
     <div class="c2">Invite "Partner sync" · maya@partner</div>
-    <div class="c3" id="s6d">AI: Decline. Clashes with Investor call</div>
-    <div class="c4"><span id="s6e">TAP: Accept · SWIPE: Next · HOLD: Deny</span><span id="s6n">3/3</span></div>
+    <div class="c3">AI: Decline. Clashes with Investor call</div>
+    <div class="c4"><span id="s7e">TAP: Accept · SWIPE: Next · HOLD: Deny</span><span>3/3</span></div>
   </div>
 </div>
 
-<!-- S7 -->
-<div class="scene" id="s7">
-  <div class="tag">AUDIT LOG</div>
-  <div class="panel" style="left:140px;top:130px;width:1640px;height:620px;overflow:hidden">
-    <table>
-      <tr><th>WHEN</th><th>REQUESTER</th><th>REQUEST</th><th>VERDICT</th><th>DECISION</th><th>MODE</th></tr>
-      <tr class="row"><td class="mono">21:04:12</td><td>@rohan</td><td>$320 AWS refund</td><td><span class="pill ok">WITHIN POLICY</span></td><td>APPROVED</td><td class="mono">AI</td></tr>
-      <tr class="row"><td class="mono">21:05:40</td><td>billing@vendorco</td><td>Invoice $900</td><td><span class="pill flag">FLAGGED: Over $500</span></td><td>DECLINED</td><td class="mono">AI</td></tr>
-      <tr class="row"><td class="mono">21:06:31</td><td>maya@partner</td><td>Partner sync invite</td><td><span class="pill flag">FLAGGED: Double-book</span></td><td>DECLINED</td><td class="mono">FALLBACK</td></tr>
-    </table>
-  </div>
-  <div class="abs" id="s7note" style="left:140px;top:800px;font-size:34px;color:var(--mut);width:1640px">The AI only recommends. Every row is a decision you made with a gesture.</div>
+<!-- 9 promises -->
+<div class="scene" id="s9">
+  <div class="tag">SAFETY</div>
+  <div class="abs h" id="p_h" style="left:160px;top:130px;font-size:56px">Three promises</div>
+  <div class="abs" id="p1" style="left:160px;top:330px;width:1600px;font-size:56px;font-weight:500;line-height:1.2"><span class="mono hl" style="font-size:34px;margin-right:28px">01</span>Nothing is sent until the <span class="hl">countdown ends</span>.</div>
+  <div class="abs" id="p2" style="left:160px;top:490px;width:1600px;font-size:56px;font-weight:500;line-height:1.2"><span class="mono hl" style="font-size:34px;margin-right:28px">02</span>A double tap <span class="hl">never sends twice</span>.</div>
+  <div class="abs" id="p3" style="left:160px;top:650px;width:1600px;font-size:56px;font-weight:500;line-height:1.2"><span class="mono hl" style="font-size:34px;margin-right:28px">03</span>Greenlight <span class="hl">never moves funds</span>. Demo accounts only.</div>
 </div>
 
-<!-- S8 -->
-<div class="scene" id="s8">
-  <img src="logo.svg" class="abs" style="left:660px;top:300px;height:120px">
-  <div class="abs h" style="left:0;width:1920px;top:480px;text-align:center">Read the request. Trust your rules.<br>Decide in one tap.</div>
+<!-- 10 built -->
+<div class="scene" id="s10">
+  <div class="tag">BUILT DURING THE HACKATHON</div>
+  <div class="abs" id="b1" style="left:160px;top:220px"><div class="big">84</div><div class="lab">commits</div></div>
+  <div class="abs" id="b2" style="left:600px;top:220px"><div class="big">188</div><div class="lab">tests</div></div>
+  <div class="abs" id="b3" style="left:1040px;top:220px"><div class="big">3</div><div class="lab">channels, one queue</div></div>
+  <div class="abs" id="b4" style="left:1480px;top:220px"><div class="big">1</div><div class="lab">glasses app</div></div>
+  <div class="abs mono" id="b5" style="left:160px;top:560px;font-size:40px;line-height:1.7;color:var(--mut)">Telegram, Gmail and Calendar clients<br>Policy Guard with a deterministic fallback<br>Dashboard, audit log, 3-second undo</div>
+  <div class="abs mono" id="b6" style="left:160px;top:830px;font-size:44px;color:var(--green)">github.com/Ankur17nith/greenlight</div>
+</div>
+
+<!-- 11 end -->
+<div class="scene" id="s11">
+  <img src="logo.svg" class="abs" style="left:560px;top:300px;height:128px">
+  <div class="abs h" style="left:0;width:1920px;top:470px;text-align:center">Read the request. Trust your rules.<br>Decide in one tap.</div>
   <div class="abs mono" style="left:0;width:1920px;top:760px;text-align:center;font-size:26px;color:var(--mut)">Built for Even G2 · Heads Up hackathon · AI Assistants &amp; Work · Messaging &amp; News</div>
+  <div class="abs mono" style="left:0;width:1920px;top:820px;text-align:center;font-size:28px;color:var(--green)">github.com/Ankur17nith/greenlight</div>
 </div>
 
 <div id="caption"></div>
@@ -140,47 +156,65 @@ th{font:600 20px GM;color:var(--mut);letter-spacing:.06em}
 const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
 const ease=x=>1-Math.pow(1-clamp(x),3);
 const $=id=>document.getElementById(id);
-// fade in [a,a+d], optional fade out starting at b
 function vis(el,t,a,b=1e9,d=.35,rise=24){const i=ease((t-a)/d),o=1-clamp((t-b)/d);const v=Math.min(i,o);el.style.opacity=v;el.style.transform=`translateY(${(1-i)*rise}px)`;}
 let TL=null;
 window.setTimeline=tl=>{TL=tl;};
 function sceneAt(t){for(const s of TL.scenes)if(t>=s.start&&t<s.start+s.len)return s;return TL.scenes[TL.scenes.length-1];}
+async function seek(v,t){
+  if(!v.duration){await new Promise(r=>{v.onloadedmetadata=r;if(v.readyState>0)r();setTimeout(r,3000)});}
+  const tt=Math.min(Math.max(0,t),(isFinite(v.duration)?v.duration:1e6)-0.05);
+  if(Math.abs(v.currentTime-tt)<0.001)return;
+  await new Promise(r=>{v.onseeked=()=>r();v.currentTime=tt;setTimeout(r,2000)});
+}
 const S={
-1(t){const sh=t>2&&t<9&&Math.sin(t*40)>0?Math.sin(t*90)*3:0;$('phone').style.transform=`translateX(${sh}px)`;
-  vis($('n1'),t,3.0);vis($('n2'),t,5.6);vis($('n3'),t,8.0);vis($('stuck'),t,11);},
-2(t){vis($('s2logo'),t,.2);vis($('src1'),t,2.2);vis($('src2'),t,3.0);vis($('src3'),t,3.8);vis($('rules2'),t,5);vis($('s2g2'),t,5.6,1e9,.5);},
-3(t){const L=this.len;const a=L*0.36,b=L*0.68;
-  vis($('sh_connect'),t,.2,a);vis($('sh_rules'),t,a,b);vis($('sh_pair'),t,b);
-  $('s3tag').textContent=t<a?'1 · CONNECT TELEGRAM, GMAIL, CALENDAR':t<b?'2 · WRITE RULES IN PLAIN ENGLISH':'3 · PAIR GLASSES WITH A SIX-DIGIT CODE';},
-4(t){vis($('tg1'),t,1.2);
-  const tap=13.4;let foot='TAP: Approve · SWIPE: Next · HOLD: Deny',cap='';
-  if(t>=tap&&t<tap+3){const n=Math.ceil(tap+3-t);foot=`CONFIRMING IN ${n}s... [TAP TO UNDO]`;cap='Tap. Three seconds to undo.';}
-  if(t>=tap+3){foot='SENT TO TELEGRAM';cap='Written back to the original message.';}
-  $('s4e').textContent=foot;$('s4cap').textContent=cap;
-  vis($('s4g2'),t,3.0);vis($('tg2'),t,tap+3);},
-5(t){vis($('gm1'),t,.8);vis($('s5g2'),t,3.0);
-  const hold=7.6;let foot='TAP: Approve · SWIPE: Next · HOLD: Deny';
+async 1(t){vis($('t1'),t,.4);vis($('big1'),t,1.0);vis($('big1b'),t,1.0);
+  vis($('r1'),t,2.4);vis($('r2'),t,4.0);vis($('r3'),t,5.6);vis($('stuck1'),t,7.6);},
+async 2(t){vis($('s2logo'),t,.3);vis($('s2t'),t,1.4);vis($('s2s'),t,3.0);},
+async 3(t){
+  vis($('a_h'),t,.2);vis($('a_src'),t,1.0);vis($('a_ar1'),t,3.6);vis($('a_api'),t,3.8);vis($('a_ar2'),t,4.6);vis($('a_pg'),t,4.8);
+  vis($('a_p1'),t,5.6);vis($('a_p2'),t,8.2);vis($('a_p3'),t,11.0);
+  vis($('a_ar3'),t,14.2);vis($('a_g2'),t,14.4);vis($('a_ar4'),t,16.4);vis($('a_wb'),t,16.6);},
+async 4(t){const L=this.len;const v=$('v4');const D=v.duration||19.5;
+  // anchors: [scene seconds, clip seconds] so the clip follows the voice-over
+  const K=[[0,0],[4.0,5.8],[8.3,12.4],[L,D]];let c=D;
+  for(let i=1;i<K.length;i++)if(t<=K[i][0]){const a=K[i-1],b=K[i];c=a[1]+(t-a[0])/(b[0]-a[0])*(b[1]-a[1]);break;}
+  $('s4tag').textContent=t<4.0?'1 · CONNECT YOUR ACCOUNTS':t<8.3?'2 · WRITE RULES IN PLAIN ENGLISH':'3 · PAIR GLASSES WITH A SIX-DIGIT CODE';
+  await seek(v,c);},
+async 5(t){vis($('tg1'),t,1.0);vis($('s5g2'),t,2.6);
+  const tap=this.tapAt;let foot='TAP: Approve · SWIPE: Next · HOLD: Deny',cap='';
+  if(t>=tap&&t<tap+3){foot=`CONFIRMING IN ${Math.ceil(tap+3-t)}s... [TAP TO UNDO]`;cap='Tap. Three seconds to undo.';}
+  if(t>=tap+3){foot='SENT TO TELEGRAM';cap='Written back to the original message';}
+  $('s5e').textContent=foot;$('s5cap').textContent=cap;vis($('tg2'),t,tap+3);},
+async 6(t){vis($('gm1'),t,.8);vis($('s6g2'),t,2.6);
+  const hold=this.holdAt;let foot='TAP: Approve · SWIPE: Next · HOLD: Deny';
   if(t>=hold&&t<hold+2.2)foot='HOLDING TO DECLINE... [TAP TO UNDO]';
   if(t>=hold+2.2)foot='DECLINED · REPLY SENT';
-  $('s5e').textContent=foot;vis($('gm2'),t,hold+2.2);},
-6(t){vis($('inv'),t,.8);vis($('s6g2'),t,2.2);
-  const dec=6.3;
-  $('s6n').textContent=t<4.2?'3/3':'3/3';
-  if(t>=dec){$('s6e').textContent='DECLINED · CALENDAR UPDATED';$('inv').style.opacity=.55;$('invs').textContent='DECLINED';$('inv').style.background='#ececec';$('inv').style.borderLeftColor='#888';}
-  else{$('s6e').textContent=t>3.8?'SWIPE: Next · HOLD: Deny':'TAP: Accept · SWIPE: Next · HOLD: Deny';$('invs').textContent='';$('inv').style.background='#fde4e1';$('inv').style.borderLeftColor='#b42318';}},
-7(t){document.querySelectorAll('.row').forEach((r,i)=>vis(r,t,.8+i*1.2));vis($('s7note'),t,5);},
-8(t){document.querySelectorAll('#s8 > *').forEach((e,i)=>vis(e,t,.2+i*.6));}
+  $('s6e').textContent=foot;vis($('gm2'),t,hold+2.2);},
+async 7(t){vis($('inv'),t,.8);vis($('s7g2'),t,2.0);
+  const dec=this.decAt;
+  if(t>=dec){$('s7e').textContent='DECLINED · CALENDAR UPDATED';$('inv').style.opacity=.55;$('invs').textContent='DECLINED';$('inv').style.background='#ececec';$('inv').style.borderLeftColor='#888';}
+  else{$('s7e').textContent=t>3.6?'SWIPE: Next · HOLD: Deny':'TAP: Accept · SWIPE: Next · HOLD: Deny';$('invs').textContent='';$('inv').style.background='#fde4e1';$('inv').style.borderLeftColor='#b42318';}},
+async 8(t){const v=$('v8');await seek(v,t/this.len*(v.duration||11.2));},
+async 9(t){vis($('p_h'),t,.3);vis($('p1'),t,1.2);vis($('p2'),t,3.8);vis($('p3'),t,6.0);},
+async 10(t){vis($('b1'),t,.8);vis($('b2'),t,2.6);vis($('b3'),t,4.6);vis($('b4'),t,6.2);vis($('b5'),t,7.0);vis($('b6'),t,8.6);},
+async 11(t){document.querySelectorAll('#s11 > *').forEach((e,i)=>vis(e,t,.2+i*.5));}
 };
-window.render=function(t){
+window.render=async function(t){
   const s=sceneAt(t);const lt=t-s.start;
   document.querySelectorAll('.scene').forEach(e=>e.style.display='none');
   $('s'+s.id).style.display='block';
-  // reset g2 transitions
-  S[s.id].call(s,lt);
+  s.tapAt=s.id==='5'?s.voiceAt-s.start+s.voiceLen*0.55:0;
+  s.holdAt=s.id==='6'?s.voiceAt-s.start+s.voiceLen*0.62:0;
+  s.decAt=s.id==='7'?s.voiceAt-s.start+s.voiceLen*0.70:0;
+  await S[s.id].call(s,lt);
   const cap=TL.captions.find(c=>t>=c.t0&&t<c.t1);
   const el=$('caption');
   if(cap){el.style.display='block';el.textContent=cap.text;}else el.style.display='none';
-  // scene fade
-  document.body.style.opacity=Math.min(1,lt/0.25+0.0001)*Math.min(1,(s.len-lt)/0.25);
+  const dark=s.id==='1';
+  document.documentElement.style.background=dark?'#0a0d0b':'';
+  document.body.style.background=dark?'#0a0d0b':'';
+  const fin=Math.min(1,lt/0.25+0.0001),fout=Math.min(1,(s.len-lt)/0.25);
+  document.body.style.opacity=Math.min(fin,fout);
+  el.style.background=dark?'rgba(238,242,238,.14)':'rgba(13,18,16,.84)';
 };
 </script></body></html>
