@@ -15,9 +15,9 @@ How to reset the system and run the demo the same way each time, for recording a
 | # | What you do | What must be visible |
 |---|---|---|
 | 3 | Open the dashboard, connect sources, type two rules, show the pairing code | Code accepted in the Even app |
-| 4 | In the Telegram group, post "Refund $320 AWS credit for Acme Corp" as @rohan | Card with `✓ WITHIN POLICY`; tap; `CONFIRMING IN 3s…`; `✅ Approved by Founder via Greenlight` under the message |
-| 5 | Send the $900 vendor invoice email to the sandbox inbox (label `Invoice`) | Card with `⚠ FLAGGED: Over $500`; hold to decline; reply sent in the Gmail thread |
-| 6 | Create a calendar invite overlapping "Investor call" | Card with `⚠ FLAGGED: Double-book`; decline; event shows declined |
+| 4 | In the Telegram group, post "Refund $320 AWS credit for Acme Corp" as @rohan | Card with `WITHIN POLICY`; tap; `CONFIRMING IN 3s...`; `Approved by Founder via Greenlight` under the message |
+| 5 | Send the $900 vendor invoice email to the sandbox inbox (label `Invoice`) | Card with `FLAGGED: Over $500`; hold to decline; reply sent in the Gmail thread |
+| 6 | Create a calendar invite overlapping "Investor call" | Card with `FLAGGED: Double-book`; decline; event shows declined |
 | 7 | Open the audit log | Rows for the three decisions with verdict, decision, time, `AI` tag |
 
 ## If something fails on camera

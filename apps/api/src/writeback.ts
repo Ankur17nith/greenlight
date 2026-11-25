@@ -4,7 +4,7 @@ import * as gmail from "./gmail.ts";
 import { accessToken, type GoogleConfig } from "./google.ts";
 import { sendReply as tgReply } from "./telegram.ts";
 
-export const TG_TEXT = { APPROVE: "✅ Approved by Founder via Greenlight", DECLINE: "❌ Declined by Founder via Greenlight" } as const;
+export const TG_TEXT = { APPROVE: "Approved by Founder via Greenlight", DECLINE: "Declined by Founder via Greenlight" } as const;
 export const DECLINE_EMAIL = "Thank you for sending this over. After review, we are unable to approve it at this time. Please get in touch if anything changes.";
 
 export interface WriteBackDeps { db: Db; google?: GoogleConfig; telegramToken?: string; telegramBase?: string; f?: typeof fetch }

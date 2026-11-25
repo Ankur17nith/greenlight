@@ -16,7 +16,7 @@ State key: **planned** (nothing written), **in progress**, **done** (works end t
 | 8 | Calendar conflicts | A conflicting invite becomes a card; approve or decline sets the attendee response | Covers the "never double-book" rule | planned |
 | 9 | Web app | Landing page plus `/app`, `/app/connect`, `/app/rules`, `/app/pair`, `/app/audit` | Setup and proof, in the Debrief visual style written fresh | planned |
 | 10 | `.ehpk` package | A packaged build for the Even Hub | Optional submission item | planned |
-| 11 | Launch teaser | A ~20 second clip made with `brag-slim` | Social post | planned |
+| 11 | Launch teaser | A ~20 second clip made with `pnpm teaser` | Social post | planned |
 
 ## After the hackathon
 

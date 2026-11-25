@@ -1,0 +1,186 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:G;src:url(Geist-Variable.woff2);font-weight:100 900}
+@font-face{font-family:GM;src:url(GeistMono-Variable.woff2);font-weight:100 900}
+:root{--bg:#f4f3ee;--card:#fbfaf7;--ink:#0d1210;--mut:#5b605d;--line:#dcdad2;--green:#0f7a40;--glow:#2ee57a;--red:#b42318;--amber:#8a5a00}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg)}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);font-family:G,sans-serif;color:var(--ink)}
+.scene{position:absolute;inset:0;display:none}
+.abs{position:absolute}
+.mono{font-family:GM,monospace}
+/* glasses */
+.g2{width:864px;height:432px;background:#000;border-radius:28px;padding:44px 52px;color:var(--glow);font-family:GM,monospace;position:absolute;box-shadow:0 30px 80px rgba(0,0,0,.25)}
+.g2 .c1{display:flex;justify-content:space-between;font-size:26px;letter-spacing:.02em}
+.g2 .c2{font-size:36px;font-weight:700;margin-top:46px;line-height:1.25;height:92px}
+.g2 .c3{font-size:26px;margin-top:20px;height:40px}
+.g2 .c4{position:absolute;left:52px;right:52px;bottom:34px;border-top:1px solid #12331f;padding-top:18px;font-size:24px;display:flex;justify-content:space-between}
+.g2.bad .c1 span:last-child{color:#ffb454}
+.cap{font-size:22px;color:var(--mut);position:absolute}
+.panel{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 40px rgba(13,18,16,.08)}
+.chip{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 26px;font-size:30px;font-weight:600;box-shadow:0 8px 30px rgba(13,18,16,.1)}
+.chip small{display:block;font-weight:400;font-size:22px;color:var(--mut);margin-top:4px}
+.h{font-size:64px;font-weight:600;letter-spacing:-.03em}
+.tag{position:absolute;left:60px;top:44px;font:600 22px GM;color:var(--green);letter-spacing:.08em}
+#caption{position:absolute;left:160px;right:160px;bottom:56px;text-align:center;font-size:34px;line-height:1.35;color:#fff;background:rgba(13,18,16,.82);border-radius:16px;padding:16px 28px;display:none}
+#sample{position:absolute;right:40px;top:30px;font:500 19px GM;color:var(--mut);letter-spacing:.04em}
+.msg{position:absolute;border-radius:20px;padding:20px 26px;font-size:30px;line-height:1.3}
+.shot{position:absolute;border-radius:18px;border:1px solid var(--line);box-shadow:0 20px 60px rgba(13,18,16,.15)}
+table{border-collapse:collapse;width:100%;font-size:26px}
+td,th{padding:20px 22px;text-align:left;border-bottom:1px solid var(--line)}
+th{font:600 20px GM;color:var(--mut);letter-spacing:.06em}
+.pill{font:600 20px GM;padding:6px 14px;border-radius:99px}
+.ok{background:#dcf5e5;color:var(--green)} .flag{background:#fde4e1;color:var(--red)} .fb{background:#fdf0d0;color:var(--amber)}
+</style></head><body>
+<div id="sample">SAMPLE DATA · SANDBOX</div>
+
+<!-- S1 -->
+<div class="scene" id="s1">
+  <div class="abs mono" style="left:160px;top:130px;font-size:30px;color:var(--mut)">9:04 PM</div>
+  <div class="abs h" style="left:160px;top:180px;width:700px;line-height:1.05">Three decisions.<br>Zero laptops.</div>
+  <div class="abs" id="phone" style="left:240px;top:470px;width:300px;height:360px;background:#101513;border-radius:44px;border:10px solid #2a312e"></div>
+  <div class="chip" id="n1" style="left:1000px;top:200px;width:700px">Refund request · $320<small>@rohan · AWS credit, Acme</small></div>
+  <div class="chip" id="n2" style="left:1000px;top:420px;width:700px">Vendor invoice · $900<small>billing@vendorco.example</small></div>
+  <div class="chip" id="n3" style="left:1000px;top:640px;width:700px">Calendar clash<small>Partner sync overlaps Investor call</small></div>
+  <div class="abs" id="stuck" style="left:1000px;top:870px;font-size:40px;font-weight:600;color:var(--red)">Your team is waiting.</div>
+</div>
+
+<!-- S2 -->
+<div class="scene" id="s2">
+  <img src="logo.svg" class="abs" style="left:160px;top:130px;height:80px" id="s2logo">
+  <div class="abs h" style="left:160px;top:260px;width:760px;line-height:1.05">An approval terminal for Even G2.</div>
+  <div class="chip" id="src1" style="left:160px;top:560px;font-size:28px">Telegram</div>
+  <div class="chip" id="src2" style="left:160px;top:660px;font-size:28px">Gmail</div>
+  <div class="chip" id="src3" style="left:160px;top:760px;font-size:28px">Google Calendar</div>
+  <div class="abs" id="rules2" style="left:480px;top:660px;font-size:28px;color:var(--green);font-weight:600" >→ your rules →</div>
+  <div class="g2" id="s2g2" style="left:1000px;top:300px">
+    <div class="c1"><span>[REFUND · TG]</span><span>WITHIN POLICY</span></div>
+    <div class="c2">$320 AWS refund · @rohan (Acme)</div>
+    <div class="c3">AI: Approve. Under $500 limit</div>
+    <div class="c4"><span>TAP: Approve · SWIPE: Next · HOLD: Deny</span><span>1/3</span></div>
+  </div>
+</div>
+
+<!-- S3 -->
+<div class="scene" id="s3">
+  <div class="tag" id="s3tag"></div>
+  <img class="shot" id="sh_connect" src="../shots/connect.png" style="left:260px;top:100px;width:1400px">
+  <img class="shot" id="sh_rules" src="../shots/rules.png" style="left:260px;top:100px;width:1400px">
+  <img class="shot" id="sh_pair" src="../shots/pair.png" style="left:260px;top:100px;width:1400px">
+</div>
+
+<!-- S4 -->
+<div class="scene" id="s4">
+  <div class="tag">TELEGRAM · SANDBOX GROUP</div>
+  <div class="panel" style="left:100px;top:130px;width:760px;height:760px"></div>
+  <div class="msg" id="tg1" style="left:140px;top:200px;width:620px;background:#e8e6de"><b style="color:var(--green)">Rohan</b><br>Refund $320 AWS credit for Acme Corp</div>
+  <div class="msg" id="tg2" style="left:200px;top:440px;width:620px;background:#dcf5e5"><b style="color:var(--green)">Greenlight</b><br>Approved by Founder via Greenlight</div>
+  <div class="g2" id="s4g2" style="left:960px;top:260px">
+    <div class="c1"><span id="s4a">[REFUND · TG]</span><span id="s4b">WITHIN POLICY</span></div>
+    <div class="c2" id="s4c">$320 AWS refund · @rohan (Acme)</div>
+    <div class="c3" id="s4d">AI: Approve. Under $500 limit</div>
+    <div class="c4"><span id="s4e">TAP: Approve · SWIPE: Next · HOLD: Deny</span><span>1/3</span></div>
+  </div>
+  <div class="cap" id="s4cap" style="left:960px;top:730px;width:864px;text-align:center"></div>
+</div>
+
+<!-- S5 -->
+<div class="scene" id="s5">
+  <div class="tag">GMAIL · SANDBOX INBOX</div>
+  <div class="panel" style="left:100px;top:130px;width:760px;height:760px"></div>
+  <div class="msg" id="gm1" style="left:140px;top:180px;width:680px;background:#fff;border:1px solid var(--line)"><b>Invoice: Vendor Co, $900</b><br><span style="font-size:24px;color:var(--mut)">billing@vendorco.example</span><br><span style="font-size:26px">Please approve payment for October services.</span></div>
+  <div class="msg" id="gm2" style="left:200px;top:500px;width:620px;background:#dcf5e5;font-size:27px"><b style="color:var(--green)">Reply sent on the same thread</b><br>Thanks, we can't approve this one as it is over our limit. Please resend with a PO.</div>
+  <div class="g2 bad" id="s5g2" style="left:960px;top:260px">
+    <div class="c1"><span>[EXPENSE · GM]</span><span id="s5b">FLAGGED: Over $500</span></div>
+    <div class="c2" id="s5c">Invoice $900 · Vendor Co</div>
+    <div class="c3" id="s5d">AI: Decline. Over $500 limit</div>
+    <div class="c4"><span id="s5e">TAP: Approve · SWIPE: Next · HOLD: Deny</span><span>2/3</span></div>
+  </div>
+</div>
+
+<!-- S6 -->
+<div class="scene" id="s6">
+  <div class="tag">GOOGLE CALENDAR · SANDBOX</div>
+  <div class="panel" style="left:100px;top:130px;width:760px;height:760px"></div>
+  <div class="abs mono" style="left:140px;top:170px;font-size:22px;color:var(--mut)">THURSDAY</div>
+  <div class="abs" style="left:140px;top:240px;width:680px;height:220px;background:#d7e8ff;border-left:8px solid #2a62c9;border-radius:12px;padding:20px 24px;font-size:30px;font-weight:600">Investor call<br><span style="font-weight:400;font-size:24px;color:var(--mut)">4:00 – 5:00 PM</span></div>
+  <div class="abs" id="inv" style="left:200px;top:360px;width:620px;height:220px;background:#fde4e1;border-left:8px solid var(--red);border-radius:12px;padding:20px 24px;font-size:30px;font-weight:600">Partner sync<br><span style="font-weight:400;font-size:24px;color:var(--mut)">4:30 – 5:30 PM · maya@partner.example</span><div id="invs" class="mono" style="margin-top:14px;font-size:22px;color:var(--red)"></div></div>
+  <div class="g2 bad" id="s6g2" style="left:960px;top:260px">
+    <div class="c1"><span>[CALENDAR · CAL]</span><span>FLAGGED: Double-book</span></div>
+    <div class="c2">Invite "Partner sync" · maya@partner</div>
+    <div class="c3" id="s6d">AI: Decline. Clashes with Investor call</div>
+    <div class="c4"><span id="s6e">TAP: Accept · SWIPE: Next · HOLD: Deny</span><span id="s6n">3/3</span></div>
+  </div>
+</div>
+
+<!-- S7 -->
+<div class="scene" id="s7">
+  <div class="tag">AUDIT LOG</div>
+  <div class="panel" style="left:140px;top:130px;width:1640px;height:620px;overflow:hidden">
+    <table>
+      <tr><th>WHEN</th><th>REQUESTER</th><th>REQUEST</th><th>VERDICT</th><th>DECISION</th><th>MODE</th></tr>
+      <tr class="row"><td class="mono">21:04:12</td><td>@rohan</td><td>$320 AWS refund</td><td><span class="pill ok">WITHIN POLICY</span></td><td>APPROVED</td><td class="mono">AI</td></tr>
+      <tr class="row"><td class="mono">21:05:40</td><td>billing@vendorco</td><td>Invoice $900</td><td><span class="pill flag">FLAGGED: Over $500</span></td><td>DECLINED</td><td class="mono">AI</td></tr>
+      <tr class="row"><td class="mono">21:06:31</td><td>maya@partner</td><td>Partner sync invite</td><td><span class="pill flag">FLAGGED: Double-book</span></td><td>DECLINED</td><td class="mono">FALLBACK</td></tr>
+    </table>
+  </div>
+  <div class="abs" id="s7note" style="left:140px;top:800px;font-size:34px;color:var(--mut);width:1640px">The AI only recommends. Every row is a decision you made with a gesture.</div>
+</div>
+
+<!-- S8 -->
+<div class="scene" id="s8">
+  <img src="logo.svg" class="abs" style="left:660px;top:300px;height:120px">
+  <div class="abs h" style="left:0;width:1920px;top:480px;text-align:center">Read the request. Trust your rules.<br>Decide in one tap.</div>
+  <div class="abs mono" style="left:0;width:1920px;top:760px;text-align:center;font-size:26px;color:var(--mut)">Built for Even G2 · Heads Up hackathon · AI Assistants &amp; Work · Messaging &amp; News</div>
+</div>
+
+<div id="caption"></div>
+<script>
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const $=id=>document.getElementById(id);
+// fade in [a,a+d], optional fade out starting at b
+function vis(el,t,a,b=1e9,d=.35,rise=24){const i=ease((t-a)/d),o=1-clamp((t-b)/d);const v=Math.min(i,o);el.style.opacity=v;el.style.transform=`translateY(${(1-i)*rise}px)`;}
+let TL=null;
+window.setTimeline=tl=>{TL=tl;};
+function sceneAt(t){for(const s of TL.scenes)if(t>=s.start&&t<s.start+s.len)return s;return TL.scenes[TL.scenes.length-1];}
+const S={
+1(t){const sh=t>2&&t<9&&Math.sin(t*40)>0?Math.sin(t*90)*3:0;$('phone').style.transform=`translateX(${sh}px)`;
+  vis($('n1'),t,3.0);vis($('n2'),t,5.6);vis($('n3'),t,8.0);vis($('stuck'),t,11);},
+2(t){vis($('s2logo'),t,.2);vis($('src1'),t,2.2);vis($('src2'),t,3.0);vis($('src3'),t,3.8);vis($('rules2'),t,5);vis($('s2g2'),t,5.6,1e9,.5);},
+3(t){const L=this.len;const a=L*0.36,b=L*0.68;
+  vis($('sh_connect'),t,.2,a);vis($('sh_rules'),t,a,b);vis($('sh_pair'),t,b);
+  $('s3tag').textContent=t<a?'1 · CONNECT TELEGRAM, GMAIL, CALENDAR':t<b?'2 · WRITE RULES IN PLAIN ENGLISH':'3 · PAIR GLASSES WITH A SIX-DIGIT CODE';},
+4(t){vis($('tg1'),t,1.2);
+  const tap=13.4;let foot='TAP: Approve · SWIPE: Next · HOLD: Deny',cap='';
+  if(t>=tap&&t<tap+3){const n=Math.ceil(tap+3-t);foot=`CONFIRMING IN ${n}s... [TAP TO UNDO]`;cap='Tap. Three seconds to undo.';}
+  if(t>=tap+3){foot='SENT TO TELEGRAM';cap='Written back to the original message.';}
+  $('s4e').textContent=foot;$('s4cap').textContent=cap;
+  vis($('s4g2'),t,3.0);vis($('tg2'),t,tap+3);},
+5(t){vis($('gm1'),t,.8);vis($('s5g2'),t,3.0);
+  const hold=7.6;let foot='TAP: Approve · SWIPE: Next · HOLD: Deny';
+  if(t>=hold&&t<hold+2.2)foot='HOLDING TO DECLINE... [TAP TO UNDO]';
+  if(t>=hold+2.2)foot='DECLINED · REPLY SENT';
+  $('s5e').textContent=foot;vis($('gm2'),t,hold+2.2);},
+6(t){vis($('inv'),t,.8);vis($('s6g2'),t,2.2);
+  const dec=6.3;
+  $('s6n').textContent=t<4.2?'3/3':'3/3';
+  if(t>=dec){$('s6e').textContent='DECLINED · CALENDAR UPDATED';$('inv').style.opacity=.55;$('invs').textContent='DECLINED';$('inv').style.background='#ececec';$('inv').style.borderLeftColor='#888';}
+  else{$('s6e').textContent=t>3.8?'SWIPE: Next · HOLD: Deny':'TAP: Accept · SWIPE: Next · HOLD: Deny';$('invs').textContent='';$('inv').style.background='#fde4e1';$('inv').style.borderLeftColor='#b42318';}},
+7(t){document.querySelectorAll('.row').forEach((r,i)=>vis(r,t,.8+i*1.2));vis($('s7note'),t,5);},
+8(t){document.querySelectorAll('#s8 > *').forEach((e,i)=>vis(e,t,.2+i*.6));}
+};
+window.render=function(t){
+  const s=sceneAt(t);const lt=t-s.start;
+  document.querySelectorAll('.scene').forEach(e=>e.style.display='none');
+  $('s'+s.id).style.display='block';
+  // reset g2 transitions
+  S[s.id].call(s,lt);
+  const cap=TL.captions.find(c=>t>=c.t0&&t<c.t1);
+  const el=$('caption');
+  if(cap){el.style.display='block';el.textContent=cap.text;}else el.style.display='none';
+  // scene fade
+  document.body.style.opacity=Math.min(1,lt/0.25+0.0001)*Math.min(1,(s.len-lt)/0.25);
+};
+</script></body></html>

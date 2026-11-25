@@ -1,5 +1,6 @@
 'use client';
 
+import { Check, TriangleAlert } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { formatTime, type AuditRow } from '@/lib/api';
@@ -18,7 +19,7 @@ export function AuditTable() {
     <Card className="overflow-x-auto">
       {error ? <p role="alert" className="px-4 pt-3 text-xs text-hold">Connection lost. Showing the last data.</p> : null}
       <table className="w-full min-w-[760px] text-left text-sm">
-        <thead className="border-b border-border text-xs uppercase tracking-wide text-muted-foreground">
+        <thead className="border-b border-border text-xs text-muted-foreground">
           <tr>
             <th className="px-4 py-3 font-medium">Request</th>
             <th className="px-4 py-3 font-medium">Type</th>
@@ -45,7 +46,8 @@ export function AuditTable() {
               <td className="px-4 py-3 font-mono text-xs">{r.category}</td>
               <td className="px-4 py-3">
                 <Badge variant={r.policy_status === 'WITHIN_POLICY' ? 'go' : 'stop'}>
-                  {r.policy_status === 'WITHIN_POLICY' ? '✓ Within policy' : '⚠ Flagged'}
+                  {r.policy_status === 'WITHIN_POLICY' ? <Check className="size-3.5" aria-hidden /> : <TriangleAlert className="size-3.5" aria-hidden />}
+                  {r.policy_status === 'WITHIN_POLICY' ? 'Within policy' : 'Flagged'}
                 </Badge>
               </td>
               <td className="px-4 py-3">

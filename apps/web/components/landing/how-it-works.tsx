@@ -84,18 +84,18 @@ export function HowItWorks() {
 
           <div className="hidden lg:block">
             <div className="sticky top-28">
-              <div key={active} className="animate-in fade-in zoom-in-95 duration-300">
+              <div key={active} className="animate-in fade-in duration-200">
                 <LensCard {...steps[active].lens} />
               </div>
               <div className="mt-4 flex items-center justify-center gap-2" aria-hidden>
                 {steps.map((_, i) => (
                   <span
                     key={i}
-                    className={cn('h-1 rounded-full transition-all duration-300', i === active ? 'w-8 bg-signal' : 'w-3 bg-border')}
+                    className={cn('h-1 w-8 rounded-full transition-colors duration-200', i === active ? 'bg-signal' : 'bg-border')}
                   />
                 ))}
               </div>
-              <p className="mt-3 text-center text-xs text-muted-foreground">Layout preview of the 576 × 288 display, with sample data.</p>
+              <p className="mt-3 text-center text-xs text-muted-foreground">Layout preview of the 576 × 288 display, with sample data</p>
             </div>
           </div>
         </div>

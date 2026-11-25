@@ -64,7 +64,7 @@ Write-backs:
 
 | Source | APPROVE | DECLINE | SNOOZE |
 |---|---|---|---|
-| Telegram | `sendMessage` reply under the original message: `✅ Approved by Founder via Greenlight` | `❌ Declined by Founder via Greenlight` | none |
+| Telegram | `sendMessage` reply under the original message: `Approved by Founder via Greenlight` | `Declined by Founder via Greenlight` | none |
 | Gmail | Reply in the thread with `suggested_reply` | Polite decline reply in the thread | none |
 | Calendar | Attendee response `accepted` | `declined` | none |
 

@@ -21,12 +21,12 @@ export function LensCard({ header, badge, headline, verdict, footer, position, c
       aria-label={`G2 display preview: ${header} ${badge}. ${headline}. ${verdict}. ${footer}`}
       className={cn('lens relative aspect-[2/1] w-full overflow-hidden rounded-xl border border-[#14301f] p-4 sm:p-6', className)}
     >
-      <div className="flex h-full flex-col justify-between text-[10px] leading-tight sm:text-sm">
+      <div className="flex h-full flex-col justify-between text-[11px] leading-tight sm:text-sm">
         <div className="flex items-start justify-between gap-2 opacity-80">
           <span>{header}</span>
           <span>{badge}</span>
         </div>
-        <div className="text-[13px] font-semibold leading-snug sm:text-xl">{headline}</div>
+        <div className="text-sm font-semibold leading-snug sm:text-xl">{headline}</div>
         <div className="opacity-90">{verdict}</div>
         <div className="flex items-end justify-between gap-2 border-t border-[#14301f] pt-2 opacity-80">
           <span>{footer}</span>

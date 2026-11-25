@@ -19,7 +19,7 @@ It is a glance-and-act problem. The card fits 576 × 288 monochrome with no scro
 The AI only recommends. A deliberate gesture triggers every write-back, with a 3-second undo. No funds move, and demos use sandbox accounts. A deterministic fallback works if the AI fails.
 
 ## What existed before the hackathon
-Nothing. The repository was started on Nov 24, during the hackathon. The documentation structure was inspired by the open-source repo Beacon, and the teaser-video workflow by brag. No code was copied from either. Open-source libraries and the Even Hub SDK are used as dependencies.
+Nothing. The repository was started on Nov 24, during the hackathon. All code and documentation is original. Open-source libraries and the Even Hub SDK are used as dependencies.
 
 ## Feature requests for the APIs (optional, up to 5)
 These come from friction I hit while building. I only list what I actually ran into.
