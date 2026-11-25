@@ -45,7 +45,7 @@ export default function Home() {
             <div className="space-y-3">
               <LensCard
                 header="[REFUND · TG]"
-                badge="✓ WITHIN POLICY"
+                badge="WITHIN POLICY"
                 headline="$320 AWS refund · @rohan (Acme)"
                 verdict="AI: Approve. Under $500 limit"
                 footer="TAP: Approve · SWIPE: Next · HOLD: Deny"

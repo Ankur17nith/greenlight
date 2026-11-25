@@ -16,7 +16,7 @@ interface PendingCard {
   eval_mode: 'AI' | 'FALLBACK';
 }
 const code = { TELEGRAM: 'TG', GMAIL: 'GM', CALENDAR: 'CAL' } as const;
-const badge = (c: PendingCard) => (c.policy_status === 'WITHIN_POLICY' ? '✓ WITHIN POLICY' : `⚠ FLAGGED: ${c.policy_reason || 'review'}`.slice(0, 40));
+const badge = (c: PendingCard) => (c.policy_status === 'WITHIN_POLICY' ? 'WITHIN POLICY' : `FLAGGED: ${c.policy_reason || 'review'}`.slice(0, 40));
 
 export function QueueList() {
   const { data, error } = useApi<{ cards: PendingCard[] }>('/api/pending', 3000);

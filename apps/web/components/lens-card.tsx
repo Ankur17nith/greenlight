@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 
 export interface LensProps {
   header: string; // [REFUND · TG]
-  badge: string; // ✓ WITHIN POLICY
+  badge: string; // WITHIN POLICY
   headline: string; // max 42 chars
   verdict: string; // AI: ...
   footer: string; // [TAP: Approve] ...

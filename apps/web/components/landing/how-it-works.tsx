@@ -17,17 +17,17 @@ const steps: Step[] = [
   {
     title: 'Policy Guard checks it',
     body: 'Your plain-English rules run first. The card shows what it is, who sent it and whether it is within policy, with a one-line recommendation.',
-    lens: { ...base, badge: '✓ WITHIN POLICY', verdict: 'AI: Approve. Under $500 limit', footer: 'TAP: Approve · SWIPE: Next · HOLD: Deny' },
+    lens: { ...base, badge: 'WITHIN POLICY', verdict: 'AI: Approve. Under $500 limit', footer: 'TAP: Approve · SWIPE: Next · HOLD: Deny' },
   },
   {
     title: 'You tap, with time to undo',
     body: 'One tap approves. Nothing is sent for three seconds, and another tap cancels. Hold declines; swipe moves to the next card.',
-    lens: { ...base, badge: '✓ WITHIN POLICY', verdict: 'AI: Approve. Under $500 limit', footer: 'CONFIRMING IN 3s… [TAP TO UNDO]' },
+    lens: { ...base, badge: 'WITHIN POLICY', verdict: 'AI: Approve. Under $500 limit', footer: 'CONFIRMING IN 3s… [TAP TO UNDO]' },
   },
   {
     title: 'It lands where it started',
     body: 'The approval is posted under Rohan’s message, and the decision is added to your audit log with the time and the verdict.',
-    lens: { header: '✓ APPROVED', badge: '', headline: base.headline, verdict: 'Sent to Telegram', footer: 'Next card…', position: '2/3' },
+    lens: { header: 'APPROVED', badge: '', headline: base.headline, verdict: 'Sent to Telegram', footer: 'Next card…', position: '2/3' },
   },
 ];
 
