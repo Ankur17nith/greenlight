@@ -1,51 +1,52 @@
-# Status: Tue 24 Nov 2026 (planning done, build not started)
+# Status: Wed 25 Nov 2026
 
-Deadline: Sun 29 Nov, 23:59 Dubai time (UTC+4). Plan to submit by the evening of Sat 28 Nov.
+Deadline: Sun 29 Nov, 23:59 Dubai time (UTC+4). Plan to submit on the evening of Sat 28 Nov.
 
 ## Summary
 
-The plan, the docs and the repository skeleton exist. **No application code has been written.** Nothing below the "Planning" row has been run or tested.
+All the code for Days 0 to 2 is written and unit-tested (`pnpm test`, `pnpm typecheck`). Nothing has run against real Telegram, Google or the real AI model, and the glasses app has not run in the simulator. Those steps need accounts, secrets or a desktop, so they are listed below as open.
 
-## What is verified
+## Checked with real output
 
-| Area | State | Evidence |
-|---|---|---|
-| Hackathon rules and rubric read | Verified | Pasted page text in the session |
-| Competitor list (54 builds) | Verified from a pasted CSV | Names and one-line pitches only; no repos or videos were opened |
-| Plan, task list, API, Policy Guard, G2 UI docs | Written | `plan.md`, `docs/` |
-| Repo on GitHub, MIT licence, author set | Done | `Ankur17nith/greenlight` |
-| Node 22 and npm registry reachable from the sandbox | Verified | npm ping succeeded |
-| Reference repos readable | Verified | LifeLine, Beacon, brag, Debrief cloned read-only |
+| Area | Evidence |
+|---|---|
+| Unit tests for every package | `pnpm test` |
+| API started locally; Telegram-style message becomes a card; pairing code links a session; failed write leaves the card pending | curl against a running server |
+| Dashboard in a real browser against the live local API: queue, saving rules, pairing code | Playwright run |
+| ElevenLabs key | `onboard check` passed |
+| Narration audio | `pnpm narrate` made 8 files, 90.9 s in total |
+| No keys in git or history | `git grep` and `git log -p` scan |
 
-## What is not verified
+## Not checked yet
 
-| Area | State | Blocked by |
-|---|---|---|
-| Even Hub SDK calls, gesture events (tap, swipe, hold, double tap, ring) | Unknown | Day 0 spike (D0-3) |
-| Simulator running a hello screen | Not done | D0-2 |
-| ElevenLabs key | Not available to the session | Key must be set as an environment secret, then a new session ([QUESTIONS.md](QUESTIONS.md)) |
-| Telegram bot, Google OAuth project | Not created | D0-4, D0-5 |
-| Hosting | Not chosen | [QUESTIONS.md](QUESTIONS.md) |
-| Policy Guard, API, glasses app, web app | Not started | Day 1 onward |
-| Demo video, teaser | Script drafted only | Needs a working app |
+| Area | Why |
+|---|---|
+| Telegram bot, webhook and reply | No bot token or public URL yet (D0-4, D0-6) |
+| Google sign-in, Gmail, Calendar | No Google project or secrets yet (D0-5). Tested with mocked Google only |
+| Policy Guard with the real model | `ANTHROPIC_API_KEY` is not set here. All cards currently show `FALLBACK` |
+| Glasses app in the simulator or on glasses, and the real gesture events | The simulator is a desktop app (D0-2, D0-3) |
+| Hosting, `.ehpk` package, CI run | Not started |
+| Demo video and teaser | Narration exists; screen capture and edit need the working app |
 
 ## Build state by part
 
 | Part | Folder | State |
 |---|---|---|
-| Glasses app | `apps/g2` | not started |
-| Web app (landing and dashboard) | `apps/web` | not started |
-| Backend | `apps/api` | not started |
-| Policy Guard | `packages/policy` | not started |
-| Shared types and fixtures | `packages/shared` | not started |
-| CI | `.github/workflows/ci.yml` | written, never run |
+| Glasses app | `apps/g2` | written, unit-tested, not run on a device |
+| Web app (landing and dashboard) | `apps/web` | built, dashboard wired to the API |
+| Backend | `apps/api` | written, unit-tested, run locally |
+| Policy Guard | `packages/policy` | written, unit-tested with a stubbed model |
+| Shared types and fixtures | `packages/shared` | done |
+| Scripts | `scripts` | `pnpm seed` and `pnpm narrate` |
+| CI | `.github/workflows/ci.yml` | written, result not checked |
 
 ## Risks right now
 
-- The gesture map is a guess until Day 0 confirms it.
-- Roughly four working days remain; the cut order in [FEATURES.md](FEATURES.md) is the safety valve.
-- The web frontend borrows a visual style from a public repo whose licence is unclear, so it is written fresh ([LEARNINGS.md](LEARNINGS.md)).
+- The gesture map comes from the SDK typings only. It is unconfirmed until D0-3 is run.
+- Telegram, Google and the AI model are the main unknowns. Each is only mocked so far.
+- The narration voice is a placeholder premade voice. No Indian-English voice has been chosen.
+- The cut order in [FEATURES.md](FEATURES.md) is the safety valve.
 
 ## Next
 
-D0-1 to D0-7 in [TASKS.md](TASKS.md), then Telegram end to end on Nov 25.
+Add the Telegram token, a public URL, the Anthropic key and the Google OAuth client, then run the real loop. See [TASKS.md](TASKS.md).

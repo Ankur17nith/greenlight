@@ -6,7 +6,7 @@ Cut order if time runs short ([plan.md](../plan.md#2-decisions-and-corrections-t
 
 ## Day 0 · Nov 24: unblock
 
-- [ ] **D0-1 ElevenLabs key.** Do: put `ELEVENLABS_API_KEY` in the environment secrets (or `.env.local`). Done when: `npx -y @elevenlabs/cli@latest onboard check --env-path .env.local` passes.
+- [x] **D0-1 ElevenLabs key.** Do: put `ELEVENLABS_API_KEY` in the environment secrets (or `.env.local`). Done when: `npx -y @elevenlabs/cli@latest onboard check --env-path .env.local` passes.
 - [ ] **D0-2 Simulator hello.** Do: install `@evenrealities/evenhub-cli` and `@evenrealities/evenhub-simulator`, start from the official minimal template, change one line. Done when: the simulator shows the new text.
 - [ ] **D0-3 Gesture spike.** Do: log every input event (tap, swipe, hold, double tap, ring). Done when: the "Verified gestures" table in [G2_UI.md](G2_UI.md#verified-gestures) is filled in from real output, and the gesture map in plan.md matches.
 - [ ] **D0-4 Telegram bot.** Do: create the bot with @BotFather, add it to a test group, disable privacy mode, set the webhook secret. Done when: a message in the group reaches a local echo handler.
@@ -37,7 +37,7 @@ Cut order if time runs short ([plan.md](../plan.md#2-decisions-and-corrections-t
 - [ ] **D2-5 Audit log.** Do: dashboard table with requester, action, verdict, decision, time, `AI`/`FALLBACK`. Done when: a tap on the glasses appears within 5 seconds.
 - [x] **D2-6 Safety pass.** Do: delimiter-wrapped prompts, schema validation, scope check, secrets scan. Done when: the checklist in [SECURITY.md](../SECURITY.md) is satisfied.
 - [x] **D2-7 Seed script.** Do: `scripts/seed-demo` creates exactly the scenes in [video/SCRIPT.md](../video/SCRIPT.md). Done when: one command resets and replays the demo data.
-- [ ] **D2-8 Narration audio.** Do: generate `video/narration/NN.mp3` from `narration.json` with the chosen voice. Done when: 8 files exist and total under 2:55.
+- [x] **D2-8 Narration audio.** Do: generate `video/narration/NN.mp3` from `narration.json` with the chosen voice. Done when: 8 files exist and total under 2:55.
 - [ ] **D2-9 Feature freeze.** Done when: no new features; only fixes and polish from here.
 
 ## Day 3 · Nov 27: harden, package, record
