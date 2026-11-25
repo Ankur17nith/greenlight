@@ -29,7 +29,7 @@ Greenlight lets a person approve requests from smart glasses, so the rules are s
 | Calendar changes only the founder's own response and sends no guest emails | Done | `calendar.test.ts` |
 | Request text is capped at 2000 characters before the model call | Done | `app.test.ts` |
 | No provider keys or secret variable names in the glasses bundle | Done | `apps/g2/src/bundle.test.ts` |
-| No keys in git or history; `.env*` ignored except `.env.example` | Done (Nov 26 scan) | `git grep` and `git log -p` for key patterns found nothing |
+| No keys in git or history; `.env*` ignored except `.env.example` | Done (Nov 25 scan) | `git grep` and `git log -p` for key patterns found nothing |
 | Snooze is not written to the audit log (it does not leave `PENDING`) | Known gap | Only approve and decline are audited |
 | Dashboard auth is a single shared token from the environment | Known limit | Fine for a sandbox demo, not for production |
 
