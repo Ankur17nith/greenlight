@@ -2,6 +2,7 @@ import { CreateStartUpPageContainer, TextContainerProperty, TextContainerUpgrade
 import { httpApi, exchangeCode } from "./api";
 import { API_URL, POLL_MS, TOKEN_KEY } from "./config";
 import { Controller } from "./controller";
+import { devToken } from "./dev";
 import { toGesture } from "./gestures";
 import type { Screen } from "./render";
 
@@ -17,7 +18,7 @@ const status = (t: string) => { $("#status").textContent = t; };
 
 async function main() {
   const bridge = await waitForEvenAppBridge();
-  let token = (await bridge.getLocalStorage(TOKEN_KEY)) || null;
+  let token = devToken(location.search, import.meta.env.DEV) ?? ((await bridge.getLocalStorage(TOKEN_KEY)) || null);
 
   const textObject = ROWS.map((r, i) => new TextContainerProperty({
     xPosition: 0, yPosition: r.y, width: W, height: r.h, containerID: i + 1, containerName: r.name,
