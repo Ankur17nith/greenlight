@@ -55,7 +55,7 @@ Four fixed text containers, 576 × 288 monochrome green, no scrolling.
 
 ```
 ┌──────────────────────────────────────────────┐
-│ [EXPENSE · TG]               ✓ WITHIN POLICY │  C1: category · source + policy badge
+│ [EXPENSE · TG]               WITHIN POLICY │  C1: category · source + policy badge
 │ $320 AWS Refund · @rohan (Acme Corp)         │  C2: core ask (max 42 chars)
 │ AI: Approve — under $500 limit, VIP client   │  C3: one-line verdict
 │ [TAP: Approve]  [SWIPE: Next]  [HOLD: Deny]  │  C4: action footer + 1/3 counter
@@ -69,7 +69,7 @@ Four fixed text containers, 576 × 288 monochrome green, no scrolling.
 | Hold | Decline (optional 3s voice reason if time allows) |
 | Double tap | Snooze 1 hour, card goes to the back |
 
-Badges: `✓ WITHIN POLICY` and `⚠ FLAGGED: <short reason>`. An empty queue shows `ALL CLEAR`. If the backend is offline, the screen shows `OFFLINE · retrying`.
+Badges: `WITHIN POLICY` and `FLAGGED: <short reason>`. An empty queue shows `ALL CLEAR`. If the backend is offline, the screen shows `OFFLINE · retrying`.
 
 ---
 

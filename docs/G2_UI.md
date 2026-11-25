@@ -6,7 +6,7 @@ Display: monochrome green, 576 × 288 per eye. The Even Hub SDK draws positioned
 
 ```
 ┌──────────────────────────────────────────────┐
-│ [REFUND · TG]                ✓ WITHIN POLICY │  C1
+│ [REFUND · TG]                WITHIN POLICY │  C1
 │ $320 AWS Refund · @rohan (Acme Corp)         │  C2
 │ AI: Approve — under $500 limit, VIP client   │  C3
 │ [TAP: Approve]  [SWIPE: Next]  [HOLD: Deny]  │  C4   (1/3)
@@ -20,7 +20,7 @@ Display: monochrome green, 576 × 288 per eye. The Even Hub SDK draws positioned
 | C3 | `AI:` recommendation | 44 chars |
 | C4 | Action footer and queue position `n/N` | one line |
 
-Source codes: `TG`, `MAIL`, `CAL`. Badges: `✓ WITHIN POLICY`, `⚠ FLAGGED: <reason>`.
+Source codes: `TG`, `MAIL`, `CAL`. Badges: `WITHIN POLICY`, `FLAGGED: <reason>`.
 
 ## Gestures (target; confirm below)
 
@@ -49,18 +49,20 @@ _The event names below come from the `@evenrealities/even_hub_sdk` 0.0.16 typing
 
 Fallback if hold or double tap are missing: tap = approve, swipe = next, ring press = decline, and a snooze step reached by swiping to `SNOOZE` on the action footer.
 
+Status text on the glasses is plain ASCII. The simulator font has no check mark, warning sign or cross, so those glyphs would show as blanks.
+
 ## States
 
 | State | C1 | C2 | C3 | C4 |
 |---|---|---|---|---|
 | Normal | category · source, badge | headline | recommendation | actions, `1/3` |
 | Confirming | same | same | same | `CONFIRMING IN 3s… [TAP TO UNDO]` |
-| Done | `✓ APPROVED` or `✕ DECLINED` | headline | `Sent to Telegram` / `Replied in Gmail` / `Calendar updated` | next card in 1s |
+| Done | `APPROVED` or `DECLINED` | headline | `Sent to Telegram` / `Replied in Gmail` / `Calendar updated` | next card in 1s |
 | Snoozed | `ZZ SNOOZED 1h` | headline | | next card |
 | Empty | `GREENLIGHT` | `ALL CLEAR` | `No decisions waiting` | |
 | Offline | `GREENLIGHT` | `OFFLINE` | `Retrying…` | |
 | Not paired | `GREENLIGHT` | `ENTER CODE ON PHONE` | `Open the Even app` | |
-| Error on act | `⚠ NOT SENT` | headline | `Tap to retry` | |
+| Error on act | normal card header | headline | `Send failed. Tap to retry` or `Offline. Tap to retry` | `[TAP: Retry]` |
 
 ## Writing rules for the lens
 - One item per container, a few words each. No sentences that wrap.
