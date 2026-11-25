@@ -1,0 +1,131 @@
+1
+00:00:00,500 --> 00:00:02,616
+Every founder knows this moment.
+
+2
+00:00:02,616 --> 00:00:03,476
+It's nine p.
+
+3
+00:00:03,476 --> 00:00:03,608
+m.
+
+4
+00:00:03,608 --> 00:00:06,716
+, you're out for dinner, and your phone buzzes.
+
+5
+00:00:06,716 --> 00:00:08,104
+A refund to approve.
+
+6
+00:00:08,104 --> 00:00:09,294
+A vendor waiting.
+
+7
+00:00:09,294 --> 00:00:10,484
+A calendar clash.
+
+8
+00:00:10,484 --> 00:00:15,311
+Small decisions, but your whole team is stuck until you open the laptop.
+
+9
+00:00:16,611 --> 00:00:19,521
+This is Greenlight, an approval terminal for Even G2.
+
+10
+00:00:19,521 --> 00:00:26,878
+Requests from Telegram, Gmail and Google Calendar arrive on your glasses as one card, already checked against your own company rules.
+
+11
+00:00:28,178 --> 00:00:29,097
+Set it up once.
+
+12
+00:00:29,097 --> 00:00:32,898
+Connect your accounts, and write your rules in plain English.
+
+13
+00:00:32,898 --> 00:00:35,473
+Flag expenses above five hundred dollars.
+
+14
+00:00:35,473 --> 00:00:37,557
+Never double-book investor calls.
+
+15
+00:00:37,557 --> 00:00:40,377
+Then pair your glasses with a six-digit code.
+
+16
+00:00:41,677 --> 00:00:47,269
+Rohan, from a client team, asks for a three-twenty-dollar AWS refund in Telegram.
+
+17
+00:00:47,269 --> 00:00:54,312
+Greenlight reads it, checks your rules, and shows one card: what, who, and a one-line recommendation.
+
+18
+00:00:54,312 --> 00:00:55,693
+One tap to approve.
+
+19
+00:00:55,693 --> 00:00:57,833
+You get three seconds to undo.
+
+20
+00:00:57,833 --> 00:01:02,183
+Then it's done, and Rohan sees the approval right in the chat.
+
+21
+00:01:03,483 --> 00:01:05,263
+Not everything is a green light.
+
+22
+00:01:05,263 --> 00:01:08,321
+A nine-hundred-dollar vendor invoice arrives by email.
+
+23
+00:01:08,321 --> 00:01:11,881
+Greenlight flags it, because it's over your five-hundred limit.
+
+24
+00:01:11,881 --> 00:01:15,551
+Hold to decline, and a polite reply goes back on the same thread.
+
+25
+00:01:16,851 --> 00:01:19,547
+A new invite clashes with your investor call.
+
+26
+00:01:19,547 --> 00:01:22,961
+Greenlight flags it against your no-double-booking rule.
+
+27
+00:01:22,961 --> 00:01:25,237
+Decline it, and the calendar updates.
+
+28
+00:01:26,537 --> 00:01:31,938
+Every tap is logged: who asked, what for, the policy verdict, your decision, and when.
+
+29
+00:01:31,938 --> 00:01:35,079
+Open the dashboard, and the whole trail is there.
+
+30
+00:01:36,379 --> 00:01:37,027
+Greenlight.
+
+31
+00:01:37,027 --> 00:01:38,089
+Read the request.
+
+32
+00:01:38,089 --> 00:01:39,151
+Trust your rules.
+
+33
+00:01:39,151 --> 00:01:40,271
+Decide in one tap.

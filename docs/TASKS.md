@@ -46,8 +46,8 @@ Cut order if time runs short ([plan.md](../plan.md#2-decisions-and-corrections-t
 - [ ] **D3-2 Package.** Do: build the `.ehpk`. Done when: the file installs in the simulator.
 - [ ] **D3-3 README.** Do: setup, architecture, what existed before Nov 23, feature requests. Done when: a fresh clone follows it to the demo.
 - [ ] **D3-4 Capture.** Do: record each scene in [video/PRODUCTION.md](../video/PRODUCTION.md). Done when: all 8 raw clips exist at 1920×1080.
-- [ ] **D3-5 Voice-over and edit.** Do: align narration, add captions, mix music. Done when: `out/greenlight_demo.mp4` is 3:00 or less.
-- [ ] **D3-6 Teaser.** Do: run `brag-slim` for a ~20s clip. Done when: `out/greenlight_teaser.mp4` exists.
+- [x] **D3-5 Voice-over and edit.** Do: align narration, add captions, mix music. Done when: `out/greenlight_demo.mp4` is 3:00 or less.
+- [x] **D3-6 Teaser.** Do: run `pnpm teaser` for a ~20s clip. Done when: `video/final/greenlight_teaser.mp4` exists.
 - [ ] **D3-7 Submission draft.** Do: finish [SUBMISSION.md](SUBMISSION.md). Done when: every `_TBD_` is filled.
 - [x] **D3-8 Hygiene.** Do: scan history for keys, check `.env*` is ignored. Done when: `git log -p | grep -iE 'sk-ant|api[_-]?key=|token='` shows only fake values.
 

@@ -19,7 +19,7 @@
 Built for the **Heads Up** hackathon (Even Realities × TVM Ventures × Daos Hub) on DoraHacks.
 **Primary track:** 04 · AI Assistants & Work. **Second track:** 01 · Messaging & News. **Special prize:** Best Telegram integration.
 
-![Greenlight home page](docs/images/home-page.png)
+![Greenlight home page](docs/images/home-light.png)
 
 > **Status:** the website, the backend, Policy Guard and the glasses app are all written and unit-tested. None of it has run against real Telegram, Google or the real AI model yet, and the glasses app has run only in the simulator, not on real glasses. The Status table below says exactly what was checked. See [Status](#status).
 
@@ -140,6 +140,8 @@ pnpm dev:api                          # backend on http://localhost:3001 (see .e
 pnpm dev:g2                           # glasses app on http://localhost:5173
 pnpm --filter @greenlight/g2 ehpk     # build apps/g2/out/greenlight.ehpk (set VITE_API_URL and the app.json whitelist first)
 pnpm narrate                          # generate video/narration/NN.mp3 with ElevenLabs (needs ELEVENLABS_API_KEY)
+pnpm video                            # render video/out/greenlight_demo.mp4 (needs ffmpeg, Playwright, the narration files)
+pnpm teaser                           # render the 20 s teaser after pnpm video
 pnpm seed                             # reset and replay the demo cards (API needs DEMO_MODE=1, DASHBOARD_TOKEN set)
 pnpm test                             # unit tests for every package
 pnpm typecheck                        # type checks every package
@@ -161,9 +163,13 @@ The API and glasses app commands are added here as each part lands. Account setu
 | [.design/](.design/DESIGN.md) | Brief, taste, design system |
 | [ROADMAP.md](ROADMAP.md) · [CHANGELOG.md](CHANGELOG.md) · [CONTRIBUTING.md](CONTRIBUTING.md) | Project history and process |
 
+## Demo video
+
+The finished films are in [`video/final/`](video/final): `greenlight_demo.mp4` (1:42, voice-over and captions) and `greenlight_teaser.mp4` (20 s). The dashboard footage is real. The glasses cards and the Telegram, Gmail and Calendar panels are drawn from the script with sample data, because no live accounts or AI key were connected. The film says so on screen.
+
 ## What existed before Nov 23
 
-Nothing. Greenlight was started on Nov 24, during the hackathon. Its documentation structure was inspired by the open-source repo [Beacon](https://github.com/Prashant-thakur77/Beacon), and the teaser-video workflow by [brag](https://github.com/latent-spaces/brag). No code was copied from any of them. The project depends on open-source libraries (Next.js, React, Tailwind, Radix Slot, lucide, next-themes, and Geist fonts under the SIL Open Font License) and on the Even Hub SDK.
+Nothing. Greenlight was started on Nov 24, during the hackathon. Every line of code and documentation is original work. The project depends on open-source libraries (Next.js, React, Tailwind, Radix Slot, lucide, next-themes, and Geist fonts under the SIL Open Font License) and on the Even Hub SDK.
 
 ## AI tools used
 
