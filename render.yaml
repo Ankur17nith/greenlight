@@ -24,8 +24,10 @@ services:
         generateValue: true
       - key: SESSION_SECRET
         generateValue: true
+      # Telegram accepts only letters, digits, _ and - here, so do not let Render generate it (its values contain + / =).
+      # Make one with: openssl rand -hex 24   and use the same value in your local .env.
       - key: TELEGRAM_WEBHOOK_SECRET
-        generateValue: true
+        sync: false
       - key: TELEGRAM_BOT_TOKEN
         sync: false
       # The website's address, for CORS and for the Google sign-in redirect back to the dashboard.

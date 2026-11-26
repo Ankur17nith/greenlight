@@ -22,6 +22,7 @@ For the demo, do this in order: wake the service, save the two demo rules, pair 
 1. **Create the Blueprint.** In the Render dashboard choose New, then Blueprint. Connect the GitHub repo `Ankur17nith/greenlight`, branch `main`. Render reads `render.yaml` and lists two services.
 2. **Fill the prompts.** Render asks for the values marked `sync: false`.
    - `TELEGRAM_BOT_TOKEN`: the token from BotFather.
+   - `TELEGRAM_WEBHOOK_SECRET`: run `openssl rand -hex 24` and paste the result. Use only letters, digits, `_` and `-`; Telegram refuses anything else. Keep the same value in your local `.env`.
    - If Render asks for a payment method, the free plan still costs nothing; check that both services show Free before you confirm.
    - `CORS_ORIGIN`, `DASHBOARD_URL`, `PUBLIC_BASE_URL`, `NEXT_PUBLIC_API_URL`: you do not know these yet. Type `https://example.com` for each and fix them in step 4.
    - Google values: leave empty until you connect Gmail and Calendar.
@@ -36,7 +37,7 @@ For the demo, do this in order: wake the service, save the two demo rules, pair 
    ```
    PUBLIC_BASE_URL=https://<api address>
    TELEGRAM_BOT_TOKEN=<token from BotFather>
-   TELEGRAM_WEBHOOK_SECRET=<copy it from the API service's Environment on Render>
+   TELEGRAM_WEBHOOK_SECRET=<the same value you gave Render>
    ```
    Then run:
    ```bash

@@ -22,6 +22,13 @@ describe("setWebhook", () => {
     await expect(setWebhook({ ...env, TELEGRAM_BOT_TOKEN: undefined })).rejects.toThrow("TELEGRAM_BOT_TOKEN is not set");
     await expect(setWebhook({ ...env, PUBLIC_BASE_URL: undefined })).rejects.toThrow("PUBLIC_BASE_URL is not set");
   });
+  it("rejects a secret Telegram would refuse, without printing it", async () => {
+    for (const bad of ["ab+cd/ef==", "has space", '"quoted"', "line\n"]) {
+      const err = await setWebhook({ ...env, TELEGRAM_WEBHOOK_SECRET: bad }).catch((e: Error) => e.message);
+      expect(err).toContain("letters, digits, _ and -");
+      expect(err).not.toContain(bad);
+    }
+  });
   it("reports Telegram's refusal without the token", async () => {
     const f = (async () => new Response(JSON.stringify({ ok: false, description: "Unauthorized" }), { status: 401 })) as typeof fetch;
     const err = await setWebhook(env, f).catch((e: Error) => e.message);

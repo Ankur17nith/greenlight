@@ -16,6 +16,9 @@ export async function setWebhook(env: Record<string, string | undefined>, f: typ
   if (!base) throw new Error("PUBLIC_BASE_URL is not set");
   if (!token) throw new Error("TELEGRAM_BOT_TOKEN is not set");
   if (!secret) throw new Error("TELEGRAM_WEBHOOK_SECRET is not set");
+  if (!/^[A-Za-z0-9_-]{1,256}$/.test(secret)) {
+    throw new Error("TELEGRAM_WEBHOOK_SECRET may only contain letters, digits, _ and -, and be 1 to 256 characters (check for spaces, quotes or + / = characters). Make one with: openssl rand -hex 24");
+  }
   const url = webhookUrl(base);
   const res = await f(`https://api.telegram.org/bot${token}/setWebhook`, {
     method: "POST",
