@@ -13,7 +13,7 @@ interface PendingCard {
   policy_status: 'WITHIN_POLICY' | 'FLAGGED';
   policy_reason: string;
   ai_recommendation: string;
-  eval_mode: 'AI' | 'FALLBACK';
+  eval_mode: 'AI' | 'FALLBACK' | 'RULES';
 }
 const code = { TELEGRAM: 'TG', GMAIL: 'GM', CALENDAR: 'CAL' } as const;
 const badge = (c: PendingCard) => (c.policy_status === 'WITHIN_POLICY' ? 'WITHIN POLICY' : `FLAGGED: ${c.policy_reason || 'review'}`.slice(0, 40));
@@ -38,6 +38,7 @@ export function QueueList() {
             <p className="mt-2 font-medium">{c.headline}</p>
             <p className="mt-1 text-sm text-muted-foreground">AI: {c.ai_recommendation}</p>
             {c.eval_mode === 'FALLBACK' ? <p className="mt-1 font-mono text-xs text-hold">FALLBACK: AI did not judge this one</p> : null}
+            {c.eval_mode === 'RULES' ? <p className="mt-1 font-mono text-xs text-muted-foreground">RULES: judged by your rules, no model</p> : null}
           </Card>
         ))}
       </div>

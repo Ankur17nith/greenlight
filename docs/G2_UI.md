@@ -17,7 +17,7 @@ Display: monochrome green, 576 × 288 per eye. The Even Hub SDK draws positioned
 |---|---|---|
 | C1 | `[CATEGORY · SOURCE]` left, policy badge right | one line |
 | C2 | Core ask, the largest text | 42 chars |
-| C3 | `AI:` recommendation | 44 chars |
+| C3 | `AI:` recommendation (`RULES:` when plain-code rules judged it) | 44 chars |
 | C4 | Action footer and queue position `n/N` | one line |
 
 Source codes: `TG`, `MAIL`, `CAL`. Badges: `WITHIN POLICY`, `FLAGGED: <reason>`.

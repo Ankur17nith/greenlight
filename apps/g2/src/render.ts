@@ -11,6 +11,8 @@ export interface CardView {
   policy_status: "WITHIN_POLICY" | "FLAGGED";
   policy_reason: string;
   ai_recommendation: string;
+  /** RULES means plain code judged it, not the model; the label says so. */
+  eval_mode?: "AI" | "FALLBACK" | "RULES";
 }
 
 const SRC: Record<CardView["source"], string> = { TELEGRAM: "TG", GMAIL: "GM", CALENDAR: "CAL" };
@@ -28,7 +30,7 @@ export function cardScreen(c: CardView, index: number, total: number): Screen {
   return {
     c1: `[${clip(c.category, 10)} · ${SRC[c.source]}]  ${badge(c)}`,
     c2: clip(c.headline, 42),
-    c3: `AI: ${clip(c.ai_recommendation, 44)}`,
+    c3: `${c.eval_mode === "RULES" ? "RULES" : "AI"}: ${clip(c.ai_recommendation, 44)}`,
     c4: footer(index, total),
   };
 }

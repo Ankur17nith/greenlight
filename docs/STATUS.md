@@ -25,9 +25,9 @@ All the code for Days 0 to 2 is written and unit-tested (`pnpm test`, `pnpm type
 |---|---|
 | Telegram bot, webhook and reply | No bot token or public URL yet (D0-4, D0-6) |
 | Google sign-in, Gmail, Calendar | No Google project or secrets yet (D0-5). Tested with mocked Google only |
-| Policy Guard with the real model | `ANTHROPIC_API_KEY` is not set here. All cards currently show `FALLBACK` |
+| Policy Guard with the real model | No model key is set. Without one, rules-only mode judges amount limits and calendar clashes (tag `RULES`); the model path is tested with a stub only |
 | Glasses app on real glasses, and the R1 ring | Needs the hardware |
-| Hosting, `.ehpk` package, CI run | Not started |
+| Hosting, `.ehpk` package, CI run | `render.yaml` and [DEPLOY.md](DEPLOY.md) are written but not deployed yet. Packaging command exists; CI result not checked |
 | Live-footage version of the video | The 1:42 demo and 20 s teaser are done (`video/final/`, 2:12). The dashboard scenes are real recordings; the glasses cards and the Telegram, Gmail and Calendar panels are drawn with sample data, not recorded from live accounts |
 
 ## Build state by part

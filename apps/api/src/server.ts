@@ -1,6 +1,7 @@
 import { mkdirSync } from "node:fs";
 import { dirname } from "node:path";
-import { anthropicComplete, evaluate, fallbackVerdict, parseRequest } from "@greenlight/policy";
+import { anthropicComplete } from "@greenlight/policy";
+import { makeEvaluator } from "./evaluator.ts";
 import { buildApp, ingest, parseCors, type Deps } from "./app.ts";
 import { createSession, openDb } from "./db.ts";
 import { pollGoogle } from "./poll.ts";
@@ -26,11 +27,7 @@ const deps: Deps = {
   demoMode: env.DEMO_MODE === "1",
   telegramSecret: env.TELEGRAM_WEBHOOK_SECRET ?? "",
   corsOrigin: parseCors(env.CORS_ORIGIN),
-  evaluate: async (req, rules) => {
-    if (!complete) return { verdict: fallbackVerdict(req, parseRequest(req.text), "No AI key"), eval_mode: "FALLBACK" };
-    const r = await evaluate(req, rules, { complete });
-    return { verdict: r.verdict, eval_mode: r.eval_mode };
-  },
+  evaluate: makeEvaluator(complete, env.POLICY_MODE),
   writeBack: makeWriteBack({ db, google, telegramToken: env.TELEGRAM_BOT_TOKEN, telegramBase: env.TELEGRAM_API_BASE }),
 };
 

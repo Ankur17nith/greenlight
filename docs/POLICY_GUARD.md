@@ -11,6 +11,19 @@ Policy Guard turns a raw request and the founder's plain-English rules into a ca
 
 The model only recommends. A gesture on the glasses is the only trigger for an action.
 
+## Rules-only mode
+
+With no model key (or `POLICY_MODE=rules`) the API judges requests with plain code in `packages/policy/src/rules.ts`. Cards are tagged `RULES`, and the glasses line reads `RULES:` instead of `AI:`.
+
+It understands two kinds of rule:
+
+| Rule shape | Example | Effect |
+|---|---|---|
+| Amount limit | `Flag any refund or expense over $500.` | Flags when the parsed amount is over the limit. The limit itself is within. `or more` and `at least` include it. |
+| Calendar clash | `Never double-book investor calls.` | Flags an overlapping invite. A word like `investor` limits it to clashes with that kind of event. |
+
+Anything else, such as `Flag requests from people not in our contact list`, is not machine-checked. The badge then says `Checked 2 of 3 rules`. A request is `WITHIN_POLICY` only when at least one rule applied and none was broken. If no rule applies it is `FLAGGED: No rule covers this`. Several amounts and a currency that differs from the rule also flag. Text inside a request is never followed as an instruction.
+
 ## Output schema
 
 ```json

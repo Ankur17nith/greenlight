@@ -14,7 +14,7 @@ export interface Card {
   policy_status: PolicyStatus;
   policy_reason: string | null;
   ai_recommendation: string;
-  eval_mode: 'AI' | 'FALLBACK';
+  eval_mode: 'AI' | 'FALLBACK' | 'RULES';
 }
 
 export interface AuditRow {
@@ -24,7 +24,7 @@ export interface AuditRow {
   headline: string;
   policy_status: PolicyStatus;
   decision: Decision;
-  eval_mode: 'AI' | 'FALLBACK';
+  eval_mode: 'AI' | 'FALLBACK' | 'RULES';
   decided_at: string;
 }
 

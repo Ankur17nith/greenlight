@@ -8,6 +8,7 @@ describe("render", () => {
     const s = r.cardScreen(card, 0, 3);
     expect(s.c1).toBe("[REFUND · TG]  WITHIN POLICY");
     expect(s.c3).toBe("AI: Approve — under $500 limit");
+    expect(r.cardScreen({ ...card, eval_mode: "RULES" }, 0, 1).c3).toBe("RULES: Approve — under $500 limit");
     expect(s.c4).toContain("1/3");
   });
   it("flagged badge carries a short reason", () =>

@@ -3,7 +3,7 @@ import { z } from "zod";
 export const Source = z.enum(["TELEGRAM", "GMAIL", "CALENDAR"]);
 export const Category = z.enum(["EXPENSE", "REFUND", "SIGN_OFF", "CALENDAR"]);
 export const PolicyStatus = z.enum(["WITHIN_POLICY", "FLAGGED"]);
-export const EvalMode = z.enum(["AI", "FALLBACK"]);
+export const EvalMode = z.enum(["AI", "FALLBACK", "RULES"]);
 export const CardStatus = z.enum(["PENDING", "APPROVED", "DECLINED", "SNOOZED"]);
 export const Action = z.enum(["APPROVE", "DECLINE", "SNOOZE"]);
 

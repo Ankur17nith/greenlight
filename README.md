@@ -139,6 +139,7 @@ pnpm dev:web                          # website on http://localhost:3000
 pnpm dev:api                          # backend on http://localhost:3001 (see .env.example)
 pnpm dev:g2                           # glasses app on http://localhost:5173
 pnpm --filter @greenlight/g2 ehpk     # build apps/g2/out/greenlight.ehpk (set VITE_API_URL and the app.json whitelist first)
+pnpm webhook                          # point the Telegram bot at the deployed API (reads .env; see docs/DEPLOY.md)
 pnpm narrate                          # generate video/narration/NN.mp3 with ElevenLabs (needs ELEVENLABS_API_KEY)
 pnpm video                            # render video/out/greenlight_demo.mp4 (needs ffmpeg, Playwright, the narration files)
 pnpm teaser                           # render the 20 s teaser after pnpm video

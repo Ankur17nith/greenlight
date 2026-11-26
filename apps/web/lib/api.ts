@@ -68,7 +68,7 @@ export interface AuditRow {
   headline: string;
   policy_status: 'WITHIN_POLICY' | 'FLAGGED';
   decision: 'APPROVED' | 'DECLINED';
-  eval_mode: 'AI' | 'FALLBACK';
+  eval_mode: 'AI' | 'FALLBACK' | 'RULES';
   decided_at: string;
 }
 

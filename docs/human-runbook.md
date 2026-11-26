@@ -48,7 +48,9 @@ pnpm dev:g2
 
 Expected: the API answers `GET /health`, the web app opens at `/`, the simulator shows "ALL CLEAR".
 
-## §2 · Deploy **(later)**
+## §2 · Deploy
+
+Follow [DEPLOY.md](DEPLOY.md): a Render Blueprint (`render.yaml`) and `pnpm webhook`. The older checklist below is kept for reference.
 
 Pick a host that gives a stable public HTTPS URL (open question 3 in [QUESTIONS.md](QUESTIONS.md)).
 

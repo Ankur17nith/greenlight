@@ -11,7 +11,7 @@ import { demoRequests } from "./demo.ts";
 export interface Deps {
   db: q.Db;
   /** Evaluates a request against the rules. Never throws; falls back to FLAGGED. */
-  evaluate: (req: RawRequest, rules: string[]) => Promise<{ verdict: Verdict; eval_mode: "AI" | "FALLBACK" }>;
+  evaluate: (req: RawRequest, rules: string[]) => Promise<{ verdict: Verdict; eval_mode: "AI" | "FALLBACK" | "RULES" }>;
   /** Performs the external write for a card. Throws on failure. Returns a label for the response. */
   writeBack: (card: q.Row, action: "APPROVE" | "DECLINE") => Promise<string>;
   telegramSecret: string;

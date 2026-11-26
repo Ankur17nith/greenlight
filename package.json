@@ -17,6 +17,7 @@
     "seed": "pnpm --filter @greenlight/scripts --if-present seed",
     "narrate": "pnpm --filter @greenlight/scripts --if-present narrate",
     "video": "node video/src/render.mjs",
-    "teaser": "node video/src/teaser.mjs"
+    "teaser": "node video/src/teaser.mjs",
+    "webhook": "pnpm --filter @greenlight/scripts --if-present webhook"
   }
 }
